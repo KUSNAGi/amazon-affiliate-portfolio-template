@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: nkiax-project-affiliate
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AMAZON_ASSOCIATE_TAG
+        value: nagireddy0e-21
+      - key: ADMIN_SECRET_TOKEN
+        generateValue: true
+      - key: AMAZON_STOREFRONT_URL
+        value: https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e
+      - key: SYNC_INTERVAL_HOURS
+        value: "2"

@@ -5,8 +5,9 @@
     "asin": "B097RJ867P",
     "message": "Test report: Live link validation check on Philips Airfryer",
     "contact": "tester@nkiax.com",
-    "status": "PENDING_REVIEW",
+    "status": "REVIEWED",
     "submittedAt": "2026-08-14T19:58:45.160Z",
-    "ip": "::1"
+    "ip": "::1",
+    "reviewedAt": "2026-08-14T20:02:05.536Z"
   }
 ]
