@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     currentRatingTier: 'top_rated', // Default 4.0+ standard
     currentSort: 'discount',
     searchQuery: '',
-    associateTag: 'nagireddy0e-21'
+    associateTag: 'nagireddy0e-21',
+    currentSlide: 0,
+    totalSlides: 4,
+    slideInterval: null
   };
 
   // DOM Elements
@@ -22,8 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoryTabs = document.querySelectorAll('.cat-tab');
   const ratingPills = document.querySelectorAll('.rating-pill');
   const resetFiltersBtn = document.getElementById('resetFiltersBtn');
-  const heroTimestamp = document.getElementById('heroTimestamp');
   const footerPriceDisclaimer = document.getElementById('footerPriceDisclaimer');
+
+  // Carousel Elements
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.dot');
+  const prevSlideBtn = document.getElementById('prevSlideBtn');
+  const nextSlideBtn = document.getElementById('nextSlideBtn');
+  const carouselContainer = document.getElementById('carouselContainer');
 
   // Format INR Currency
   const formatINR = (val) => {
@@ -43,15 +52,67 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update compliance timestamps
   const updateDisclaimers = () => {
     const timeStr = getISTTimestamp();
-    if (heroTimestamp) {
-      heroTimestamp.innerHTML = `🕒 Price verified accurate as of <strong>${timeStr}</strong> &bull; Free Prime Delivery Eligible`;
-    }
+    document.querySelectorAll('.price-timestamp').forEach(el => {
+      el.innerHTML = `🕒 Price verified accurate as of <strong>${timeStr}</strong> &bull; Free Prime Delivery eligible`;
+    });
     if (footerPriceDisclaimer) {
       footerPriceDisclaimer.innerHTML = `<strong>Price & Availability Disclaimer:</strong> Product prices and availability are accurate as of <strong>${timeStr}</strong> and are subject to change. Any price and availability information displayed on Amazon.in at the time of purchase will apply.`;
     }
   };
 
-  // Fetch Products from Backend API
+  // ----------------------------------------------------
+  // Sliding Hero Carousel Logic
+  // ----------------------------------------------------
+  const showSlide = (index) => {
+    if (index >= slides.length) state.currentSlide = 0;
+    else if (index < 0) state.currentSlide = slides.length - 1;
+    else state.currentSlide = index;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === state.currentSlide);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === state.currentSlide);
+    });
+  };
+
+  const nextSlide = () => {
+    showSlide(state.currentSlide + 1);
+  };
+
+  const prevSlide = () => {
+    showSlide(state.currentSlide - 1);
+  };
+
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    state.slideInterval = setInterval(nextSlide, 5000);
+  };
+
+  const stopAutoSlide = () => {
+    if (state.slideInterval) clearInterval(state.slideInterval);
+  };
+
+  if (prevSlideBtn) prevSlideBtn.addEventListener('click', () => { prevSlide(); startAutoSlide(); });
+  if (nextSlideBtn) nextSlideBtn.addEventListener('click', () => { nextSlide(); startAutoSlide(); });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.slideTo);
+      showSlide(idx);
+      startAutoSlide();
+    });
+  });
+
+  if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+    carouselContainer.addEventListener('mouseleave', startAutoSlide);
+  }
+
+  // ----------------------------------------------------
+  // Product Fetch & Render
+  // ----------------------------------------------------
   const fetchProducts = async () => {
     try {
       const params = new URLSearchParams({
@@ -82,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Render Product Cards
   const renderProducts = () => {
     if (!state.products || state.products.length === 0) {
       productsGrid.style.display = 'none';
@@ -100,9 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ? Math.round(((product.list_price - product.current_price) / product.list_price) * 100) 
         : 0;
 
-      const isTopTier = product.rating >= 4.0;
-      const ratingBadgeClass = isTopTier ? 'top-tier' : 'value-tier';
-
       return `
         <article class="product-card" id="card-${product.asin}">
           <div class="card-media-wrap">
@@ -110,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
               ${product.is_daily_deal ? `<span class="badge-deal">⚡ DAILY DEAL</span>` : ''}
               <span class="badge-cat">${product.category_label || 'Essential'}</span>
             </div>
-            <img src="${product.image_url}" alt="${escapeHtml(product.title)}" class="card-img" loading="lazy">
+            <img src="${product.image_url}" alt="${escapeHtml(product.title)}" class="card-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://m.media-amazon.com/images/I/71jG+e7roXL._SX679_.jpg';">
           </div>
 
           <div class="card-body">
@@ -118,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3 class="card-title" title="${escapeHtml(product.title)}">${escapeHtml(product.title)}</h3>
 
             <div class="card-rating-wrap">
-              <span class="rating-stars ${ratingBadgeClass}">
+              <span class="rating-stars">
                 ⭐ ${product.rating}
               </span>
               <span class="review-count">(${product.reviews_count ? Number(product.reviews_count).toLocaleString() : '500+'} reviews)</span>
@@ -142,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   };
 
-  // Helper to escape HTML strings
   function escapeHtml(str) {
     if (!str) return '';
     return str
@@ -228,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize
   updateDisclaimers();
   fetchProducts();
+  startAutoSlide();
 
   // Refresh disclaimers every 5 minutes
   setInterval(updateDisclaimers, 5 * 60 * 1000);

@@ -90,6 +90,11 @@ button, input, select {
   flex-wrap: wrap;
 }
 
+.announcement-left {
+  display: flex;
+  align-items: center;
+}
+
 .pulse-indicator {
   display: inline-block;
   width: 8px;
@@ -128,7 +133,7 @@ button, input, select {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(15, 23, 42, 0.92);
+  background-color: rgba(15, 23, 42, 0.94);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle);
   padding: 1rem 0;
@@ -212,31 +217,79 @@ button, input, select {
   cursor: pointer;
 }
 
-.admin-badge-btn {
-  display: inline-flex;
+.header-nav-links {
+  display: flex;
   align-items: center;
-  gap: 0.4rem;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  padding: 0.55rem 0.9rem;
-  border-radius: var(--radius-md);
-  font-size: 0.825rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  gap: 0.75rem;
 }
 
-.admin-badge-btn:hover {
+.nav-shortcut {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color 0.15s;
+}
+
+.nav-shortcut:hover {
+  color: var(--accent-amber);
+}
+
+.store-shortcut-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-amber);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: 0.825rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.store-shortcut-btn:hover {
   background-color: var(--bg-surface-elevated);
-  color: var(--text-primary);
-  border-color: var(--border-hover);
+  border-color: var(--accent-amber);
 }
 
 /* ----------------------------------------------------
-   Hero / Daily Deal Spotlight
+   Hero Carousel Section (Sliding Spotlight)
    ---------------------------------------------------- */
-.hero-spotlight {
+.hero-carousel-section {
   padding: 2.5rem 0 1.5rem;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+.carousel-track {
+  position: relative;
+  min-height: 400px;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(30px);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+  pointer-events: none;
+}
+
+.carousel-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
 .hero-card {
@@ -248,7 +301,6 @@ button, input, select {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2.5rem;
   align-items: center;
-  box-shadow: var(--shadow-xl);
   position: relative;
   overflow: hidden;
 }
@@ -270,6 +322,18 @@ button, input, select {
   letter-spacing: 0.05em;
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-full);
+}
+
+.trending-pill {
+  background-color: #f97316;
+}
+
+.lowprice-pill {
+  background-color: #06b6d4;
+}
+
+.toprated-pill {
+  background-color: #8b5cf6;
 }
 
 .rating-badge-top {
@@ -412,6 +476,62 @@ button, input, select {
 
 .hero-card:hover .hero-img {
   transform: scale(1.04);
+}
+
+/* Carousel Arrows & Dots */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--accent-amber);
+  color: #0f172a;
+  border-color: var(--accent-amber);
+}
+
+.carousel-arrow.prev { left: 1rem; }
+.carousel-arrow.next { right: 1rem; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dot.active {
+  background: var(--accent-amber);
+  width: 28px;
+  border-radius: var(--radius-full);
 }
 
 /* ----------------------------------------------------

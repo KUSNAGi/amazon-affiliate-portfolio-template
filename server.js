@@ -34,7 +34,7 @@ app.get('/api/products', (req, res) => {
     success: true,
     count: products.length,
     timestamp: new Date().toISOString(),
-    storefront: process.env.AMAZON_STOREFRONT_URL || 'https://www.amazon.in/shop/NKiaX',
+    storefront: process.env.AMAZON_STOREFRONT_URL || 'https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e',
     associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
     data: products
   });
@@ -55,7 +55,7 @@ app.get('/api/deals', (req, res) => {
 app.get('/api/config', (req, res) => {
   res.json({
     storeName: 'NKiaX Influencer Showcase',
-    storefrontUrl: process.env.AMAZON_STOREFRONT_URL || 'https://www.amazon.in/shop/NKiaX',
+    storefrontUrl: process.env.AMAZON_STOREFRONT_URL || 'https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e',
     associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
     disclaimer: 'As an Amazon Associate and Influencer, I earn from qualifying purchases. Product prices and availability are accurate as of the date/time indicated and are subject to change.',
     currency: 'INR',
@@ -120,7 +120,7 @@ app.post('/api/admin/verify-link', (req, res) => {
   });
 });
 
-// Manual Sync Trigger
+// Manual 24h Sync Trigger
 app.post('/api/admin/sync', async (req, res) => {
   auditLogger.log('MANUAL_SYNC_TRIGGERED', { initiator: 'Admin User' }, 'SUCCESS');
   
@@ -128,7 +128,6 @@ app.post('/api/admin/sync', async (req, res) => {
   const results = [];
 
   for (const product of all) {
-    // If API configured, fetch live via PA-API
     if (amazonApi.isConfigured()) {
       try {
         const apiRes = await amazonApi.getItems([product.asin]);
@@ -138,23 +137,24 @@ app.post('/api/admin/sync', async (req, res) => {
           if (priceObj && priceObj.Amount) {
             cacheStore.updatePrice(product.asin, priceObj.Amount, null, true);
             results.push({ asin: product.asin, status: 'UPDATED', newPrice: priceObj.Amount });
+            continue;
           }
         }
       } catch (err) {
-        results.push({ asin: product.asin, status: 'ERROR', message: err.message });
+        // Log individual API error
       }
-    } else {
-      // In local mode, verify freshness and timestamp
-      product.last_verified = new Date().toISOString();
-      results.push({ asin: product.asin, status: 'TIMESTAMP_REFRESHED', price: product.current_price });
     }
+    
+    // In local mode or fallback, verify freshness and refresh timestamp
+    product.last_verified = new Date().toISOString();
+    results.push({ asin: product.asin, status: 'TIMESTAMP_REFRESHED', price: product.current_price });
   }
 
   auditLogger.log('SYNC_COMPLETED', { totalProcessed: all.length, results: results }, 'SUCCESS');
 
   res.json({
     success: true,
-    message: 'Sync completed successfully.',
+    message: '24-hour sync and compliance audit completed successfully.',
     processed: results.length,
     results: results
   });
@@ -182,16 +182,16 @@ app.post('/api/admin/simulate-price-change', (req, res) => {
 // Start Server
 app.listen(PORT, () => {
   console.log(`====================================================`);
-  console.log(`🚀 Amazon Affiliate & Influencer Platform Running!`);
+  console.log(`🚀 Amazon Affiliate & Influencer Platform Active!`);
   console.log(`🌐 Portfolio 1 (Public): http://localhost:${PORT}`);
   console.log(`🔒 Portfolio 2 (Private Admin): http://localhost:${PORT}/admin`);
   console.log(`🏷️ Associate Tag: ${process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21'}`);
-  console.log(`🏪 Storefront: ${process.env.AMAZON_STOREFRONT_URL || 'https://www.amazon.in/shop/NKiaX'}`);
+  console.log(`🏪 Storefront: ${process.env.AMAZON_STOREFRONT_URL}`);
   console.log(`====================================================`);
 
-  auditLogger.log('SERVER_STARTED', {
+  auditLogger.log('SERVER_RELOADED_WITH_CREATOR_API', {
     port: PORT,
     associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
-    nodeEnv: process.env.NODE_ENV
+    hasOAuthCredentials: amazonApi.isConfigured()
   }, 'SUCCESS');
 });

@@ -1,5 +1,50 @@
 [
   {
+    "id": "log_1786725433923_21bun",
+    "timestamp": "2026-08-14T16:37:13.923Z",
+    "eventType": "PRICE_CHANGE_RECORDED",
+    "status": "SUCCESS",
+    "details": {
+      "id": "delta_1786725433922",
+      "asin": "B0BDK7266C",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L Capacity, Touch Panel with 7 Pre-sets",
+      "oldPrice": 7999,
+      "newPrice": 7499,
+      "diff": -500,
+      "percentChange": "-6.3",
+      "timestamp": "2026-08-14T16:37:13.922Z"
+    }
+  },
+  {
+    "id": "log_1786725433920_xwr28",
+    "timestamp": "2026-08-14T16:37:13.920Z",
+    "eventType": "SEED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "count": 11
+    }
+  },
+  {
+    "id": "log_1786725420780_3hutb",
+    "timestamp": "2026-08-14T16:37:00.780Z",
+    "eventType": "SERVER_RELOADED_WITH_CREATOR_API",
+    "status": "SUCCESS",
+    "details": {
+      "port": "3000",
+      "associateTag": "nagireddy0e-21",
+      "hasOAuthCredentials": true
+    }
+  },
+  {
+    "id": "log_1786725420774_8ufho",
+    "timestamp": "2026-08-14T16:37:00.774Z",
+    "eventType": "SEED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "count": 11
+    }
+  },
+  {
     "id": "log_1786722694302_m8dbp",
     "timestamp": "2026-08-14T15:51:34.302Z",
     "eventType": "SERVER_STARTED",

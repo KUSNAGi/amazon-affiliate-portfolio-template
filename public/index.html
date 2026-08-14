@@ -6,6 +6,7 @@
   <title>NKiaX — Curated Amazon Picks, Daily Deals & Electronics</title>
   <meta name="description" content="Discover top-rated Home & Kitchen Essentials, Gadgets & Electronics, and handpicked Amazon Daily Deals curated by NKiaX. Verified authentic recommendations with 4+ star ratings.">
   <meta name="keywords" content="Amazon Deals, Home Kitchen Essentials, Gadgets, Electronics, NKiaX Influencer, Amazon India">
+  <meta name="referrer" content="no-referrer">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -15,11 +16,13 @@
   <!-- Top Compliance & Status Bar -->
   <div class="top-announcement" id="topAnnouncement">
     <div class="container announcement-inner">
-      <span class="pulse-indicator"></span>
-      <span class="announcement-text">
-        <strong>Amazon Associate Tag:</strong> <span class="tag-pill">nagireddy0e-21</span> &bull; Verified live pricing on <strong>Amazon.in</strong>
-      </span>
-      <a href="https://www.amazon.in/shop/NKiaX" target="_blank" rel="noopener noreferrer" class="storefront-link">
+      <div class="announcement-left">
+        <span class="pulse-indicator"></span>
+        <span class="announcement-text">
+          <strong>Amazon Associate Tag:</strong> <span class="tag-pill">nagireddy0e-21</span> &bull; Verified live pricing on <strong>Amazon.in</strong>
+        </span>
+      </div>
+      <a href="https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e" target="_blank" rel="noopener noreferrer" class="storefront-link">
         Visit Official Storefront (NKiaX) ↗
       </a>
     </div>
@@ -44,56 +47,190 @@
         <button id="clearSearchBtn" class="clear-search-btn" style="display: none;" aria-label="Clear search">&times;</button>
       </div>
 
-      <div class="header-actions">
-        <a href="/admin" class="admin-badge-btn" target="_blank" title="Open Private Portfolio 2 Admin">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>
-          Portfolio 2 (Admin)
+      <div class="header-nav-links">
+        <a href="#catalogSection" class="nav-shortcut">Curated Picks</a>
+        <a href="https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e" target="_blank" rel="noopener noreferrer" class="store-shortcut-btn">
+          Storefront ↗
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Hero / Deal Spotlight -->
-    <section class="hero-spotlight" id="heroSpotlight">
+    <!-- Dynamic Sliding Hero Spotlight Carousel -->
+    <section class="hero-carousel-section" id="heroCarouselSection">
       <div class="container">
-        <div class="hero-card" id="heroDealCard">
-          <div class="hero-content">
-            <div class="hero-badges">
-              <span class="deal-pill">🔥 SUPER DEAL OF THE DAY</span>
-              <span class="rating-badge-top">⭐ 4.5+ Rating Pick</span>
-            </div>
-            <h1 class="hero-title" id="heroTitle">Philips Digital Air Fryer HD9252/90</h1>
-            <p class="hero-desc">Rapid Air Technology with 4.1L Capacity & 7 Touch Presets. Top recommended for modern kitchens.</p>
+        <div class="carousel-container" id="carouselContainer">
+          
+          <!-- Carousel Slides Wrapper -->
+          <div class="carousel-track" id="carouselTrack">
             
-            <div class="hero-price-wrap">
-              <div class="price-main">
-                <span class="curr-symbol">₹</span><span class="price-val" id="heroPrice">7,999</span>
+            <!-- Slide 1: Best Deal of the Day -->
+            <div class="carousel-slide active" data-slide="0">
+              <div class="hero-card">
+                <div class="hero-content">
+                  <div class="hero-badges">
+                    <span class="deal-pill">⚡ BEST DEAL OF THE DAY</span>
+                    <span class="rating-badge-top">⭐ 4.5 Rating Pick</span>
+                  </div>
+                  <h1 class="hero-title">Philips Digital Air Fryer HD9252/90</h1>
+                  <p class="hero-desc">Rapid Air Technology with 4.1L Capacity & 7 Touch Presets. Top recommended for healthy, oil-free cooking.</p>
+                  
+                  <div class="hero-price-wrap">
+                    <div class="price-main">
+                      <span class="curr-symbol">₹</span><span class="price-val">7,999</span>
+                    </div>
+                    <div class="mrp-wrap">
+                      <span class="mrp-label">M.R.P:</span>
+                      <span class="mrp-val">₹11,995</span>
+                    </div>
+                    <span class="savings-badge">Save 35%</span>
+                  </div>
+
+                  <div class="hero-actions">
+                    <a href="https://www.amazon.in/dp/B0BDK7266C?tag=nagireddy0e-21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                      Buy on Amazon.in ↗
+                    </a>
+                    <span class="hero-ad-tag">#ad</span>
+                  </div>
+                  <div class="price-timestamp">
+                    🕒 Price verified accurate as of today &bull; Free Prime Delivery eligible
+                  </div>
+                </div>
+                <div class="hero-image-wrap">
+                  <img src="https://m.media-amazon.com/images/I/61K61G916tL._SX679_.jpg" alt="Philips Digital Air Fryer" class="hero-img" referrerpolicy="no-referrer" loading="eager">
+                </div>
               </div>
-              <div class="mrp-wrap">
-                <span class="mrp-label">M.R.P:</span>
-                <span class="mrp-val" id="heroMrp">₹11,995</span>
-              </div>
-              <span class="savings-badge" id="heroSavings">Save 35%</span>
             </div>
 
-            <div class="hero-actions">
-              <a href="https://www.amazon.in/dp/B0BDK7266C?tag=nagireddy0e-21" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="heroBuyBtn">
-                View & Buy on Amazon.in ↗
-              </a>
-              <span class="hero-ad-tag">#AmazonAffiliate</span>
+            <!-- Slide 2: Trending Now -->
+            <div class="carousel-slide" data-slide="1">
+              <div class="hero-card">
+                <div class="hero-content">
+                  <div class="hero-badges">
+                    <span class="deal-pill trending-pill">🔥 TRENDING NOW</span>
+                    <span class="rating-badge-top">⭐ 4.6 Flagship Rating</span>
+                  </div>
+                  <h1 class="hero-title">Apple iPhone 15 (128 GB) - Black</h1>
+                  <p class="hero-desc">Dynamic Island, 48MP Main Camera, Super Retina XDR display, and all-day battery life.</p>
+                  
+                  <div class="hero-price-wrap">
+                    <div class="price-main">
+                      <span class="curr-symbol">₹</span><span class="price-val">70,990</span>
+                    </div>
+                    <div class="mrp-wrap">
+                      <span class="mrp-label">M.R.P:</span>
+                      <span class="mrp-val">₹79,900</span>
+                    </div>
+                    <span class="savings-badge">11% OFF</span>
+                  </div>
+
+                  <div class="hero-actions">
+                    <a href="https://www.amazon.in/dp/B0CHX1W1XY?tag=nagireddy0e-21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                      Buy on Amazon.in ↗
+                    </a>
+                    <span class="hero-ad-tag">#ad</span>
+                  </div>
+                  <div class="price-timestamp">
+                    🕒 Price verified accurate as of today &bull; Free Prime Delivery eligible
+                  </div>
+                </div>
+                <div class="hero-image-wrap">
+                  <img src="https://m.media-amazon.com/images/I/71657TiFeHL._SX679_.jpg" alt="Apple iPhone 15 Black" class="hero-img" referrerpolicy="no-referrer" loading="eager">
+                </div>
+              </div>
             </div>
 
-            <div class="price-timestamp" id="heroTimestamp">
-              🕒 Price verified accurate as of today &bull; Free Prime Delivery eligible
+            <!-- Slide 3: All-Time Low Price -->
+            <div class="carousel-slide" data-slide="2">
+              <div class="hero-card">
+                <div class="hero-content">
+                  <div class="hero-badges">
+                    <span class="deal-pill lowprice-pill">📉 ALL-TIME LOW PRICE</span>
+                    <span class="rating-badge-top">⭐ 4.2 Rating Value</span>
+                  </div>
+                  <h1 class="hero-title">Fire-Boltt Ninja Call Pro Plus 1.83" Smart Watch</h1>
+                  <p class="hero-desc">Bluetooth Calling, AI Voice Assistant, 100+ Sports Modes, and HD Display.</p>
+                  
+                  <div class="hero-price-wrap">
+                    <div class="price-main">
+                      <span class="curr-symbol">₹</span><span class="price-val">1,199</span>
+                    </div>
+                    <div class="mrp-wrap">
+                      <span class="mrp-label">M.R.P:</span>
+                      <span class="mrp-val">₹7,999</span>
+                    </div>
+                    <span class="savings-badge">Save 85%</span>
+                  </div>
+
+                  <div class="hero-actions">
+                    <a href="https://www.amazon.in/dp/B0BRXQ65S9?tag=nagireddy0e-21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                      Buy on Amazon.in ↗
+                    </a>
+                    <span class="hero-ad-tag">#ad</span>
+                  </div>
+                  <div class="price-timestamp">
+                    🕒 Price verified accurate as of today &bull; Free Prime Delivery eligible
+                  </div>
+                </div>
+                <div class="hero-image-wrap">
+                  <img src="https://m.media-amazon.com/images/I/61S9aVnRZDL._SX679_.jpg" alt="Fire-Boltt Smartwatch" class="hero-img" referrerpolicy="no-referrer" loading="eager">
+                </div>
+              </div>
             </div>
+
+            <!-- Slide 4: Top Rated Product -->
+            <div class="carousel-slide" data-slide="3">
+              <div class="hero-card">
+                <div class="hero-content">
+                  <div class="hero-badges">
+                    <span class="deal-pill toprated-pill">⭐ TOP RATED EXCELLENCE</span>
+                    <span class="rating-badge-top">⭐ 4.7 Master Rating</span>
+                  </div>
+                  <h1 class="hero-title">Apple MacBook Air Laptop (M1 Chip)</h1>
+                  <p class="hero-desc">13.3-inch Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera.</p>
+                  
+                  <div class="hero-price-wrap">
+                    <div class="price-main">
+                      <span class="curr-symbol">₹</span><span class="price-val">65,990</span>
+                    </div>
+                    <div class="mrp-wrap">
+                      <span class="mrp-label">M.R.P:</span>
+                      <span class="mrp-val">₹92,900</span>
+                    </div>
+                    <span class="savings-badge">29% OFF</span>
+                  </div>
+
+                  <div class="hero-actions">
+                    <a href="https://www.amazon.in/dp/B08N5WRWNW?tag=nagireddy0e-21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                      Buy on Amazon.in ↗
+                    </a>
+                    <span class="hero-ad-tag">#ad</span>
+                  </div>
+                  <div class="price-timestamp">
+                    🕒 Price verified accurate as of today &bull; Free Prime Delivery eligible
+                  </div>
+                </div>
+                <div class="hero-image-wrap">
+                  <img src="https://m.media-amazon.com/images/I/71jG+e7roXL._SX679_.jpg" alt="Apple MacBook Air M1" class="hero-img" referrerpolicy="no-referrer" loading="eager">
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <div class="hero-image-wrap">
-            <img src="https://m.media-amazon.com/images/I/61K61G916tL._SX679_.jpg" alt="Philips Digital Air Fryer" id="heroImage" class="hero-img" loading="eager">
+          <!-- Carousel Controls -->
+          <button class="carousel-arrow prev" id="prevSlideBtn" aria-label="Previous Slide">&larr;</button>
+          <button class="carousel-arrow next" id="nextSlideBtn" aria-label="Next Slide">&rarr;</button>
+
+          <!-- Carousel Indicators -->
+          <div class="carousel-dots" id="carouselDots">
+            <button class="dot active" data-slide-to="0" aria-label="Slide 1"></button>
+            <button class="dot" data-slide-to="1" aria-label="Slide 2"></button>
+            <button class="dot" data-slide-to="2" aria-label="Slide 3"></button>
+            <button class="dot" data-slide-to="3" aria-label="Slide 4"></button>
           </div>
+
         </div>
       </div>
     </section>
@@ -112,7 +249,7 @@
               ⚡ Daily Deals
             </button>
             <button class="cat-tab" data-category="home_kitchen" role="tab" aria-selected="false">
-              🍳 Home & Kitchen
+              🍳 Home & Kitchen Essentials
             </button>
             <button class="cat-tab" data-category="gadgets_electronics" role="tab" aria-selected="false">
               📱 Gadgets & Electronics
@@ -158,7 +295,7 @@
         <!-- Product Count & Current View Status -->
         <div class="results-header">
           <div class="results-count" id="resultsCount">
-            Showing <strong>12</strong> verified products
+            Showing <strong>11</strong> verified products
           </div>
           <div class="policy-note">
             <span class="shield-icon">🛡️</span> Strictly 1-to-1 Verified Amazon Links
@@ -220,12 +357,11 @@
 
       <div class="footer-bottom">
         <div class="footer-copyright">
-          &copy; 2026 <strong>NKiaX Influencer Showcase</strong> &bull; Curated by KUSNAGi (Tag: <code>nagireddy0e-21</code>)
+          &copy; 2026 <strong>NKiaX Influencer Showcase</strong> &bull; Tag: <code>nagireddy0e-21</code>
         </div>
         <div class="footer-links">
-          <a href="https://www.amazon.in/shop/NKiaX" target="_blank" rel="noopener noreferrer">Amazon Storefront</a>
+          <a href="https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e" target="_blank" rel="noopener noreferrer">Official Amazon Storefront</a>
           <a href="https://www.amazon.in/gp/help/customer/display.html?nodeId=200545940" target="_blank" rel="noopener noreferrer">Amazon Conditions of Use</a>
-          <a href="/admin" target="_blank">Portfolio 2 (Admin Portal)</a>
         </div>
       </div>
     </div>
