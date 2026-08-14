@@ -799,3 +799,74 @@ body {
     align-items: center;
   }
 }
+
+/* Safe-Fail Banner & Health Strip */
+.safe-fail-banner {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(185, 28, 28, 0.35));
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  animation: pulseSafeFail 2s infinite ease-in-out;
+}
+
+@keyframes pulseSafeFail {
+  0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.6); }
+}
+
+.safe-fail-content {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.safe-fail-icon {
+  font-size: 1.75rem;
+}
+
+.safe-fail-content strong {
+  color: #fca5a5;
+  font-size: 0.95rem;
+  display: block;
+}
+
+.safe-fail-content p {
+  color: #f87171;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.health-status-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111b2b;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.health-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+}
+
+.health-meta {
+  color: var(--text-dim);
+}
+
+.health-meta strong {
+  color: var(--col-amber);
+}
+

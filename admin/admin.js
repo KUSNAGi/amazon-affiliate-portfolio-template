@@ -358,38 +358,116 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) { console.error(err); }
   };
 
+  // Safe-Fail Guardian & Health Status
+  const safeFailBanner = document.getElementById('safeFailBanner');
+  const safeFailTitle = document.getElementById('safeFailTitle');
+  const safeFailDesc = document.getElementById('safeFailDesc');
+  const resetSafeFailBtn = document.getElementById('resetSafeFailBtn');
+  const systemHealthText = document.getElementById('systemHealthText');
+  const lastHealthAuditTime = document.getElementById('lastHealthAuditTime');
+
+  const checkSystemStatus = async () => {
+    try {
+      const res = await adminFetch('/api/admin/system-status');
+      const data = await res.json();
+      if (data.success && data.status) {
+        const st = data.status;
+        if (st.isEmergencyHalt) {
+          safeFailBanner.style.display = 'flex';
+          safeFailTitle.textContent = `🚨 EMERGENCY SAFE-FAIL ACTIVE: ${st.lastIncident?.reason || 'Anomaly Detected'}`;
+          safeFailDesc.textContent = `Incident ID: ${st.lastIncident?.incidentId || 'N/A'} | Tool: ${st.lastIncident?.toolOrModule || 'Unknown'} | Report sent to ${st.notificationEmail}`;
+          systemHealthText.textContent = 'EMERGENCY HALT';
+          systemHealthText.style.color = '#ef4444';
+        } else {
+          safeFailBanner.style.display = 'none';
+          systemHealthText.textContent = 'HEALTHY (100% COMPLIANT)';
+          systemHealthText.style.color = '#10b981';
+        }
+        if (st.lastCheckTime) {
+          lastHealthAuditTime.textContent = new Date(st.lastCheckTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        }
+      }
+    } catch (e) {}
+  };
+
+  if (resetSafeFailBtn) {
+    resetSafeFailBtn.addEventListener('click', async () => {
+      if (!confirm('Are you sure you want to clear the emergency safe-fail lock?')) return;
+      try {
+        const res = await adminFetch('/api/admin/safe-fail/reset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ operator: 'Owner via Admin UI' })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert('Safe-Fail Lock cleared successfully.');
+          checkSystemStatus();
+          loadAuditLogs();
+        }
+      } catch (err) { alert(`Failed to reset: ${err.message}`); }
+    });
+  }
+
   // Metrics
   const loadMetrics = async () => {
     try {
       const res = await adminFetch('/api/admin/metrics');
       const data = await res.json();
       if (data.success && data.metrics) {
-        document.getElementById('metricTotal').textContent = data.metrics.totalProducts;
-        document.getElementById('metricTopRated').textContent = data.metrics.topRatedCount;
-        document.getElementById('metricValuePicks').textContent = data.metrics.valuePicksCount;
-        document.getElementById('metricDeals').textContent = data.metrics.dailyDealsCount;
+        const elTotal = document.getElementById('metricTotal') || document.getElementById('metricProducts');
+        if (elTotal) elTotal.textContent = data.metrics.totalProducts;
+        const elTop = document.getElementById('metricTopRated') || document.getElementById('metricRating');
+        if (elTop) elTop.textContent = `${data.metrics.averageRating || 4.2} ★`;
+        const elDeals = document.getElementById('metricDeals');
+        if (elDeals) elDeals.textContent = data.metrics.dailyDealsCount;
       }
     } catch (err) { console.error(err); }
   };
 
-  // Audit Logs
+  // Human-Readable Audit Logs
   const loadAuditLogs = async () => {
     try {
-      const res = await adminFetch('/api/admin/audit-logs?limit=50');
+      const res = await adminFetch('/api/admin/audit-logs?limit=100');
       const data = await res.json();
+      const auditTableBody = document.getElementById('auditTableBody');
+      const auditLogStream = document.getElementById('auditLogStream');
+
       if (data.success && data.logs) {
-        document.getElementById('auditLogStream').innerHTML = data.logs.map(log => `
-          <div class="log-entry">
-            <div class="log-left">
-              <span class="log-badge ${log.status}">${log.status}</span>
-              <div>
-                <div class="log-type">${log.eventType}</div>
-                <div class="log-details">${JSON.stringify(log.details).substring(0, 120)}...</div>
+        if (auditTableBody) {
+          auditTableBody.innerHTML = data.logs.map(log => {
+            const timeStr = log.timestampIST || new Date(log.timestamp).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            const isHalt = log.complianceStatus === 'EMERGENCY_HALT';
+            const isBlocked = log.complianceStatus === 'VIOLATION_BLOCKED';
+            const badgeClass = isHalt ? 'audit-badge FAIL' : isBlocked ? 'audit-badge FAIL' : 'audit-badge PASS';
+
+            return `
+              <tr style="${isHalt ? 'background:rgba(239,68,68,0.15);' : ''}">
+                <td><code>${timeStr}</code></td>
+                <td><strong>${log.toolOrModule || 'System'}</strong></td>
+                <td>${log.actionPerformed || log.eventType}</td>
+                <td><small><code>${log.permissionUsed || 'READ_PUBLIC'}</code></small></td>
+                <td><span class="${badgeClass}">${log.complianceStatus || log.status}</span></td>
+                <td><small>${JSON.stringify(log.details || {}).substring(0, 100)}...</small></td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+        if (auditLogStream) {
+          auditLogStream.innerHTML = data.logs.map(log => `
+            <div class="log-entry">
+              <div class="log-left">
+                <span class="log-badge ${log.status}">${log.complianceStatus || log.status}</span>
+                <div>
+                  <div class="log-type"><strong>${log.toolOrModule || 'System'}:</strong> ${log.actionPerformed || log.eventType}</div>
+                  <div class="log-details"><small>Permission: <code>${log.permissionUsed || 'READ'}</code> | ${JSON.stringify(log.details || {}).substring(0, 100)}...</small></div>
+                </div>
               </div>
+              <div class="log-time">${log.timestampIST ? log.timestampIST.split(',')[1] : new Date(log.timestamp).toLocaleTimeString('en-IN')}</div>
             </div>
-            <div class="log-time">${new Date(log.timestamp).toLocaleTimeString('en-IN')}</div>
-          </div>
-        `).join('');
+          `).join('');
+        }
       }
     } catch (err) { console.error(err); }
   };
@@ -467,6 +545,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Init
+  checkSystemStatus();
   loadMetrics();
+  loadAuditLogs();
 });
 

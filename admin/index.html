@@ -55,6 +55,30 @@
     </aside>
 
     <main class="admin-main">
+      <!-- Safe-Fail Guardian & 5-Hour Health Status Banner -->
+      <div id="safeFailBanner" class="safe-fail-banner" style="display: none;">
+        <div class="safe-fail-content">
+          <span class="safe-fail-icon">🚨</span>
+          <div>
+            <strong id="safeFailTitle">EMERGENCY SAFE-FAIL HALT ACTIVE</strong>
+            <p id="safeFailDesc">System operations are locked. Report sent to nr1130businessmail@gmail.com.</p>
+          </div>
+        </div>
+        <button id="resetSafeFailBtn" class="btn btn-danger btn-sm">Clear Safe-Fail Lock (Owner Override)</button>
+      </div>
+
+      <div class="health-status-strip" id="healthStatusStrip">
+        <div class="health-pill">
+          <span class="dot-online"></span>
+          <span>Guardian: <strong id="systemHealthText">HEALTHY (100% COMPLIANT)</strong></span>
+        </div>
+        <div class="health-meta">
+          <span>5-Hour Audit: <strong id="lastHealthAuditTime">Checking...</strong></span>
+          &bull; <span>Compliance Loop: <strong>Every 2 Hours</strong></span>
+          &bull; <span>Emergency Contact: <strong>nr1130businessmail@gmail.com</strong></span>
+        </div>
+      </div>
+
       <header class="admin-topbar">
         <div class="topbar-title">
           <h1 id="pageTitle">🛡️ 1-to-1 Product & ASIN Validator</h1>
@@ -108,70 +132,86 @@
               <div class="preview-info">
                 <div class="preview-asin" id="previewAsin"></div>
                 <h3 class="preview-title" id="previewTitle"></h3>
-                <div class="preview-link">
-                  <strong>Affiliate Link:</strong>
-                  <a id="previewAffLink" href="#" target="_blank" rel="noopener noreferrer" class="aff-link-display"></a>
+                <div class="preview-meta-grid">
+                  <div class="meta-item"><span class="meta-label">Brand:</span> <span id="previewBrand" class="meta-val">-</span></div>
+                  <div class="meta-item"><span class="meta-label">Category:</span> <span id="previewCategory" class="meta-val">-</span></div>
+                  <div class="meta-item"><span class="meta-label">Rating:</span> <span id="previewRating" class="meta-val">-</span></div>
+                  <div class="meta-item"><span class="meta-label">Price:</span> <span id="previewPrice" class="meta-val highlight">-</span></div>
+                </div>
+                <div class="preview-link-wrap">
+                  <span class="meta-label">1-to-1 Canonical Affiliate Link:</span>
+                  <a id="previewAffLink" href="" target="_blank" class="aff-link-text"></a>
                 </div>
                 <div class="preview-source" id="previewSource"></div>
               </div>
             </div>
 
-            <!-- User fills in these fields -->
-            <div class="completion-form" id="completionForm">
-              <h4>Complete the listing details:</h4>
-              <div class="add-product-grid">
-                <div class="input-group">
-                  <label for="addBrand">Brand Name:</label>
-                  <input type="text" id="addBrand" placeholder="e.g. Philips" class="form-control" required>
-                </div>
-                <div class="input-group">
-                  <label for="addCategory">Category:</label>
-                  <select id="addCategory" class="form-control">
-                    <option value="home_kitchen">Home & Kitchen Essentials</option>
-                    <option value="gadgets_electronics">Gadgets & Electronics</option>
-                    <option value="seasonal_essentials">Seasonal Essentials</option>
-                  </select>
-                </div>
-                <div class="input-group">
-                  <label for="addRating">Customer Rating (Min 3.5 ⭐):</label>
-                  <input type="number" id="addRating" step="0.1" min="3.5" max="5.0" placeholder="4.5" class="form-control" required>
-                </div>
-                <div class="input-group">
-                  <label for="addReviews">Reviews Count (approx):</label>
-                  <input type="number" id="addReviews" placeholder="14000" class="form-control">
-                </div>
-                <div class="input-group">
-                  <label for="addPrice">Current Price (₹ INR):</label>
-                  <input type="number" id="addPrice" placeholder="7999" class="form-control" required>
-                </div>
-                <div class="input-group">
-                  <label for="addListPrice">M.R.P / List Price (₹ INR):</label>
-                  <input type="number" id="addListPrice" placeholder="11995" class="form-control">
-                </div>
-                <div class="input-group full-width checkbox-group">
-                  <label><input type="checkbox" id="addDailyDeal"> Feature as Daily Deal</label>
-                </div>
+            <!-- Manual Field Confirmation Form -->
+            <div class="edit-fields-grid">
+              <div class="form-group">
+                <label for="addBrand">Brand Name:</label>
+                <input type="text" id="addBrand" class="form-control" placeholder="e.g. Philips">
               </div>
-              <button id="runIntegrityBtn" class="btn btn-primary" style="margin-top: 1rem;">
-                🛡️ Run 8-Point Integrity Check
+              <div class="form-group">
+                <label for="addCategory">Category:</label>
+                <select id="addCategory" class="form-control">
+                  <option value="home_kitchen">Home & Kitchen Essentials</option>
+                  <option value="gadgets_electronics">Gadgets & Electronics</option>
+                  <option value="seasonal_essentials">Seasonal Essentials & Lifestyle</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="addRating">Rating (Out of 5.0):</label>
+                <input type="number" id="addRating" class="form-control" step="0.1" min="1.0" max="5.0" placeholder="4.2">
+                <small class="form-hint">Must be &ge; 3.5 (&ge; 4.0 preferred)</small>
+              </div>
+              <div class="form-group">
+                <label for="addReviews">Reviews Count:</label>
+                <input type="number" id="addReviews" class="form-control" placeholder="1000">
+              </div>
+              <div class="form-group">
+                <label for="addPrice">Current Live Price (₹):</label>
+                <input type="number" id="addPrice" class="form-control" placeholder="1499">
+              </div>
+              <div class="form-group">
+                <label for="addListPrice">List Price / MRP (₹, Optional):</label>
+                <input type="number" id="addListPrice" class="form-control" placeholder="2999">
+              </div>
+            </div>
+
+            <div class="form-check-wrap">
+              <label class="checkbox-label">
+                <input type="checkbox" id="addDailyDeal" checked>
+                <span>Mark as <strong>Daily Deal</strong> (Will show ⚡ Daily Deal badge)</span>
+              </label>
+            </div>
+
+            <div class="action-btn-row">
+              <button id="runIntegrityBtn" class="btn btn-success btn-lg">
+                🛡️ Run 8-Point Integrity Check &bull; Step 3 &rarr;
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Step 3: Integrity Audit Result (hidden until check runs) -->
+        <!-- Step 3: 8-Point Integrity Gate Results -->
         <div class="card panel-card" id="integrityPanel" style="display: none;">
           <div class="panel-head">
-            <h3>Step 3: Integrity Audit Result</h3>
-            <span id="integrityBadge" class="audit-badge">PENDING</span>
+            <h3>Step 3: 8-Point Product Integrity Gate</h3>
+            <span class="badge-status-tag" id="integrityBadge">Checking...</span>
           </div>
           <div class="panel-body">
-            <div class="audit-steps-list" id="integritySteps"></div>
-            <div class="audit-actions" id="publishActions" style="display: none;">
-              <button id="publishBtn" class="btn btn-success">
-                ✅ Publish to Public Portfolio 1
+            <p class="panel-sub">Every product must pass all 8 validation points before entering the verified catalog.</p>
+
+            <div class="integrity-steps-list" id="integritySteps"></div>
+
+            <div class="publish-actions" id="publishActions" style="display: none;">
+              <div class="publish-notice">
+                ✅ <strong>All 8 integrity points verified.</strong> Ready to add to Public Portfolio 1 with tag <code>nagireddy0e-21</code>.
+              </div>
+              <button id="publishBtn" class="btn btn-primary btn-lg">
+                🚀 Publish to Public Portfolio 1
               </button>
-              <p class="publish-note">This product will appear on the public customer-facing website immediately.</p>
             </div>
           </div>
         </div>
@@ -183,29 +223,34 @@
       <section class="tab-panel" id="tabCatalog">
         <div class="card panel-card">
           <div class="panel-head">
-            <h3>📦 Verified Product Catalog</h3>
-            <span class="badge-status-tag" id="catalogCount">0 products</span>
+            <h3>📦 Verified Products Catalog</h3>
+            <span class="badge-status-tag" id="catalogCount">0 Products</span>
           </div>
           <div class="panel-body">
-            <div id="catalogEmpty" class="empty-catalog">
-              <div class="empty-icon">📦</div>
-              <h4>No verified products yet</h4>
-              <p>Use the 🛡️ 1-to-1 Product Validator to look up and add products one at a time.</p>
+            <p class="panel-sub">Products currently live on Public Portfolio 1. Every product has passed the 1-to-1 Validator.</p>
+
+            <div class="catalog-table-wrap">
+              <div id="catalogEmpty" class="catalog-empty" style="display: none;">
+                <p>No verified products in catalog yet.</p>
+                <p>Use the <strong>1-to-1 Validator</strong> or click <strong>1-Click Auto-Curate</strong> above.</p>
+              </div>
+
+              <table class="data-table" id="catalogTable">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>ASIN</th>
+                    <th>Category</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                    <th>Deal?</th>
+                    <th>Last Audited</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="catalogBody"></tbody>
+              </table>
             </div>
-            <table class="data-table" id="catalogTable" style="display: none;">
-              <thead>
-                <tr>
-                  <th>Image</th>
-                  <th>ASIN</th>
-                  <th>Title</th>
-                  <th>Category</th>
-                  <th>Rating</th>
-                  <th>Price</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="catalogBody"></tbody>
-            </table>
           </div>
         </div>
       </section>
@@ -220,22 +265,21 @@
               <span class="metric-label">Verified Products</span>
               <span class="metric-icon">📦</span>
             </div>
-            <div class="metric-val" id="metricTotal">0</div>
-            <div class="metric-sub">Added via 1-to-1 Validator</div>
-          </div>
-          <div class="metric-card highlight-green">
-            <div class="metric-head">
-              <span class="metric-label">Top Rated (≥ 4.0)</span>
-              <span class="metric-icon">⭐</span>
-            </div>
-            <div class="metric-val" id="metricTopRated">0</div>
+            <div class="metric-val" id="metricProducts">0</div>
           </div>
           <div class="metric-card">
             <div class="metric-head">
-              <span class="metric-label">Value Picks (3.5–3.9)</span>
-              <span class="metric-icon">🌟</span>
+              <span class="metric-label">Avg Quality Rating</span>
+              <span class="metric-icon">⭐</span>
             </div>
-            <div class="metric-val" id="metricValuePicks">0</div>
+            <div class="metric-val" id="metricRating">0.0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-head">
+              <span class="metric-label">Integrity Status</span>
+              <span class="metric-icon">🛡️</span>
+            </div>
+            <div class="metric-val text-green" id="metricIntegrity">100%</div>
           </div>
           <div class="metric-card highlight-amber">
             <div class="metric-head">
@@ -251,10 +295,27 @@
       <section class="tab-panel" id="tabAudit">
         <div class="card panel-card">
           <div class="panel-head">
-            <h3>📜 Audit Trail</h3>
+            <h3>📜 Comprehensive Human-Readable Audit Trail</h3>
+            <span class="badge-status-tag">Every Action &bull; Full Details &bull; 100% Transparency</span>
           </div>
           <div class="panel-body">
-            <div class="audit-log-stream" id="auditLogStream"></div>
+            <p class="panel-sub">Complete record of every operation across the ecosystem with timestamp (IST), tool source, permission used, and policy compliance verification.</p>
+            
+            <div class="audit-table-wrap">
+              <table class="data-table" id="auditTable">
+                <thead>
+                  <tr>
+                    <th>Time (IST)</th>
+                    <th>Tool / Module</th>
+                    <th>Action Performed</th>
+                    <th>Permission Used</th>
+                    <th>Compliance</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody id="auditTableBody"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>

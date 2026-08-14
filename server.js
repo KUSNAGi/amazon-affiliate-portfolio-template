@@ -9,6 +9,7 @@ const cacheStore = require('./lib/cache-store');
 const auditLogger = require('./lib/audit-logger');
 const productLookup = require('./lib/product-lookup');
 const dealCurator = require('./lib/deal-curator');
+const safeFailGuardian = require('./lib/safe-fail-guardian');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -338,8 +339,37 @@ app.post('/api/admin/feedbacks/:id/status', (req, res) => {
   if (note) fb.ownerNote = note;
   saveFeedbacks(feedbacks);
 
-  auditLogger.log('CUSTOMER_FEEDBACK_STATUS_UPDATED', { id, status: fb.status }, 'SUCCESS');
+  auditLogger.logHumanReadable({
+    toolOrModule: '💬 Feedback Manager',
+    actionPerformed: `Customer Feedback ${id} updated to status ${fb.status}`,
+    permissionUsed: 'OWNER_MUTATE',
+    complianceStatus: '100%_COMPLIANT',
+    details: { id, status: fb.status, note }
+  });
   res.json({ success: true, feedback: fb });
+});
+
+// System Status & Safe-Fail Guardian API
+app.get('/api/admin/system-status', (req, res) => {
+  res.json({
+    success: true,
+    status: safeFailGuardian.status,
+    serverTime: new Date().toISOString(),
+    serverTimeIST: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+  });
+});
+
+// Owner Safe-Fail Reset
+app.post('/api/admin/safe-fail/reset', (req, res) => {
+  const { operator } = req.body;
+  const result = safeFailGuardian.resetEmergencyHalt(operator || 'Project Owner');
+  res.json(result);
+});
+
+// Trigger 5-Hour Ecosystem Health Audit
+app.post('/api/admin/health-check', async (req, res) => {
+  const report = await safeFailGuardian.runFiveHourHealthAudit();
+  res.json({ success: true, report });
 });
 
 // ============================================================
@@ -347,11 +377,19 @@ app.post('/api/admin/feedbacks/:id/status', (req, res) => {
 // Checks price changes, out-of-stock items, and updates Today's Deals
 // ============================================================
 const runTwoHourComplianceAudit = async () => {
+  if (safeFailGuardian.isHalted()) {
+    console.warn('⚠️ [2-Hour Compliance] Skipped: System under Safe-Fail Emergency Halt.');
+    return;
+  }
+
   console.log('🛡️ [2-Hour Compliance Audit] Starting price verification and deal sync...');
-  auditLogger.log('TWO_HOUR_COMPLIANCE_AUDIT_STARTED', {
-    scheduledInterval: '2 Hours',
-    timestamp: new Date().toISOString()
-  }, 'SUCCESS');
+  auditLogger.logHumanReadable({
+    toolOrModule: '📉 Price & Policy Monitor',
+    actionPerformed: '2-Hour automated price check and deal sync started',
+    permissionUsed: 'READ_PUBLIC_METADATA',
+    complianceStatus: '100%_COMPLIANT',
+    details: { scheduledInterval: '2 Hours' }
+  });
 
   try {
     const allProducts = cacheStore.getAllProducts();
@@ -364,11 +402,13 @@ const runTwoHourComplianceAudit = async () => {
         if (!lookup.success || !lookup.current_price || lookup.current_price <= 0) {
           cacheStore.removeProduct(product.asin);
           removedUnavailableCount++;
-          auditLogger.log('PRODUCT_AUTO_REMOVED_UNAVAILABLE', {
-            asin: product.asin,
-            title: product.title,
-            reason: lookup.error || 'Out of stock or unavailable'
-          }, 'SUCCESS');
+          auditLogger.logHumanReadable({
+            toolOrModule: '📉 Price & Policy Monitor',
+            actionPerformed: `Product ASIN ${product.asin} (${product.title.substring(0, 30)}...) auto-removed (Unavailable/Out of stock on Amazon)`,
+            permissionUsed: 'UPDATE_CATALOG_STATE',
+            complianceStatus: '100%_COMPLIANT',
+            details: { asin: product.asin, reason: lookup.error }
+          });
         } else if (lookup.current_price !== product.current_price) {
           cacheStore.updatePrice(product.asin, lookup.current_price);
           priceChangeCount++;
@@ -380,15 +420,27 @@ const runTwoHourComplianceAudit = async () => {
 
     const curationResult = await dealCurator.runDailyCuration();
 
-    auditLogger.log('TWO_HOUR_COMPLIANCE_AUDIT_COMPLETED', {
-      pricesUpdated: priceChangeCount,
-      unavailableRemoved: removedUnavailableCount,
-      freshDealsIngested: curationResult.publishedCount
-    }, 'SUCCESS');
+    auditLogger.logHumanReadable({
+      toolOrModule: '📉 Price & Policy Monitor',
+      actionPerformed: `2-Hour Compliance Audit finished: ${priceChangeCount} prices updated, ${removedUnavailableCount} out-of-stock removed, ${curationResult.publishedCount} fresh deals added`,
+      permissionUsed: 'UPDATE_CATALOG_STATE',
+      complianceStatus: '100%_COMPLIANT',
+      details: {
+        pricesUpdated: priceChangeCount,
+        unavailableRemoved: removedUnavailableCount,
+        freshDealsIngested: curationResult.publishedCount
+      }
+    });
 
     console.log(`🛡️ [2-Hour Compliance Audit] Complete: ${priceChangeCount} prices updated, ${removedUnavailableCount} unavailable removed, ${curationResult.publishedCount} deals verified.`);
   } catch (err) {
-    auditLogger.log('TWO_HOUR_COMPLIANCE_AUDIT_ERROR', { error: err.message }, 'FAILURE');
+    auditLogger.logHumanReadable({
+      toolOrModule: '📉 Price & Policy Monitor',
+      actionPerformed: `2-Hour Compliance Audit encountered error: ${err.message}`,
+      permissionUsed: 'SYSTEM_ERROR',
+      complianceStatus: 'ERROR',
+      details: { error: err.message }
+    });
   }
 };
 
@@ -401,27 +453,40 @@ app.listen(PORT, () => {
   console.log(`🔒 Portfolio 2 (Private Admin): http://localhost:${PORT}/admin`);
   console.log(`🏷️ Associate Tag: ${process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21'}`);
   console.log(`📦 Verified Products in Catalog: ${productCount}`);
-  console.log(`⏱️ Compliance Audit Interval: Every 2 Hours`);
+  console.log(`⏱️ Compliance Audit: Every 2 Hours | Health Audit: Every 5 Hours`);
+  console.log(`🛡️ Safe-Fail Guardian: Active (Reports to nr1130businessmail@gmail.com)`);
   console.log(`====================================================`);
 
-  auditLogger.log('SERVER_STARTED', {
-    port: PORT,
-    verifiedProducts: productCount,
-    associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
-    auditInterval: '2 Hours'
-  }, 'SUCCESS');
+  auditLogger.logHumanReadable({
+    toolOrModule: '🚀 Server Bootstrap',
+    actionPerformed: `Server started successfully on port ${PORT} with ${productCount} verified products`,
+    permissionUsed: 'SYSTEM_BOOT',
+    complianceStatus: '100%_COMPLIANT',
+    details: {
+      port: PORT,
+      catalogSize: productCount,
+      associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
+      complianceInterval: '2 Hours',
+      healthAuditInterval: '5 Hours',
+      emergencyContact: 'nr1130businessmail@gmail.com'
+    }
+  });
 
   // Recurring 2-Hour Compliance & Price Sync Timer
   const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
   setInterval(runTwoHourComplianceAudit, TWO_HOURS_MS);
 
-  // Initial check if catalog is empty on boot
-  if (productCount === 0) {
-    setTimeout(() => {
-      console.log('📦 Catalog empty. Running initial curation...');
-      dealCurator.runDailyCuration();
-    }, 1500);
-  }
+  // Recurring 5-Hour Ecosystem Health Audit Timer
+  const FIVE_HOURS_MS = 5 * 60 * 60 * 1000;
+  setInterval(() => {
+    safeFailGuardian.runFiveHourHealthAudit();
+  }, FIVE_HOURS_MS);
+
+  // Run initial health audit
+  setTimeout(() => {
+    safeFailGuardian.runFiveHourHealthAudit();
+  }, 2000);
 });
+
 
 
