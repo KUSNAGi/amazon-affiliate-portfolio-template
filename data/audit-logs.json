@@ -1,5 +1,585 @@
 [
   {
+    "id": "log_1786741477145_2jc8h",
+    "timestamp": "2026-08-14T21:04:37.145Z",
+    "eventType": "PRODUCT_REMOVED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L"
+    }
+  },
+  {
+    "id": "log_1786741477143_yxxpz",
+    "timestamp": "2026-08-14T21:04:37.143Z",
+    "eventType": "PRICE_CHANGE_RECORDED",
+    "status": "SUCCESS",
+    "details": {
+      "id": "delta_1786741477143",
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "oldPrice": 7999,
+      "newPrice": 7499,
+      "diff": -500,
+      "percentChange": "-6.3",
+      "timestamp": "2026-08-14T21:04:37.143Z"
+    }
+  },
+  {
+    "id": "log_1786741477142_80c8a",
+    "timestamp": "2026-08-14T21:04:37.142Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "price": 7999,
+      "affiliate_url": "https://www.amazon.in/dp/B097RJ867P?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786741477140_w9glz",
+    "timestamp": "2026-08-14T21:04:37.140Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477139_r1mmg",
+    "timestamp": "2026-08-14T21:04:37.139Z",
+    "eventType": "PRODUCT_INTEGRITY_FAIL",
+    "status": "BLOCKED",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "FAIL",
+      "failedSteps": [
+        "1-to-1 Affiliate Link & Tag Verification"
+      ]
+    }
+  },
+  {
+    "id": "log_1786741477138_e7ht1",
+    "timestamp": "2026-08-14T21:04:37.138Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477136_ubdw4",
+    "timestamp": "2026-08-14T21:04:37.136Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 41,
+      "loaded": 41,
+      "source": "verified-products.json"
+    }
+  },
+  {
+    "id": "log_1786741477135_caoil",
+    "timestamp": "2026-08-14T21:04:37.135Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H8PRXFLY",
+      "title": "Nothing Phone (4b), White (8GB, 128GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477134_jhfdn",
+    "timestamp": "2026-08-14T21:04:37.134Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H8Y2FFDN",
+      "title": "Nothing Phone (4b), Blue (8GB, 128GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477133_abdcu",
+    "timestamp": "2026-08-14T21:04:37.133Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7RB8NNL",
+      "title": "Nothing Phone (3)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477132_2v9sg",
+    "timestamp": "2026-08-14T21:04:37.132Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H7S8V4WC",
+      "title": "OnePlus N6x | 4GB+64GB | Ice Blue | 7000mAh Battery | Power for Days | 36-Months Smoothness | Smooth 120Hz Display | Largest 5300mm2 Cooling System | Military-Grade Durability",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477132_bligz",
+    "timestamp": "2026-08-14T21:04:37.132Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H7S6LT9P",
+      "title": "OnePlus N6x | 4GB+128GB | Burgundy Red | 7000mAh Battery | Power for Days | 48-Months Smoothness | Smooth 120Hz Display | Largest 5300mm2 Cooling System | Military-Grade Durability",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477130_si4if",
+    "timestamp": "2026-08-14T21:04:37.130Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F5WRTGCG",
+      "title": "OnePlus 13s Snapdragon 8 Elite Smartphone",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477129_43ybp",
+    "timestamp": "2026-08-14T21:04:37.129Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F5WNYJF8",
+      "title": "OnePlus 13s Snapdragon 8 Elite Smartphone",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477128_b9meq",
+    "timestamp": "2026-08-14T21:04:37.128Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GXB76VRW",
+      "title": "Samsung 43 inches Crystal UHD 4K Samsung Vision AI Smart TV UA43UE86AHULXL",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477127_etdoy",
+    "timestamp": "2026-08-14T21:04:37.127Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0FGNX85XS",
+      "title": "Whirlpool 7 Kg 5 Star Inverter Front Load Washing Machine with In-Built Heater (SUPREME CARE 7012 -E, Midnight Grey, 100+ Tough Stains, Steam Technology, 2025 Model)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477126_3k48v",
+    "timestamp": "2026-08-14T21:04:37.126Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H1WY55ZL",
+      "title": "Samsung Galaxy A56 5G (Awesome Violet Glow, 8GB, 128GB) | Segment Most Complete Triple Camera | AI Editing | 4nm Processor | sAMOLED Display| Gorilla Glass Victus+| 5 Gen OS Upgrades",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477125_1c4is",
+    "timestamp": "2026-08-14T21:04:37.125Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DYDQYVN6",
+      "title": "Samsung Galaxy A56 5G (Awesome Olive, 8GB, 128GB)_with Other Offers",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477124_2bij9",
+    "timestamp": "2026-08-14T21:04:37.124Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DYDRXSFH",
+      "title": "Samsung Galaxy A56 5G (Awesome Graphite, 8GB, 128GB_with Other Offers",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477123_6893l",
+    "timestamp": "2026-08-14T21:04:37.123Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H1X5XP25",
+      "title": "Samsung Galaxy A56 5G (Awesome Midnight Blue, 8GB, 128GB) | Segment Most Complete Triple Camera | AI Editing | 4nm Processor | sAMOLED Display| Gorilla Glass Victus+| 5 Gen OS Upgrades",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477122_r7y1x",
+    "timestamp": "2026-08-14T21:04:37.122Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H3LB843J",
+      "title": "OnePlus N6 | 4GB+128GB | Midnight Green | Segment&#x27;s Biggest 8000mAh Battery | Segment&#x27;s Fastest 45W Charging | 48-Month Smoothness | Smooth 120Hz Display | 50MP Camera | Military-Grade Durability",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477122_3f044",
+    "timestamp": "2026-08-14T21:04:37.122Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H3LBSGF8",
+      "title": "OnePlus N6 | 4GB+128GB | Fresh Mint | Segment&#x27;s Biggest 8000mAh Battery | Segment&#x27;s Fastest 45W Charging | 48-Month Smoothness | Smooth 120Hz Display | 50MP Camera | Military-Grade Durability",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477121_9hfnc",
+    "timestamp": "2026-08-14T21:04:37.121Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GRB3FBBB",
+      "title": "OnePlus Nord 6 | 8GB+256GB | Pitch Black | Snapdragon 8s Gen 4 | Segment&#x27;s First Stable 165FPS Gaming | Segment&#x27;s Largest 9000mAh Battery | Most Complete IP Rating | Personalized AI",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477120_yd60h",
+    "timestamp": "2026-08-14T21:04:37.120Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GRBBPBGQ",
+      "title": "OnePlus Nord 6 | 8GB+256GB | Fresh Mint | Snapdragon 8s Gen 4 | Segment&#x27;s First Stable 165FPS Gaming | Segment&#x27;s Largest 9000mAh Battery | Most Complete IP Rating | Personalized AI",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477119_u3voo",
+    "timestamp": "2026-08-14T21:04:37.119Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GRB5C1HW",
+      "title": "OnePlus Nord 6 | 8GB+256GB | Quick Silver | Snapdragon 8s Gen 4 | Segment&#x27;s First Stable 165FPS Gaming | Segment&#x27;s Largest 9000mAh Battery | Most Complete IP Rating | Personalized AI",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477118_azr3g",
+    "timestamp": "2026-08-14T21:04:37.118Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GWLHVJRH",
+      "title": "OnePlus Nord CE6 | 8GB+128GB | Pitch Black | Snapdragon 7s Gen 4 | Segment&#x27;s Fastest Touch Response | 8000mAh Battery | 144Hz 1.5K AMOLED Display | 50MP Main + 32MP Selfie 4K Cameras | IP66,68,69,69K",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477117_cjpve",
+    "timestamp": "2026-08-14T21:04:37.117Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GWLTLNTV",
+      "title": "OnePlus Nord CE6 | 8GB+128GB | Lunar Pearl | Snapdragon 7s Gen 4 | Segment&#x27;s Fastest Touch Response | 8000mAh Battery | 144Hz 1.5K AMOLED Display | 50MP Main + 32MP Selfie 4K Cameras | IP66,68,69,69K",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477116_zvj1t",
+    "timestamp": "2026-08-14T21:04:37.116Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GWLDWKF3",
+      "title": "OnePlus Nord CE6 | 8GB+256GB | Fresh Blue | Snapdragon 7s Gen 4 | Segment&#x27;s Fastest Touch Response | 8000mAh Battery | 144Hz 1.5K AMOLED Display | 50MP Main + 32MP Selfie 4K Cameras | IP66,68,69,69K",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477115_78uqr",
+    "timestamp": "2026-08-14T21:04:37.115Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GVYGLNH7",
+      "title": "OnePlus Nord CE6 Lite | 8GB+128GB | Vivid Mint | Segment&#x27;s Fastest Dimensity 7400 Apex Processor | 7000mAh Battery | Segment&#x27;s Highest 144Hz Refresh Rate | 50MP Main Camera, 4K Video Recording",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477114_0clom",
+    "timestamp": "2026-08-14T21:04:37.114Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GVYXPZBS",
+      "title": "OnePlus Nord CE6 Lite | 8GB+128GB | Hyper Black | Segment&#x27;s Fastest Dimensity 7400 Apex Processor | 7000mAh Battery | Segment&#x27;s Highest 144Hz Refresh Rate | 50MP Main Camera, 4K Video Recording",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477113_gksoe",
+    "timestamp": "2026-08-14T21:04:37.113Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DVC72DF8",
+      "title": "Samsung Galaxy S25 Ultra 5G",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477112_ilsqc",
+    "timestamp": "2026-08-14T21:04:37.112Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DVC8FPVJ",
+      "title": "Samsung Galaxy S25 Ultra 5G",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477111_svh9l",
+    "timestamp": "2026-08-14T21:04:37.111Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DVC6VC7P",
+      "title": "Samsung Galaxy S25 Ultra 5G",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477110_6u9ec",
+    "timestamp": "2026-08-14T21:04:37.110Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DSKL9MQ8",
+      "title": "Samsung Galaxy S25 Ultra 5G Mobile with Galaxy AI",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477109_6c5b2",
+    "timestamp": "2026-08-14T21:04:37.109Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07D4T4YT2",
+      "title": "Spotzero by Milton Prime Stainless Steel Wringer Spin Mop with Big Wheel, Puller Handle, Bucket Floor Cleaning and Mopping System 360° Flexible,2 Microfiber Refills, Big Size, Aqua Green",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477109_yup1n",
+    "timestamp": "2026-08-14T21:04:37.109Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07RPLT5T6",
+      "title": "Buy AO Smith Geyser 15 Ltr With 5 Star BEE Rating, Vertical Water Heater | Geyser 15+ Litre For High Rise Building | 7 Year Tank Warranty, 2 Year Comprehensive Warranty | SDS-GREEN-015 Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477108_7p36y",
+    "timestamp": "2026-08-14T21:04:37.108Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GNGZ6FBB",
+      "title": "LiMETRO STEEL Foldable Clothes Drying Stand for Balcony & Indoor Use | Heavy Duty Mild Steel Laundry Rack | Space Saving Folding Cloth Dryer Stand | Black",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477107_yhq4a",
+    "timestamp": "2026-08-14T21:04:37.107Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CCPPTB93",
+      "title": "MAXOSHINE Microfiber Bath Towel Large Size with Hook",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477106_cog62",
+    "timestamp": "2026-08-14T21:04:37.106Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BTD4S4XF",
+      "title": "Buy American Tourister Valex | 28L Backpack | 17\" Laptop Bag | 2 Compartments | College & Office Backpack for Men and Women | Black | 1 Year Global Warranty at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477105_ioiis",
+    "timestamp": "2026-08-14T21:04:37.105Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0G596SGTJ",
+      "title": "Buy Crocs Women&#x27;s Baya Platform Clog Barely Pink 3 Women at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477103_lnsum",
+    "timestamp": "2026-08-14T21:04:37.103Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H4DBCKWB",
+      "title": "Buy Campus Men&#x27;s GC-4035 Clogs - NAVY/P.GREEN 9UK/India 1 Pair at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477103_ukijo",
+    "timestamp": "2026-08-14T21:04:37.103Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H7S93Q4Q",
+      "title": "FLYNGO Umbrella for Rain Big Size with Carabiner Handle, UV Coated 3-Fold Travel Umbrella for Sun Protection, Windproof Reinforced 10 Dual Ribs, Automatic Open/Close (Beige)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477102_m0nk9",
+    "timestamp": "2026-08-14T21:04:37.102Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CPSLYDRD",
+      "title": "Buy Citizen Reversible Raincoat for Women with Inbuilt Hood, Waist Belt & Matching Carry Pouch | Stylish Polka Dot Design | Durable & Lightweight Rainsuit with High Tearing Strength | Teal, 2XL at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477101_dbrhh",
+    "timestamp": "2026-08-14T21:04:37.101Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08947GQCM",
+      "title": "Buy ZEEL Rain Coat for Men Waterproof for Bike Riders with Adjustable Hood Along with Inner Pockets,Waterproof Raincoat with Polyester Jacket,Pants and Waterproof Drawstring Bag,AZ05 Black-Green XL Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477099_sogmr",
+    "timestamp": "2026-08-14T21:04:37.099Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B089GM5Q7Z",
+      "title": "Destinio Umbrella for Man - Large Size 23 inch, Fully Automatic, Windproof Fibreglass Ribs, UPF 50+ Sun Protection, Premium 210T Pongee, Foldable Travel Umbrella for Rain for Men and Women - 3 fold Compact, Black (Auto open auto close)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477098_mbe89",
+    "timestamp": "2026-08-14T21:04:37.098Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477097_oq1ga",
+    "timestamp": "2026-08-14T21:04:37.097Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786741477096_njoub",
+    "timestamp": "2026-08-14T21:04:37.096Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
     "id": "log_1786737725536_0v6x4",
     "timestamp": "2026-08-14T20:02:05.536Z",
     "eventType": "CUSTOMER_FEEDBACK_STATUS_UPDATED",
