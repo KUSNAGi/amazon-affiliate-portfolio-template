@@ -81,11 +81,15 @@ const failResult = integrityAgent.validateProduct(invalidProductMismatchedLink);
 assert.strictEqual(failResult.status, 'FAIL', 'Mismatched affiliate link must FAIL');
 console.log('   ✅ Product Integrity Agent Gate Passed (PASS & FAIL enforcement)!');
 
-// 5. Price Delta & Audit Logging
-console.log('5. Testing Price Delta Tracking & Audit Logging...');
+// 5. Dynamic Cache & Price Delta Verification
+console.log('5. Testing Dynamic Product Addition & Price Delta Tracking...');
 const testAsin = 'B097RJ867P';
+// Dynamically add verified product to cache
+const addResult = cacheStore.addVerifiedProduct(validProduct);
+assert.strictEqual(addResult.success, true, 'addVerifiedProduct must succeed');
+
 const productBefore = cacheStore.getProductByAsin(testAsin);
-assert(productBefore, `Product ${testAsin} must exist in cache`);
+assert(productBefore, `Product ${testAsin} must exist in cache after addition`);
 const oldPrice = productBefore.current_price;
 const newPrice = oldPrice - 500;
 
@@ -97,6 +101,9 @@ assert.strictEqual(deltas[0].newPrice, newPrice);
 
 const logs = auditLogger.getLogs(5);
 assert(logs.length > 0, 'Audit logs must be generated');
-console.log('   ✅ Price Delta and Audit Logging Passed!');
+
+// Clean up test product from disk to keep catalog pristine
+cacheStore.removeProduct(testAsin);
+console.log('   ✅ Dynamic Cache, Price Delta, and Audit Logging Passed!');
 
 console.log('\n🎉 ALL INTEGRITY TESTS PASSED (100% COMPLIANT & ENFORCED)!\n');

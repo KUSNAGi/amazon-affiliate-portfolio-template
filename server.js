@@ -82,8 +82,44 @@ app.get('/api/config', (req, res) => {
 });
 
 // ----------------------------------------------------
-// PRIVATE ADMIN & AUDIT API (Portfolio 2)
+// PRIVATE ADMIN & AUDIT API (Portfolio 2) — Protected
 // ----------------------------------------------------
+
+const ADMIN_SECRET = process.env.ADMIN_SECRET_TOKEN || 'nkiax_admin_2026_secure';
+
+const adminAuthMiddleware = (req, res, next) => {
+  const token = req.headers['x-admin-token'] || 
+                req.headers['authorization']?.replace(/^Bearer\s+/i, '') || 
+                req.query.token;
+
+  if (token && token === ADMIN_SECRET) {
+    return next();
+  }
+
+  if (token && token !== ADMIN_SECRET) {
+    auditLogger.log('UNAUTHORIZED_ADMIN_ACCESS_ATTEMPT', {
+      ip: req.ip,
+      path: req.path,
+      method: req.method,
+      invalidTokenProvided: true
+    }, 'BLOCKED');
+    return res.status(403).json({ success: false, error: 'Forbidden: Invalid Admin Secret Token.' });
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    auditLogger.log('UNAUTHORIZED_ADMIN_ACCESS_ATTEMPT', {
+      ip: req.ip,
+      path: req.path,
+      method: req.method,
+      missingToken: true
+    }, 'BLOCKED');
+    return res.status(401).json({ success: false, error: 'Unauthorized: Admin Secret Token required in production.' });
+  }
+
+  next();
+};
+
+app.use('/api/admin', adminAuthMiddleware);
 
 // Admin metrics
 app.get('/api/admin/metrics', (req, res) => {

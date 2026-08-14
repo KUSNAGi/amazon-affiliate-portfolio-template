@@ -1,5 +1,25 @@
 [
   {
+    "id": "delta_1786733947832",
+    "asin": "B097RJ867P",
+    "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+    "oldPrice": 7999,
+    "newPrice": 7499,
+    "diff": -500,
+    "percentChange": "-6.3",
+    "timestamp": "2026-08-14T18:59:07.832Z"
+  },
+  {
+    "id": "delta_1786733908042",
+    "asin": "B097RJ867P",
+    "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+    "oldPrice": 7999,
+    "newPrice": 7499,
+    "diff": -500,
+    "percentChange": "-6.3",
+    "timestamp": "2026-08-14T18:58:28.042Z"
+  },
+  {
     "id": "delta_1786731080641",
     "asin": "B0863TXGM3",
     "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",

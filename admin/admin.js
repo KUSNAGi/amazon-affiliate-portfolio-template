@@ -7,6 +7,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   let lookupResult = null; // Stores the lookup data from Amazon.in
 
+  // Admin Token configuration
+  const ADMIN_TOKEN = localStorage.getItem('nkiax_admin_token') || 'nkiax_admin_2026_secure';
+  const adminFetch = (url, options = {}) => {
+    options.headers = {
+      ...(options.headers || {}),
+      'x-admin-token': ADMIN_TOKEN
+    };
+    return fetch(url, options);
+  };
+
   // Nav
   const navItems = document.querySelectorAll('.nav-item');
   const tabs = {
@@ -95,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lookupStatus.textContent = `Looking up ASIN ${asin} on real Amazon.in product page...`;
 
     try {
-      const res = await fetch('/api/admin/lookup-product', {
+      const res = await adminFetch('/api/admin/lookup-product', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ asin })
@@ -257,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     publishBtn.textContent = 'Publishing...';
 
     try {
-      const res = await fetch('/api/admin/add-product', {
+      const res = await adminFetch('/api/admin/add-product', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData)
@@ -322,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Metrics
   const loadMetrics = async () => {
     try {
-      const res = await fetch('/api/admin/metrics');
+      const res = await adminFetch('/api/admin/metrics');
       const data = await res.json();
       if (data.success && data.metrics) {
         document.getElementById('metricTotal').textContent = data.metrics.totalProducts;
@@ -336,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Audit Logs
   const loadAuditLogs = async () => {
     try {
-      const res = await fetch('/api/admin/audit-logs?limit=50');
+      const res = await adminFetch('/api/admin/audit-logs?limit=50');
       const data = await res.json();
       if (data.success && data.logs) {
         document.getElementById('auditLogStream').innerHTML = data.logs.map(log => `
@@ -358,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Price Deltas
   const loadDeltas = async () => {
     try {
-      const res = await fetch('/api/admin/price-deltas');
+      const res = await adminFetch('/api/admin/price-deltas');
       const data = await res.json();
       if (data.success && data.deltas) {
         document.getElementById('deltasBody').innerHTML = data.deltas.map(d => `

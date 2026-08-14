@@ -1,5 +1,218 @@
 [
   {
+    "id": "log_1786733947834_6im5e",
+    "timestamp": "2026-08-14T18:59:07.834Z",
+    "eventType": "PRODUCT_REMOVED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L"
+    }
+  },
+  {
+    "id": "log_1786733947832_mkyog",
+    "timestamp": "2026-08-14T18:59:07.832Z",
+    "eventType": "PRICE_CHANGE_RECORDED",
+    "status": "SUCCESS",
+    "details": {
+      "id": "delta_1786733947832",
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "oldPrice": 7999,
+      "newPrice": 7499,
+      "diff": -500,
+      "percentChange": "-6.3",
+      "timestamp": "2026-08-14T18:59:07.832Z"
+    }
+  },
+  {
+    "id": "log_1786733947832_s7l5c",
+    "timestamp": "2026-08-14T18:59:07.832Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "price": 7999,
+      "affiliate_url": "https://www.amazon.in/dp/B097RJ867P?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786733947831_utc35",
+    "timestamp": "2026-08-14T18:59:07.831Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786733947830_8gv3b",
+    "timestamp": "2026-08-14T18:59:07.830Z",
+    "eventType": "PRODUCT_INTEGRITY_FAIL",
+    "status": "BLOCKED",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "FAIL",
+      "failedSteps": [
+        "1-to-1 Affiliate Link & Tag Verification"
+      ]
+    }
+  },
+  {
+    "id": "log_1786733947830_2o2qz",
+    "timestamp": "2026-08-14T18:59:07.830Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786733947827_dey10",
+    "timestamp": "2026-08-14T18:59:07.827Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 0,
+      "loaded": 0,
+      "source": "verified-products.json"
+    }
+  },
+  {
+    "id": "log_1786733908043_3vcxs",
+    "timestamp": "2026-08-14T18:58:28.043Z",
+    "eventType": "PRODUCT_REMOVED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L"
+    }
+  },
+  {
+    "id": "log_1786733908042_6coya",
+    "timestamp": "2026-08-14T18:58:28.042Z",
+    "eventType": "PRICE_CHANGE_RECORDED",
+    "status": "SUCCESS",
+    "details": {
+      "id": "delta_1786733908042",
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "oldPrice": 7999,
+      "newPrice": 7499,
+      "diff": -500,
+      "percentChange": "-6.3",
+      "timestamp": "2026-08-14T18:58:28.042Z"
+    }
+  },
+  {
+    "id": "log_1786733908041_9vg3r",
+    "timestamp": "2026-08-14T18:58:28.041Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "price": 7999,
+      "affiliate_url": "https://www.amazon.in/dp/B097RJ867P?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786733908040_kwt0w",
+    "timestamp": "2026-08-14T18:58:28.040Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786733908039_8ju8t",
+    "timestamp": "2026-08-14T18:58:28.039Z",
+    "eventType": "PRODUCT_INTEGRITY_FAIL",
+    "status": "BLOCKED",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "FAIL",
+      "failedSteps": [
+        "1-to-1 Affiliate Link & Tag Verification"
+      ]
+    }
+  },
+  {
+    "id": "log_1786733908039_83mf6",
+    "timestamp": "2026-08-14T18:58:28.039Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786733908036_878qx",
+    "timestamp": "2026-08-14T18:58:28.036Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 0,
+      "loaded": 0,
+      "source": "verified-products.json"
+    }
+  },
+  {
+    "id": "log_1786733769786_z5o3k",
+    "timestamp": "2026-08-14T18:56:09.786Z",
+    "eventType": "PRODUCT_INTEGRITY_FAIL",
+    "status": "BLOCKED",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "FAIL",
+      "failedSteps": [
+        "1-to-1 Affiliate Link & Tag Verification"
+      ]
+    }
+  },
+  {
+    "id": "log_1786733769786_8mnpk",
+    "timestamp": "2026-08-14T18:56:09.786Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786733769781_bsn4d",
+    "timestamp": "2026-08-14T18:56:09.781Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 0,
+      "loaded": 0,
+      "source": "verified-products.json"
+    }
+  },
+  {
     "id": "log_1786733197702_rt2f5",
     "timestamp": "2026-08-14T18:46:37.702Z",
     "eventType": "SERVER_STARTED",
