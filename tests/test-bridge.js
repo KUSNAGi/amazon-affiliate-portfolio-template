@@ -7,8 +7,9 @@ console.log('🧪 Starting Amazon Affiliate & Governance Bridge Test Suite...\n'
 
 // 1. ASIN Validator Tests
 console.log('1. Testing ASIN Formats...');
-assert.strictEqual(ProductValidator.isValidASIN('B0BDK7266C'), true, 'Valid 10-char ASIN must pass');
-assert.strictEqual(ProductValidator.isValidASIN('B08N5WRWNW'), true, 'Valid 10-char ASIN must pass');
+assert.strictEqual(ProductValidator.isValidASIN('B097RJ867P'), true, 'Valid 10-char ASIN must pass');
+assert.strictEqual(ProductValidator.isValidASIN('B0CHX1W1XY'), true, 'Valid 10-char ASIN must pass');
+assert.strictEqual(ProductValidator.isValidASIN('B08N5XSG8Z'), true, 'Valid 10-char ASIN must pass');
 assert.strictEqual(ProductValidator.isValidASIN('INVALID12345'), false, '12-char ASIN must fail');
 assert.strictEqual(ProductValidator.isValidASIN(''), false, 'Empty ASIN must fail');
 console.log('   ✅ ASIN Validation Passed!');
@@ -16,22 +17,22 @@ console.log('   ✅ ASIN Validation Passed!');
 // 2. 1-to-1 Affiliate Link Matching
 console.log('2. Testing 1-to-1 Affiliate Link Matching...');
 const validLinkCheck = ProductValidator.verifyAffiliateLink(
-  'https://www.amazon.in/dp/B0BDK7266C?tag=nagireddy0e-21',
-  'B0BDK7266C',
+  'https://www.amazon.in/dp/B097RJ867P?tag=nagireddy0e-21',
+  'B097RJ867P',
   'nagireddy0e-21'
 );
 assert.strictEqual(validLinkCheck.valid, true, 'Matching link & tag must pass');
 
 const wrongAsinCheck = ProductValidator.verifyAffiliateLink(
-  'https://www.amazon.in/dp/B08N5WRWNW?tag=nagireddy0e-21',
-  'B0BDK7266C', // Mismatched ASIN
+  'https://www.amazon.in/dp/B08N5XSG8Z?tag=nagireddy0e-21',
+  'B097RJ867P',
   'nagireddy0e-21'
 );
 assert.strictEqual(wrongAsinCheck.valid, false, 'Mismatched ASIN must be rejected');
 
 const wrongTagCheck = ProductValidator.verifyAffiliateLink(
-  'https://www.amazon.in/dp/B0BDK7266C?tag=wrongtag-21',
-  'B0BDK7266C',
+  'https://www.amazon.in/dp/B097RJ867P?tag=wrongtag-21',
+  'B097RJ867P',
   'nagireddy0e-21'
 );
 assert.strictEqual(wrongTagCheck.valid, false, 'Mismatched Associate tag must be rejected');
@@ -54,8 +55,9 @@ console.log('   ✅ Rating Threshold (< 3.5 reject, 4.0+ top, 3.5-3.9 value) Pas
 
 // 4. Cache Store & Price Delta Recording
 console.log('4. Testing Price Delta Tracking & Audit Logging...');
-const testAsin = 'B0BDK7266C';
+const testAsin = 'B097RJ867P';
 const productBefore = cacheStore.getProductByAsin(testAsin);
+assert(productBefore, `Product ${testAsin} must exist in cache`);
 const oldPrice = productBefore.current_price;
 const newPrice = oldPrice - 500;
 

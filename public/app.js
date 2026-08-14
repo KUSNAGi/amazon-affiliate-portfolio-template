@@ -4,14 +4,13 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const state = {
-    products: [],
+    allProducts: [],
+    displayedProducts: [],
     currentCategory: 'all',
-    currentRatingTier: 'top_rated', // Default 4.0+ standard
+    currentRatingTier: 'top_rated',
     currentSort: 'discount',
     searchQuery: '',
-    associateTag: 'nagireddy0e-21',
     currentSlide: 0,
-    totalSlides: 4,
     slideInterval: null
   };
 
@@ -34,12 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextSlideBtn = document.getElementById('nextSlideBtn');
   const carouselContainer = document.getElementById('carouselContainer');
 
-  // Format INR Currency
   const formatINR = (val) => {
     return new Intl.NumberFormat('en-IN').format(val);
   };
 
-  // Generate Current IST Timestamp for Amazon Compliance
   const getISTTimestamp = () => {
     const now = new Date();
     return now.toLocaleString('en-IN', {
@@ -49,11 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }) + ' IST';
   };
 
-  // Update compliance timestamps
   const updateDisclaimers = () => {
     const timeStr = getISTTimestamp();
     document.querySelectorAll('.price-timestamp').forEach(el => {
-      el.innerHTML = `🕒 Price verified accurate as of <strong>${timeStr}</strong> &bull; Free Prime Delivery eligible`;
+      el.innerHTML = `🕒 Price verified accurate &bull; Free Prime Delivery eligible`;
     });
     if (footerPriceDisclaimer) {
       footerPriceDisclaimer.innerHTML = `<strong>Price & Availability Disclaimer:</strong> Product prices and availability are accurate as of <strong>${timeStr}</strong> and are subject to change. Any price and availability information displayed on Amazon.in at the time of purchase will apply.`;
@@ -61,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ----------------------------------------------------
-  // Sliding Hero Carousel Logic
+  // Hero Carousel Logic
   // ----------------------------------------------------
   const showSlide = (index) => {
     if (index >= slides.length) state.currentSlide = 0;
@@ -77,13 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const nextSlide = () => {
-    showSlide(state.currentSlide + 1);
-  };
-
-  const prevSlide = () => {
-    showSlide(state.currentSlide - 1);
-  };
+  const nextSlide = () => showSlide(state.currentSlide + 1);
+  const prevSlide = () => showSlide(state.currentSlide - 1);
 
   const startAutoSlide = () => {
     stopAutoSlide();
@@ -111,40 +102,78 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ----------------------------------------------------
-  // Product Fetch & Render
+  // Product Filtering & Rendering Engine
   // ----------------------------------------------------
   const fetchProducts = async () => {
     try {
-      const params = new URLSearchParams({
-        category: state.currentCategory,
-        ratingTier: state.currentRatingTier,
-        sort: state.currentSort
-      });
-
-      if (state.searchQuery) {
-        params.set('search', state.searchQuery);
-      }
-
-      if (state.currentCategory === 'daily_deals') {
-        params.set('isDailyDeal', 'true');
-      }
-
-      const res = await fetch(`/api/products?${params.toString()}`);
+      const res = await fetch('/api/products?category=all&ratingTier=all_acceptable');
       const json = await res.json();
 
-      if (json.success) {
-        state.products = json.data;
-        if (json.associateTag) state.associateTag = json.associateTag;
-        renderProducts();
+      if (json.success && json.data) {
+        state.allProducts = json.data;
+        applyFiltersAndRender();
       }
     } catch (err) {
       console.error('Failed to load products:', err);
-      productsGrid.innerHTML = `<div class="error-msg">Failed to load curated picks. Please refresh.</div>`;
+      productsGrid.innerHTML = `<div class="error-msg">Failed to load curated products. Please refresh.</div>`;
     }
   };
 
-  const renderProducts = () => {
-    if (!state.products || state.products.length === 0) {
+  const applyFiltersAndRender = () => {
+    let list = [...state.allProducts];
+
+    // 1. Search Query Filter (Searches across Title, Brand, ASIN, and Category)
+    if (state.searchQuery && state.searchQuery.trim() !== '') {
+      const q = state.searchQuery.trim().toLowerCase();
+      list = list.filter(p => 
+        (p.title && p.title.toLowerCase().includes(q)) ||
+        (p.brand && p.brand.toLowerCase().includes(q)) ||
+        (p.asin && p.asin.toLowerCase().includes(q)) ||
+        (p.category_label && p.category_label.toLowerCase().includes(q))
+      );
+    } else {
+      // 2. Category Filter (only if not searching)
+      if (state.currentCategory === 'daily_deals') {
+        list = list.filter(p => p.is_daily_deal === true);
+      } else if (state.currentCategory && state.currentCategory !== 'all') {
+        if (['most_purchased', 'trending', 'seasonal_essentials'].includes(state.currentCategory)) {
+          list = list.filter(p => (p.tags && p.tags.includes(state.currentCategory)) || p.category === state.currentCategory);
+        } else {
+          list = list.filter(p => p.category === state.currentCategory);
+        }
+      }
+    }
+
+    // 3. Rating Tier Filter
+    if (state.currentRatingTier === 'top_rated') {
+      list = list.filter(p => parseFloat(p.rating) >= 4.0);
+    } else if (state.currentRatingTier === 'value_picks') {
+      list = list.filter(p => parseFloat(p.rating) >= 3.5 && parseFloat(p.rating) < 4.0);
+    } else {
+      list = list.filter(p => parseFloat(p.rating) >= 3.5);
+    }
+
+    // 4. Sorting
+    if (state.currentSort === 'discount') {
+      list.sort((a, b) => {
+        const discA = a.list_price ? ((a.list_price - a.current_price) / a.list_price) : 0;
+        const discB = b.list_price ? ((b.list_price - b.current_price) / b.list_price) : 0;
+        return discB - discA;
+      });
+    } else if (state.currentSort === 'rating') {
+      list.sort((a, b) => b.rating - a.rating);
+    } else if (state.currentSort === 'price_asc') {
+      list.sort((a, b) => a.current_price - b.current_price);
+    } else if (state.currentSort === 'price_desc') {
+      list.sort((a, b) => b.current_price - a.current_price);
+    }
+
+    state.displayedProducts = list;
+    renderGrid();
+  };
+
+  const renderGrid = () => {
+    if (!state.displayedProducts || state.displayedProducts.length === 0) {
       productsGrid.style.display = 'none';
       emptyState.style.display = 'block';
       resultsCount.innerHTML = `Showing <strong>0</strong> products`;
@@ -153,9 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     productsGrid.style.display = 'grid';
     emptyState.style.display = 'none';
-    resultsCount.innerHTML = `Showing <strong>${state.products.length}</strong> verified products`;
+    resultsCount.innerHTML = `Showing <strong>${state.displayedProducts.length}</strong> verified products`;
 
-    productsGrid.innerHTML = state.products.map(product => {
+    productsGrid.innerHTML = state.displayedProducts.map(product => {
       const discount = product.list_price 
         ? Math.round(((product.list_price - product.current_price) / product.list_price) * 100) 
         : 0;
@@ -165,20 +194,20 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="card-media-wrap">
             <div class="card-badges">
               ${product.is_daily_deal ? `<span class="badge-deal">⚡ DAILY DEAL</span>` : ''}
-              <span class="badge-cat">${product.category_label || 'Essential'}</span>
+              <span class="badge-cat">${product.category_label || 'Curated Essential'}</span>
             </div>
-            <img src="${product.image_url}" alt="${escapeHtml(product.title)}" class="card-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='https://m.media-amazon.com/images/I/71jG+e7roXL._SX679_.jpg';">
+            <img src="${product.image_url}" alt="${escapeHtml(product.title)}" class="card-img" referrerpolicy="no-referrer" loading="lazy">
           </div>
 
           <div class="card-body">
-            <div class="card-brand">${escapeHtml(product.brand || 'Amazon Verified')}</div>
+            <div class="card-brand">${escapeHtml(product.brand || 'Verified Brand')}</div>
             <h3 class="card-title" title="${escapeHtml(product.title)}">${escapeHtml(product.title)}</h3>
 
             <div class="card-rating-wrap">
               <span class="rating-stars">
                 ⭐ ${product.rating}
               </span>
-              <span class="review-count">(${product.reviews_count ? Number(product.reviews_count).toLocaleString() : '500+'} reviews)</span>
+              <span class="review-count">(${product.reviews_count ? Number(product.reviews_count).toLocaleString() : '1,000+'} ratings)</span>
             </div>
 
             <div class="card-pricing">
@@ -219,7 +248,13 @@ document.addEventListener('DOMContentLoaded', () => {
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
       state.currentCategory = tab.dataset.category;
-      fetchProducts();
+      
+      // Clear search when explicitly clicking a category
+      state.searchQuery = '';
+      searchInput.value = '';
+      clearSearchBtn.style.display = 'none';
+
+      applyFiltersAndRender();
     });
   });
 
@@ -229,34 +264,30 @@ document.addEventListener('DOMContentLoaded', () => {
       ratingPills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       state.currentRatingTier = pill.dataset.rating;
-      fetchProducts();
+      applyFiltersAndRender();
     });
   });
 
   // Event Listeners: Sorting
   sortSelect.addEventListener('change', (e) => {
     state.currentSort = e.target.value;
-    fetchProducts();
+    applyFiltersAndRender();
   });
 
-  // Event Listeners: Search with Debounce
-  let searchTimer;
+  // Event Listeners: Instant Search
   searchInput.addEventListener('input', (e) => {
-    clearTimeout(searchTimer);
-    const query = e.target.value.trim();
-    clearSearchBtn.style.display = query.length > 0 ? 'block' : 'none';
-
-    searchTimer = setTimeout(() => {
-      state.searchQuery = query;
-      fetchProducts();
-    }, 250);
+    const query = e.target.value;
+    state.searchQuery = query;
+    clearSearchBtn.style.display = query.trim().length > 0 ? 'block' : 'none';
+    applyFiltersAndRender();
   });
 
   clearSearchBtn.addEventListener('click', () => {
     searchInput.value = '';
     clearSearchBtn.style.display = 'none';
     state.searchQuery = '';
-    fetchProducts();
+    applyFiltersAndRender();
+    searchInput.focus();
   });
 
   // Reset Filters
@@ -278,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     sortSelect.value = 'discount';
-    fetchProducts();
+    applyFiltersAndRender();
   });
 
   // Initialize
