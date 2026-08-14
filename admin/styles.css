@@ -1,0 +1,538 @@
+/* ==========================================================================
+   Portfolio 2 — Private Admin & Audit Dashboard Styles
+   ========================================================================== */
+
+:root {
+  --admin-bg: #0b0f19;
+  --admin-sidebar-bg: #0f172a;
+  --admin-card-bg: #1e293b;
+  --admin-card-header: #172235;
+  --admin-border: #334155;
+  --admin-border-subtle: #1e293b;
+
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+  --text-muted: #64748b;
+
+  --col-emerald: #10b981;
+  --col-amber: #f59e0b;
+  --col-blue: #3b82f6;
+  --col-red: #ef4444;
+
+  --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--admin-bg);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* ----------------------------------------------------
+   Sidebar
+   ---------------------------------------------------- */
+.admin-sidebar {
+  background-color: var(--admin-sidebar-bg);
+  border-right: 1px solid var(--admin-border);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.shield-badge {
+  font-size: 1.5rem;
+}
+
+.brand-text h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--col-amber);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-nav {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.nav-item {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-item:hover {
+  background-color: #1e293b;
+  color: var(--text-main);
+}
+
+.nav-item.active {
+  background-color: #1e293b;
+  color: var(--col-amber);
+  border-color: var(--admin-border);
+}
+
+.sidebar-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--admin-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.account-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--admin-card-bg);
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+
+.dot-online {
+  width: 8px;
+  height: 8px;
+  background-color: var(--col-emerald);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--col-emerald);
+}
+
+.acc-name {
+  font-weight: 700;
+}
+
+.acc-tag {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.view-public-btn {
+  background-color: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  color: var(--col-amber);
+  text-align: center;
+  padding: 0.55rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.view-public-btn:hover {
+  background-color: #334155;
+}
+
+/* ----------------------------------------------------
+   Main Admin Content
+   ---------------------------------------------------- */
+.admin-main {
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.topbar-title h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.topbar-sub {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.btn-sync {
+  background-color: var(--col-emerald);
+  color: #0b0f19;
+  border: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s;
+}
+
+.btn-sync:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Tab Panels */
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* ----------------------------------------------------
+   Metrics Grid
+   ---------------------------------------------------- */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background-color: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.metric-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.metric-val {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  margin-bottom: 0.25rem;
+}
+
+.metric-sub {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.highlight-green .metric-val {
+  color: var(--col-emerald);
+}
+
+.highlight-amber .metric-val {
+  color: var(--col-amber);
+}
+
+/* ----------------------------------------------------
+   Panels & Cards
+   ---------------------------------------------------- */
+.panel-card {
+  background-color: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.panel-head {
+  background-color: var(--admin-card-header);
+  border-bottom: 1px solid var(--admin-border);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-head h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.panel-body {
+  padding: 1.25rem;
+}
+
+.panel-sub {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.status-split-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+}
+
+/* Policy Checklist */
+.policy-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+  background-color: #172235;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.check-item .status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--col-emerald);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* Forms */
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--text-dim);
+}
+
+.form-control {
+  width: 100%;
+  background-color: #0f172a;
+  border: 1px solid var(--admin-border);
+  color: var(--text-main);
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--col-amber);
+}
+
+.btn {
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  background-color: var(--col-amber);
+  color: #0b0f19;
+}
+
+.btn-primary:hover {
+  background-color: #d97706;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.test-result-box {
+  margin-top: 1rem;
+  padding: 0.85rem;
+  border-radius: 6px;
+  font-size: 0.825rem;
+  font-family: var(--font-mono);
+  background-color: #0f172a;
+  border: 1px solid var(--admin-border);
+}
+
+/* ----------------------------------------------------
+   Live Audit Log Stream
+   ---------------------------------------------------- */
+.log-filters {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.log-filter-btn {
+  background-color: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.log-filter-btn.active {
+  background-color: var(--col-amber);
+  color: #0b0f19;
+  border-color: var(--col-amber);
+}
+
+.audit-log-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 550px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  background-color: #172235;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.825rem;
+}
+
+.log-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.log-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.log-badge.SUCCESS { background-color: rgba(16, 185, 129, 0.2); color: var(--col-emerald); }
+.log-badge.WARNING { background-color: rgba(245, 158, 11, 0.2); color: var(--col-amber); }
+.log-badge.BLOCKED { background-color: rgba(239, 68, 68, 0.2); color: var(--col-red); }
+
+.log-type {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.log-details {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+.log-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ----------------------------------------------------
+   Data Tables
+   ---------------------------------------------------- */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.data-table th {
+  background-color: var(--admin-card-header);
+  color: var(--text-dim);
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--admin-border);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.data-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #27354a;
+}
+
+.add-product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .status-split-grid {
+    grid-template-columns: 1fr;
+  }
+}

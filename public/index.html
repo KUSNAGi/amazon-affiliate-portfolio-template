@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NKiaX — Curated Amazon Picks, Daily Deals & Electronics</title>
+  <meta name="description" content="Discover top-rated Home & Kitchen Essentials, Gadgets & Electronics, and handpicked Amazon Daily Deals curated by NKiaX. Verified authentic recommendations with 4+ star ratings.">
+  <meta name="keywords" content="Amazon Deals, Home Kitchen Essentials, Gadgets, Electronics, NKiaX Influencer, Amazon India">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Compliance & Status Bar -->
+  <div class="top-announcement" id="topAnnouncement">
+    <div class="container announcement-inner">
+      <span class="pulse-indicator"></span>
+      <span class="announcement-text">
+        <strong>Amazon Associate Tag:</strong> <span class="tag-pill">nagireddy0e-21</span> &bull; Verified live pricing on <strong>Amazon.in</strong>
+      </span>
+      <a href="https://www.amazon.in/shop/NKiaX" target="_blank" rel="noopener noreferrer" class="storefront-link">
+        Visit Official Storefront (NKiaX) ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <div class="brand-area">
+        <a href="/" class="brand-logo" id="brandLogo">
+          <span class="logo-accent">NK</span>iaX
+        </a>
+        <span class="brand-sub">Influencer Showcase</span>
+      </div>
+
+      <div class="header-search">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search Home, Gadgets, Deals, ASIN..." aria-label="Search products">
+        <button id="clearSearchBtn" class="clear-search-btn" style="display: none;" aria-label="Clear search">&times;</button>
+      </div>
+
+      <div class="header-actions">
+        <a href="/admin" class="admin-badge-btn" target="_blank" title="Open Private Portfolio 2 Admin">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Portfolio 2 (Admin)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / Deal Spotlight -->
+    <section class="hero-spotlight" id="heroSpotlight">
+      <div class="container">
+        <div class="hero-card" id="heroDealCard">
+          <div class="hero-content">
+            <div class="hero-badges">
+              <span class="deal-pill">🔥 SUPER DEAL OF THE DAY</span>
+              <span class="rating-badge-top">⭐ 4.5+ Rating Pick</span>
+            </div>
+            <h1 class="hero-title" id="heroTitle">Philips Digital Air Fryer HD9252/90</h1>
+            <p class="hero-desc">Rapid Air Technology with 4.1L Capacity & 7 Touch Presets. Top recommended for modern kitchens.</p>
+            
+            <div class="hero-price-wrap">
+              <div class="price-main">
+                <span class="curr-symbol">₹</span><span class="price-val" id="heroPrice">7,999</span>
+              </div>
+              <div class="mrp-wrap">
+                <span class="mrp-label">M.R.P:</span>
+                <span class="mrp-val" id="heroMrp">₹11,995</span>
+              </div>
+              <span class="savings-badge" id="heroSavings">Save 35%</span>
+            </div>
+
+            <div class="hero-actions">
+              <a href="https://www.amazon.in/dp/B0BDK7266C?tag=nagireddy0e-21" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="heroBuyBtn">
+                View & Buy on Amazon.in ↗
+              </a>
+              <span class="hero-ad-tag">#AmazonAffiliate</span>
+            </div>
+
+            <div class="price-timestamp" id="heroTimestamp">
+              🕒 Price verified accurate as of today &bull; Free Prime Delivery eligible
+            </div>
+          </div>
+
+          <div class="hero-image-wrap">
+            <img src="https://m.media-amazon.com/images/I/61K61G916tL._SX679_.jpg" alt="Philips Digital Air Fryer" id="heroImage" class="hero-img" loading="eager">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation & Filter Section -->
+    <section class="catalog-section" id="catalogSection">
+      <div class="container">
+        
+        <!-- Category Navigation Tabs -->
+        <div class="category-tabs-wrap">
+          <div class="category-tabs" id="categoryTabs" role="tablist">
+            <button class="cat-tab active" data-category="all" role="tab" aria-selected="true">
+              ✨ All Curated
+            </button>
+            <button class="cat-tab" data-category="daily_deals" role="tab" aria-selected="false">
+              ⚡ Daily Deals
+            </button>
+            <button class="cat-tab" data-category="home_kitchen" role="tab" aria-selected="false">
+              🍳 Home & Kitchen
+            </button>
+            <button class="cat-tab" data-category="gadgets_electronics" role="tab" aria-selected="false">
+              📱 Gadgets & Electronics
+            </button>
+            <button class="cat-tab" data-category="seasonal_essentials" role="tab" aria-selected="false">
+              ❄️ Seasonal Essentials
+            </button>
+            <button class="cat-tab" data-category="most_purchased" role="tab" aria-selected="false">
+              🛍️ Most Purchased
+            </button>
+            <button class="cat-tab" data-category="trending" role="tab" aria-selected="false">
+              🔥 Trending
+            </button>
+          </div>
+        </div>
+
+        <!-- Rating Tier & Sort Bar -->
+        <div class="filter-toolbar">
+          <div class="rating-filter-group" id="ratingFilterGroup">
+            <span class="filter-label">Rating Tier:</span>
+            <button class="rating-pill active" data-rating="top_rated">
+              ⭐ 4.0 & Above (Top Rated)
+            </button>
+            <button class="rating-pill" data-rating="value_picks">
+              🌟 3.5 – 3.9 (Value Picks)
+            </button>
+            <button class="rating-pill" data-rating="all_acceptable">
+              All (≥ 3.5)
+            </button>
+          </div>
+
+          <div class="sort-group">
+            <label for="sortSelect" class="filter-label">Sort by:</label>
+            <select id="sortSelect" class="sort-select" aria-label="Sort products">
+              <option value="discount">🔥 Biggest Discount</option>
+              <option value="rating">⭐ Highest Rated</option>
+              <option value="price_asc">₹ Price: Low to High</option>
+              <option value="price_desc">₹ Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Product Count & Current View Status -->
+        <div class="results-header">
+          <div class="results-count" id="resultsCount">
+            Showing <strong>12</strong> verified products
+          </div>
+          <div class="policy-note">
+            <span class="shield-icon">🛡️</span> Strictly 1-to-1 Verified Amazon Links
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid">
+          <!-- Populated dynamically via app.js -->
+        </div>
+
+        <!-- Empty State (if search finds nothing) -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-icon">🔍</div>
+          <h3>No matching products found</h3>
+          <p>Try searching for a different keyword, category, or clear your rating filters.</p>
+          <button class="btn btn-secondary" id="resetFiltersBtn">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why Buy Through NKiaX Section -->
+    <section class="trust-section">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="trust-icon">⭐</div>
+            <h4>4+ Star Quality Standard</h4>
+            <p>Every product is handpicked and filtered to maintain a strict 4.0+ rating standard for peak customer satisfaction.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">⚡</div>
+            <h4>24-Hour Price Freshness</h4>
+            <p>Prices and deal discounts are continuously audited so you always get the latest authentic offer on Amazon.in.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">🔒</div>
+            <h4>100% Direct Official Amazon Links</h4>
+            <p>Zero intermediaries or deceptive redirects. Every button takes you straight to the official Amazon.in product page.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Legal Disclosures & Compliance Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-disclosure-card">
+        <h5>⚖️ Amazon Associates & ASCI Mandatory Disclosure</h5>
+        <p class="disclosure-text">
+          <strong>Disclosure:</strong> As an Amazon Associate and Influencer, I earn from qualifying purchases. When you click on product links on this website and make a purchase on Amazon.in, I may receive a small affiliate commission at no additional cost to you.
+        </p>
+        <p class="price-disclaimer-text" id="footerPriceDisclaimer">
+          <strong>Price & Availability Disclaimer:</strong> Product prices and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon.in at the time of purchase will apply to the purchase of this product.
+        </p>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2026 <strong>NKiaX Influencer Showcase</strong> &bull; Curated by KUSNAGi (Tag: <code>nagireddy0e-21</code>)
+        </div>
+        <div class="footer-links">
+          <a href="https://www.amazon.in/shop/NKiaX" target="_blank" rel="noopener noreferrer">Amazon Storefront</a>
+          <a href="https://www.amazon.in/gp/help/customer/display.html?nodeId=200545940" target="_blank" rel="noopener noreferrer">Amazon Conditions of Use</a>
+          <a href="/admin" target="_blank">Portfolio 2 (Admin Portal)</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
