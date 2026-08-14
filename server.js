@@ -3,14 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-const AmazonCreatorAPI = require('./lib/amazon-api');
 const ProductValidator = require('./lib/validator');
 const cacheStore = require('./lib/cache-store');
 const auditLogger = require('./lib/audit-logger');
+const productLookup = require('./lib/product-lookup');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const amazonApi = new AmazonCreatorAPI();
 
 app.use(cors());
 app.use(express.json());
@@ -25,18 +24,36 @@ app.use('/admin', express.static(path.join(__dirname, 'admin')));
 // PUBLIC API (Portfolio 1)
 // ----------------------------------------------------
 
-// Get filtered product catalog
+// Get filtered product catalog (only verified products)
 app.get('/api/products', (req, res) => {
   const { category, ratingTier, search, isDailyDeal, sort } = req.query;
   const products = cacheStore.getFilteredProducts({ category, ratingTier, search, isDailyDeal, sort });
-  
+
+  // Strip internal fields before sending to public
+  const publicData = products.map(p => ({
+    asin: p.asin,
+    title: p.title,
+    brand: p.brand,
+    category: p.category,
+    category_label: p.category_label,
+    is_daily_deal: p.is_daily_deal,
+    deal_label: p.deal_label,
+    current_price: p.current_price,
+    list_price: p.list_price,
+    currency: p.currency,
+    rating: p.rating,
+    reviews_count: p.reviews_count,
+    image_url: p.image_url,
+    affiliate_url: p.affiliate_url,
+    in_stock: p.in_stock,
+    tags: p.tags
+  }));
+
   res.json({
     success: true,
-    count: products.length,
+    count: publicData.length,
     timestamp: new Date().toISOString(),
-    storefront: process.env.AMAZON_STOREFRONT_URL || 'https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e',
-    associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
-    data: products
+    data: publicData
   });
 });
 
@@ -51,13 +68,11 @@ app.get('/api/deals', (req, res) => {
   });
 });
 
-// System config & public metadata
+// System config & public metadata (no internal info exposed)
 app.get('/api/config', (req, res) => {
   res.json({
-    storeName: 'NKiaX Influencer Showcase',
-    storefrontUrl: process.env.AMAZON_STOREFRONT_URL || 'https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e',
-    associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
-    disclaimer: 'As an Amazon Associate and Influencer, I earn from qualifying purchases. Product prices and availability are accurate as of the date/time indicated and are subject to change.',
+    storeName: 'NKiaX Curated Picks',
+    disclaimer: 'As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are accurate as of the date/time indicated and are subject to change.',
     currency: 'INR',
     ratingPolicy: {
       minimumThreshold: 3.5,
@@ -75,7 +90,6 @@ app.get('/api/admin/metrics', (req, res) => {
   const metrics = cacheStore.getMetrics();
   res.json({
     success: true,
-    apiConfigured: amazonApi.isConfigured(),
     metrics: metrics,
     serverTime: new Date().toISOString()
   });
@@ -103,7 +117,64 @@ app.get('/api/admin/price-deltas', (req, res) => {
   });
 });
 
-// Verify ASIN & Link mapping
+// ============================================================
+// CORE: Product Lookup — Fetches real Amazon.in page for ASIN
+// This is the FIRST STEP in the 1-to-1 Validator pipeline.
+// ============================================================
+app.post('/api/admin/lookup-product', async (req, res) => {
+  const { asin } = req.body;
+
+  if (!asin) {
+    return res.status(400).json({ success: false, error: 'ASIN is required.' });
+  }
+
+  auditLogger.log('PRODUCT_LOOKUP_INITIATED', { asin: asin.toUpperCase() }, 'SUCCESS');
+
+  const result = await productLookup.lookupByAsin(asin);
+
+  if (!result.success) {
+    auditLogger.log('PRODUCT_LOOKUP_FAILED', {
+      asin: asin.toUpperCase(),
+      error: result.error
+    }, 'FAILURE');
+  } else {
+    auditLogger.log('PRODUCT_LOOKUP_SUCCESS', {
+      asin: result.asin,
+      title: result.title,
+      image: result.image_url ? 'Found' : 'Not found',
+      affiliate_url: result.affiliate_url
+    }, 'SUCCESS');
+  }
+
+  res.json(result);
+});
+
+// ============================================================
+// CORE: Add Verified Product — Only after lookup + user review
+// ============================================================
+app.post('/api/admin/add-product', (req, res) => {
+  const productData = req.body;
+
+  // Must have been looked up first (checked by client)
+  if (!productData.lookup_verified) {
+    auditLogger.log('ADD_PRODUCT_BLOCKED_NO_LOOKUP', {
+      asin: productData.asin,
+      reason: 'Product was not looked up and verified through the 1-to-1 Validator before attempting to add.'
+    }, 'BLOCKED');
+    return res.status(400).json({
+      success: false,
+      error: 'Product must be looked up and verified through the 1-to-1 Validator before adding.'
+    });
+  }
+
+  const result = cacheStore.addVerifiedProduct(productData);
+  if (!result.success) {
+    return res.status(400).json(result);
+  }
+  res.json(result);
+});
+
+// Verify ASIN & Link mapping (standalone check)
 app.post('/api/admin/verify-link', (req, res) => {
   const { asin, url } = req.body;
   const result = ProductValidator.verifyAffiliateLink(url, asin);
@@ -114,59 +185,29 @@ app.post('/api/admin/verify-link', (req, res) => {
     reason: result.reason || 'Verified 1-to-1 Match'
   }, result.valid ? 'SUCCESS' : 'FAILURE');
 
-  res.json({
-    success: true,
-    result: result
-  });
+  res.json({ success: true, result: result });
 });
 
-// Manual 24h Sync Trigger
+// Manual sync — refresh timestamps for existing verified products
 app.post('/api/admin/sync', async (req, res) => {
   auditLogger.log('MANUAL_SYNC_TRIGGERED', { initiator: 'Admin User' }, 'SUCCESS');
-  
+
   const all = cacheStore.getAllProducts();
   const results = [];
 
   for (const product of all) {
-    if (amazonApi.isConfigured()) {
-      try {
-        const apiRes = await amazonApi.getItems([product.asin]);
-        if (apiRes.success && apiRes.data?.ItemsResult?.Items?.length > 0) {
-          const item = apiRes.data.ItemsResult.Items[0];
-          const priceObj = item.Offers?.Listings?.[0]?.Price;
-          if (priceObj && priceObj.Amount) {
-            cacheStore.updatePrice(product.asin, priceObj.Amount, null, true);
-            results.push({ asin: product.asin, status: 'UPDATED', newPrice: priceObj.Amount });
-            continue;
-          }
-        }
-      } catch (err) {
-        // Log individual API error
-      }
-    }
-    
-    // In local mode or fallback, verify freshness and refresh timestamp
     product.last_verified = new Date().toISOString();
     results.push({ asin: product.asin, status: 'TIMESTAMP_REFRESHED', price: product.current_price });
   }
 
-  auditLogger.log('SYNC_COMPLETED', { totalProcessed: all.length, results: results }, 'SUCCESS');
+  auditLogger.log('SYNC_COMPLETED', { totalProcessed: all.length }, 'SUCCESS');
 
   res.json({
     success: true,
-    message: '24-hour sync and compliance audit completed successfully.',
+    message: 'Timestamp refresh completed for all verified products.',
     processed: results.length,
     results: results
   });
-});
-
-// Add new product
-app.post('/api/admin/add-product', (req, res) => {
-  const result = cacheStore.addProduct(req.body);
-  if (!result.success) {
-    return res.status(400).json(result);
-  }
-  res.json(result);
 });
 
 // Simulate price change (for testing delta tracking)
@@ -174,24 +215,25 @@ app.post('/api/admin/simulate-price-change', (req, res) => {
   const { asin, newPrice } = req.body;
   const updated = cacheStore.updatePrice(asin, parseFloat(newPrice));
   if (!updated) {
-    return res.status(404).json({ success: false, error: 'Product ASIN not found' });
+    return res.status(404).json({ success: false, error: 'Product ASIN not found in verified catalog.' });
   }
   res.json({ success: true, updated: updated });
 });
 
 // Start Server
 app.listen(PORT, () => {
+  const productCount = cacheStore.getAllProducts().length;
   console.log(`====================================================`);
-  console.log(`🚀 Amazon Affiliate & Influencer Platform Active!`);
+  console.log(`🚀 Project Affiliate — Server Active`);
   console.log(`🌐 Portfolio 1 (Public): http://localhost:${PORT}`);
   console.log(`🔒 Portfolio 2 (Private Admin): http://localhost:${PORT}/admin`);
   console.log(`🏷️ Associate Tag: ${process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21'}`);
-  console.log(`🏪 Storefront: ${process.env.AMAZON_STOREFRONT_URL}`);
+  console.log(`📦 Verified Products in Catalog: ${productCount}`);
   console.log(`====================================================`);
 
-  auditLogger.log('SERVER_RELOADED_WITH_CREATOR_API', {
+  auditLogger.log('SERVER_STARTED', {
     port: PORT,
-    associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
-    hasOAuthCredentials: amazonApi.isConfigured()
+    verifiedProducts: productCount,
+    associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21'
   }, 'SUCCESS');
 });

@@ -1,181 +1,216 @@
 /**
- * Portfolio 2 Private Admin & Product Integrity Supervisor Logic
+ * Portfolio 2 — Private Admin: 1-to-1 Validator & Supervisor Logic
+ * 
+ * Flow: Enter ASIN → Lookup on Amazon.in → Review → Complete details → Integrity Check → Publish
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  let stagedCandidateProduct = null;
+  let lookupResult = null; // Stores the lookup data from Amazon.in
 
-  // Navigation Tabs
+  // Nav
   const navItems = document.querySelectorAll('.nav-item');
-  const tabPanels = {
+  const tabs = {
     validator: document.getElementById('tabValidator'),
-    catalogAudit: document.getElementById('tabCatalogAudit'),
+    catalog: document.getElementById('tabCatalog'),
     overview: document.getElementById('tabOverview'),
     audit: document.getElementById('tabAudit'),
     deltas: document.getElementById('tabDeltas')
   };
-
   const pageTitle = document.getElementById('pageTitle');
-  const runFullAuditBtn = document.getElementById('runFullAuditBtn');
+  const pageSub = document.getElementById('pageSub');
 
-  // Validator Gate Elements
-  const candidateForm = document.getElementById('candidateValidationForm');
-  const valCandidateAsin = document.getElementById('valCandidateAsin');
-  const valCandidateBrand = document.getElementById('valCandidateBrand');
-  const valCandidateTitle = document.getElementById('valCandidateTitle');
-  const valCandidateCategory = document.getElementById('valCandidateCategory');
-  const valCandidateRating = document.getElementById('valCandidateRating');
-  const valCandidatePrice = document.getElementById('valCandidatePrice');
-  const valCandidateListPrice = document.getElementById('valCandidateListPrice');
-  const valCandidateImage = document.getElementById('valCandidateImage');
-  const valCandidateAffUrl = document.getElementById('valCandidateAffUrl');
-  const valCandidateDailyDeal = document.getElementById('valCandidateDailyDeal');
+  // Validator Step 1
+  const lookupAsin = document.getElementById('lookupAsin');
+  const lookupBtn = document.getElementById('lookupBtn');
+  const lookupStatus = document.getElementById('lookupStatus');
 
-  const integrityAuditBox = document.getElementById('integrityAuditBox');
-  const auditResultTitle = document.getElementById('auditResultTitle');
-  const auditOverallBadge = document.getElementById('auditOverallBadge');
-  const auditStepsList = document.getElementById('auditStepsList');
-  const auditActionsWrap = document.getElementById('auditActionsWrap');
-  const publishApprovedBtn = document.getElementById('publishApprovedBtn');
+  // Validator Step 2
+  const reviewPanel = document.getElementById('reviewPanel');
+  const previewImage = document.getElementById('previewImage');
+  const previewAsin = document.getElementById('previewAsin');
+  const previewTitle = document.getElementById('previewTitle');
+  const previewAffLink = document.getElementById('previewAffLink');
+  const previewSource = document.getElementById('previewSource');
 
-  // Catalog Table
-  const catalogAuditTableBody = document.getElementById('catalogAuditTableBody');
+  const addBrand = document.getElementById('addBrand');
+  const addCategory = document.getElementById('addCategory');
+  const addRating = document.getElementById('addRating');
+  const addReviews = document.getElementById('addReviews');
+  const addPrice = document.getElementById('addPrice');
+  const addListPrice = document.getElementById('addListPrice');
+  const addDailyDeal = document.getElementById('addDailyDeal');
+  const runIntegrityBtn = document.getElementById('runIntegrityBtn');
 
-  // Overview Elements
-  const metricTotalProducts = document.getElementById('metricTotalProducts');
-  const metricTopRated = document.getElementById('metricTopRated');
-  const metricValuePicks = document.getElementById('metricValuePicks');
-  const metricDailyDeals = document.getElementById('metricDailyDeals');
-  const metricDeltas = document.getElementById('metricDeltas');
-  const simAsinSelect = document.getElementById('simAsinSelect');
-  const simNewPrice = document.getElementById('simNewPrice');
-  const simPriceBtn = document.getElementById('simPriceBtn');
-  const simResult = document.getElementById('simResult');
+  // Validator Step 3
+  const integrityPanel = document.getElementById('integrityPanel');
+  const integrityBadge = document.getElementById('integrityBadge');
+  const integritySteps = document.getElementById('integritySteps');
+  const publishActions = document.getElementById('publishActions');
+  const publishBtn = document.getElementById('publishBtn');
 
-  // Audit Logs & Deltas
-  const auditLogStream = document.getElementById('auditLogStream');
-  const logFilterBtns = document.querySelectorAll('.log-filter-btn');
-  const deltasTableBody = document.getElementById('deltasTableBody');
+  // Catalog
+  const catalogEmpty = document.getElementById('catalogEmpty');
+  const catalogTable = document.getElementById('catalogTable');
+  const catalogBody = document.getElementById('catalogBody');
+  const catalogCount = document.getElementById('catalogCount');
 
-  // Tab Navigation
+  // Navigation
   navItems.forEach(item => {
     item.addEventListener('click', () => {
       navItems.forEach(n => n.classList.remove('active'));
       item.classList.add('active');
+      const t = item.dataset.tab;
+      Object.keys(tabs).forEach(k => { if (tabs[k]) tabs[k].classList.toggle('active', k === t); });
 
-      const targetTab = item.dataset.tab;
-      Object.keys(tabPanels).forEach(key => {
-        if (tabPanels[key]) {
-          tabPanels[key].classList.toggle('active', key === targetTab);
-        }
-      });
-
-      if (targetTab === 'validator') pageTitle.textContent = '🛡️ 1-to-1 Product & ASIN Validator Gate';
-      if (targetTab === 'catalogAudit') { pageTitle.textContent = '📦 Catalog Integrity Audit'; loadCatalogAuditTable(); }
-      if (targetTab === 'overview') { pageTitle.textContent = 'System Overview & Live Health'; loadMetrics(); }
-      if (targetTab === 'audit') { pageTitle.textContent = 'Live Audit Trail'; loadAuditLogs(); }
-      if (targetTab === 'deltas') { pageTitle.textContent = 'Price Delta History'; loadPriceDeltas(); }
+      if (t === 'validator') { pageTitle.textContent = '🛡️ 1-to-1 Product & ASIN Validator'; pageSub.textContent = 'Enter an ASIN → System looks it up on Amazon.in → You review → Confirm to publish'; }
+      if (t === 'catalog') { pageTitle.textContent = '📦 Verified Catalog'; pageSub.textContent = 'All products that passed the 1-to-1 Validator and are live in Portfolio 1'; loadCatalog(); }
+      if (t === 'overview') { pageTitle.textContent = '📊 System Overview'; pageSub.textContent = 'Live metrics and health status'; loadMetrics(); }
+      if (t === 'audit') { pageTitle.textContent = '📜 Audit Trail'; pageSub.textContent = 'Complete log of all system actions'; loadAuditLogs(); }
+      if (t === 'deltas') { pageTitle.textContent = '📉 Price Deltas'; pageSub.textContent = 'Historical price change records'; loadDeltas(); }
     });
   });
 
-  // Auto-generate verified affiliate URL when ASIN is entered
-  valCandidateAsin.addEventListener('input', (e) => {
-    const asin = e.target.value.trim().toUpperCase();
-    if (asin.length === 10) {
-      valCandidateAffUrl.value = `https://www.amazon.in/dp/${asin}?tag=nagireddy0e-21`;
+  // =============================================
+  // STEP 1: ASIN Lookup on Amazon.in
+  // =============================================
+  lookupBtn.addEventListener('click', async () => {
+    const asin = lookupAsin.value.trim().toUpperCase();
+
+    if (!asin || asin.length !== 10) {
+      lookupStatus.style.display = 'block';
+      lookupStatus.className = 'lookup-status status-error';
+      lookupStatus.textContent = '❌ Please enter a valid 10-character ASIN.';
+      return;
+    }
+
+    // Reset previous state
+    lookupResult = null;
+    reviewPanel.style.display = 'none';
+    integrityPanel.style.display = 'none';
+
+    lookupBtn.disabled = true;
+    lookupBtn.textContent = '🔄 Looking up on Amazon.in...';
+    lookupStatus.style.display = 'block';
+    lookupStatus.className = 'lookup-status status-loading';
+    lookupStatus.textContent = `Looking up ASIN ${asin} on real Amazon.in product page...`;
+
+    try {
+      const res = await fetch('/api/admin/lookup-product', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ asin })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        lookupResult = data;
+        lookupStatus.className = 'lookup-status status-success';
+        lookupStatus.textContent = `✅ Product found on Amazon.in! Review the details below.`;
+
+        // Populate Step 2
+        previewAsin.textContent = `ASIN: ${data.asin}`;
+        previewTitle.textContent = data.title;
+        previewAffLink.href = data.affiliate_url;
+        previewAffLink.textContent = data.affiliate_url;
+        previewSource.textContent = `Source: ${data.source} | Looked up: ${new Date(data.looked_up_at).toLocaleString('en-IN')}`;
+
+        if (data.image_url) {
+          previewImage.src = data.image_url;
+          previewImage.style.display = 'block';
+        } else {
+          previewImage.style.display = 'none';
+        }
+
+        reviewPanel.style.display = 'block';
+        reviewPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        lookupStatus.className = 'lookup-status status-error';
+        lookupStatus.textContent = `❌ LOOKUP FAILED: ${data.error}`;
+      }
+    } catch (err) {
+      lookupStatus.className = 'lookup-status status-error';
+      lookupStatus.textContent = `❌ Network error: ${err.message}`;
+    } finally {
+      lookupBtn.disabled = false;
+      lookupBtn.textContent = '🔍 Look Up on Amazon.in';
     }
   });
 
-  // Run 1-to-1 Candidate Integrity Audit
-  candidateForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // Allow Enter key to trigger lookup
+  lookupAsin.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); lookupBtn.click(); }
+  });
 
-    const candidate = {
-      asin: valCandidateAsin.value.trim().toUpperCase(),
-      brand: valCandidateBrand.value.trim(),
-      title: valCandidateTitle.value.trim(),
-      category: valCandidateCategory.value,
-      category_label: valCandidateCategory.options[valCandidateCategory.selectedIndex].text,
-      rating: parseFloat(valCandidateRating.value),
-      current_price: parseFloat(valCandidatePrice.value),
-      list_price: valCandidateListPrice.value ? parseFloat(valCandidateListPrice.value) : null,
-      currency: 'INR',
-      image_url: valCandidateImage.value.trim(),
-      affiliate_url: valCandidateAffUrl.value.trim(),
-      is_daily_deal: valCandidateDailyDeal.checked,
-      in_stock: true,
-      tags: [valCandidateCategory.value],
-      last_verified: new Date().toISOString()
-    };
+  // =============================================
+  // STEP 2 → 3: Run Integrity Check
+  // =============================================
+  runIntegrityBtn.addEventListener('click', () => {
+    if (!lookupResult) {
+      alert('You must look up a product first (Step 1).');
+      return;
+    }
 
-    // Client-side sequential check
+    const rating = parseFloat(addRating.value);
+    const price = parseFloat(addPrice.value);
+    const brand = addBrand.value.trim();
+
+    if (!brand) { alert('Brand name is required.'); return; }
+    if (isNaN(rating) || rating < 3.5) { alert('Rating must be at least 3.5.'); return; }
+    if (isNaN(price) || price <= 0) { alert('A valid current price is required.'); return; }
+
+    const asin = lookupResult.asin;
+    const affiliateUrl = lookupResult.affiliate_url;
+    const imageUrl = lookupResult.image_url;
+    const title = lookupResult.title;
+
+    // Run the 8-point sequential check
     const steps = [];
-    let isPass = true;
+    let allPass = true;
 
-    // 1. ASIN format
-    const asinRegex = /^[A-Z0-9]{10}$/;
-    const validAsin = asinRegex.test(candidate.asin);
-    steps.push({
-      name: 'ASIN Format Check',
-      passed: validAsin,
-      detail: validAsin ? `Valid 10-char ASIN: ${candidate.asin}` : `Invalid ASIN format`
-    });
-    if (!validAsin) isPass = false;
+    // 1. ASIN
+    const asinOk = /^[A-Z0-9]{10}$/.test(asin);
+    steps.push({ name: 'ASIN Format', passed: asinOk, detail: asinOk ? `Valid: ${asin}` : 'Invalid format' });
+    if (!asinOk) allPass = false;
 
-    // 2. Link check
-    const linkValid = candidate.affiliate_url.includes('amazon.in') && 
-                      candidate.affiliate_url.includes(candidate.asin) && 
-                      candidate.affiliate_url.includes('tag=nagireddy0e-21');
-    steps.push({
-      name: '1-to-1 Affiliate Link Match',
-      passed: linkValid,
-      detail: linkValid ? `Destination matches ASIN ${candidate.asin} with tag 'nagireddy0e-21'` : `Mismatched ASIN or tag in link`
-    });
-    if (!linkValid) isPass = false;
+    // 2. Affiliate link
+    const linkOk = affiliateUrl.includes('amazon.in') && affiliateUrl.includes(asin) && affiliateUrl.includes('tag=nagireddy0e-21');
+    steps.push({ name: '1-to-1 Link & Tag Match', passed: linkOk, detail: linkOk ? `${asin} + tag=nagireddy0e-21 verified` : 'Link mismatch' });
+    if (!linkOk) allPass = false;
 
-    // 3. Title Check
-    const titleValid = candidate.title.length >= 5;
-    steps.push({
-      name: 'Product Title Integrity',
-      passed: titleValid,
-      detail: titleValid ? candidate.title.substr(0, 45) + '...' : 'Title too short'
-    });
-    if (!titleValid) isPass = false;
+    // 3. Title
+    const titleOk = title && title.length >= 5;
+    steps.push({ name: 'Product Title (from Amazon.in)', passed: titleOk, detail: titleOk ? title.substring(0, 50) + '...' : 'Missing or too short' });
+    if (!titleOk) allPass = false;
 
-    // 4. Rating Check
-    const ratingValid = candidate.rating >= 3.5;
-    steps.push({
-      name: 'Rating Threshold (≥ 3.5 ⭐)',
-      passed: ratingValid,
-      detail: ratingValid ? `${candidate.rating} ⭐ (${candidate.rating >= 4.0 ? 'Top Rated' : 'Value Pick'})` : `Rating ${candidate.rating} is below 3.5 cutoff`
-    });
-    if (!ratingValid) isPass = false;
+    // 4. Brand
+    const brandOk = brand.length >= 2;
+    steps.push({ name: 'Brand Verification', passed: brandOk, detail: brandOk ? brand : 'Missing' });
+    if (!brandOk) allPass = false;
 
-    // 5. Image Check
-    const imgValid = candidate.image_url.startsWith('https://') && candidate.image_url.includes('media-amazon.com');
-    steps.push({
-      name: 'Amazon CDN Media Verification',
-      passed: imgValid,
-      detail: imgValid ? 'Valid HTTPS Amazon CDN URL' : 'Invalid or non-Amazon image URL'
-    });
-    if (!imgValid) isPass = false;
+    // 5. Rating gate
+    const ratingOk = rating >= 3.5;
+    steps.push({ name: 'Rating Gate (≥ 3.5)', passed: ratingOk, detail: ratingOk ? `${rating} ⭐ (${rating >= 4.0 ? 'Top Rated' : 'Value Pick'})` : `${rating} below 3.5 cutoff` });
+    if (!ratingOk) allPass = false;
 
-    // 6. Price Check
-    const priceValid = candidate.current_price > 0;
-    steps.push({
-      name: 'INR Price Verification',
-      passed: priceValid,
-      detail: priceValid ? `₹${new Intl.NumberFormat('en-IN').format(candidate.current_price)} INR` : 'Invalid price'
-    });
-    if (!priceValid) isPass = false;
+    // 6. Image
+    const imgOk = imageUrl && imageUrl.startsWith('https://') && (imageUrl.includes('media-amazon.com') || imageUrl.includes('images-amazon.com'));
+    steps.push({ name: 'Amazon CDN Image', passed: Boolean(imgOk), detail: imgOk ? 'Valid HTTPS Amazon CDN URL' : 'Invalid or missing image' });
+    if (!imgOk) allPass = false;
 
-    // Render Steps
-    integrityAuditBox.style.display = 'block';
-    auditResultTitle.textContent = `Integrity Audit for ASIN: ${candidate.asin}`;
-    auditOverallBadge.textContent = isPass ? '100% PASS' : 'INTEGRITY FAIL';
-    auditOverallBadge.className = `audit-badge ${isPass ? 'PASS' : 'FAIL'}`;
+    // 7. Price
+    const priceOk = price > 0;
+    steps.push({ name: 'Price (₹ INR)', passed: priceOk, detail: priceOk ? `₹${new Intl.NumberFormat('en-IN').format(price)}` : 'Invalid' });
+    if (!priceOk) allPass = false;
 
-    auditStepsList.innerHTML = steps.map((s, i) => `
+    // 8. Lookup verified
+    steps.push({ name: 'Amazon.in Lookup Verified', passed: true, detail: `Looked up at ${lookupResult.looked_up_at}` });
+
+    // Render result
+    integrityPanel.style.display = 'block';
+    integrityBadge.textContent = allPass ? '100% PASS' : 'INTEGRITY FAIL';
+    integrityBadge.className = `audit-badge ${allPass ? 'PASS' : 'FAIL'}`;
+
+    integritySteps.innerHTML = steps.map((s, i) => `
       <div class="audit-step-row">
         <div class="step-info">
           <span class="step-status-icon">${s.passed ? '✅' : '❌'}</span>
@@ -185,218 +220,162 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    if (isPass) {
-      stagedCandidateProduct = candidate;
-      auditActionsWrap.style.display = 'flex';
-    } else {
-      stagedCandidateProduct = null;
-      auditActionsWrap.style.display = 'none';
-    }
+    publishActions.style.display = allPass ? 'block' : 'none';
+    integrityPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // Stage & Publish Button
-  publishApprovedBtn.addEventListener('click', async () => {
-    if (!stagedCandidateProduct) return;
+  // =============================================
+  // STEP 3: Publish to Portfolio 1
+  // =============================================
+  publishBtn.addEventListener('click', async () => {
+    if (!lookupResult) return;
 
-    publishApprovedBtn.disabled = true;
-    publishApprovedBtn.textContent = 'Publishing...';
+    const categorySelect = addCategory;
+    const categoryLabel = categorySelect.options[categorySelect.selectedIndex].text;
+
+    const productData = {
+      asin: lookupResult.asin,
+      title: lookupResult.title,
+      brand: addBrand.value.trim(),
+      category: addCategory.value,
+      category_label: categoryLabel,
+      is_daily_deal: addDailyDeal.checked,
+      current_price: parseFloat(addPrice.value),
+      list_price: addListPrice.value ? parseFloat(addListPrice.value) : null,
+      currency: 'INR',
+      rating: parseFloat(addRating.value),
+      reviews_count: addReviews.value ? parseInt(addReviews.value) : null,
+      image_url: lookupResult.image_url,
+      affiliate_url: lookupResult.affiliate_url,
+      in_stock: true,
+      tags: [addCategory.value],
+      last_verified: new Date().toISOString(),
+      lookup_verified: true
+    };
+
+    publishBtn.disabled = true;
+    publishBtn.textContent = 'Publishing...';
 
     try {
       const res = await fetch('/api/admin/add-product', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(stagedCandidateProduct)
+        body: JSON.stringify(productData)
       });
       const data = await res.json();
 
       if (data.success) {
-        alert(`🎉 Success! ${stagedCandidateProduct.asin} passed all integrity gates and is now live in Public Portfolio 1.`);
-        candidateForm.reset();
-        integrityAuditBox.style.display = 'none';
-        stagedCandidateProduct = null;
-        loadMetrics();
+        alert(`✅ Published! ${lookupResult.asin} is now live in Public Portfolio 1.`);
+        // Reset the entire form
+        lookupResult = null;
+        lookupAsin.value = '';
+        lookupStatus.style.display = 'none';
+        reviewPanel.style.display = 'none';
+        integrityPanel.style.display = 'none';
+        addBrand.value = '';
+        addRating.value = '';
+        addReviews.value = '';
+        addPrice.value = '';
+        addListPrice.value = '';
+        addDailyDeal.checked = false;
       } else {
         alert(`❌ Blocked: ${data.errors ? data.errors.join(', ') : data.error}`);
       }
     } catch (err) {
       alert(`❌ Error: ${err.message}`);
     } finally {
-      publishApprovedBtn.disabled = false;
-      publishApprovedBtn.textContent = '✅ Stage & Publish to Public Portfolio 1';
+      publishBtn.disabled = false;
+      publishBtn.textContent = '✅ Publish to Public Portfolio 1';
     }
   });
 
-  // Load Catalog Audit Table
-  const loadCatalogAuditTable = async () => {
+  // =============================================
+  // Catalog Tab
+  // =============================================
+  const loadCatalog = async () => {
     try {
       const res = await fetch('/api/products?category=all&ratingTier=all_acceptable');
       const data = await res.json();
-
-      if (data.success && data.data) {
-        catalogAuditTableBody.innerHTML = data.data.map(p => `
+      if (data.success && data.data && data.data.length > 0) {
+        catalogEmpty.style.display = 'none';
+        catalogTable.style.display = 'table';
+        catalogCount.textContent = `${data.data.length} product${data.data.length > 1 ? 's' : ''}`;
+        catalogBody.innerHTML = data.data.map(p => `
           <tr>
+            <td><img src="${p.image_url}" alt="${p.title}" style="width:50px;height:50px;object-fit:contain;border-radius:4px;" referrerpolicy="no-referrer"></td>
             <td><code>${p.asin}</code></td>
-            <td><strong>${p.brand}:</strong> ${p.title.substr(0, 38)}...</td>
+            <td title="${p.title}">${p.title.substring(0, 40)}...</td>
             <td>${p.category_label || p.category}</td>
-            <td>⭐ <strong>${p.rating}</strong></td>
+            <td>⭐ ${p.rating}</td>
             <td>₹${new Intl.NumberFormat('en-IN').format(p.current_price)}</td>
-            <td><code>${p.affiliate_url ? 'tag=nagireddy0e-21 (Verified)' : 'Missing'}</code></td>
-            <td><span class="audit-badge PASS">100% VERIFIED</span></td>
+            <td><span class="audit-badge PASS">VERIFIED</span></td>
           </tr>
         `).join('');
+      } else {
+        catalogEmpty.style.display = 'block';
+        catalogTable.style.display = 'none';
+        catalogCount.textContent = '0 products';
       }
-    } catch (err) {
-      console.error('Failed to load catalog table:', err);
-    }
+    } catch (err) { console.error(err); }
   };
 
-  // Full Catalog Audit Button
-  runFullAuditBtn.addEventListener('click', async () => {
-    runFullAuditBtn.disabled = true;
-    runFullAuditBtn.textContent = 'Auditing...';
-
-    try {
-      const res = await fetch('/api/admin/sync', { method: 'POST' });
-      const json = await res.json();
-      if (json.success) {
-        alert(`✅ Full Catalog Audit Complete! ${json.processed} products verified.`);
-        loadCatalogAuditTable();
-        loadMetrics();
-      }
-    } catch (err) {
-      alert('❌ Audit failed: ' + err.message);
-    } finally {
-      runFullAuditBtn.disabled = false;
-      runFullAuditBtn.innerHTML = `<span class="sync-icon">🔍</span> Run Full Catalog Audit`;
-    }
-  });
-
-  // Load Overview Metrics
+  // Metrics
   const loadMetrics = async () => {
     try {
       const res = await fetch('/api/admin/metrics');
       const data = await res.json();
       if (data.success && data.metrics) {
-        const m = data.metrics;
-        metricTotalProducts.textContent = m.totalProducts;
-        metricTopRated.textContent = m.topRatedCount;
-        metricValuePicks.textContent = m.valuePicksCount;
-        metricDailyDeals.textContent = m.dailyDealsCount;
-        metricDeltas.textContent = m.priceDeltasRecorded;
+        document.getElementById('metricTotal').textContent = data.metrics.totalProducts;
+        document.getElementById('metricTopRated').textContent = data.metrics.topRatedCount;
+        document.getElementById('metricValuePicks').textContent = data.metrics.valuePicksCount;
+        document.getElementById('metricDeals').textContent = data.metrics.dailyDealsCount;
       }
-    } catch (err) {
-      console.error('Failed to load metrics:', err);
-    }
+    } catch (err) { console.error(err); }
   };
 
-  // Load Audit Logs
-  const loadAuditLogs = async (filterType = null) => {
+  // Audit Logs
+  const loadAuditLogs = async () => {
     try {
-      let url = '/api/admin/audit-logs?limit=50';
-      if (filterType && filterType !== 'all') url += `&type=${filterType}`;
-
-      const res = await fetch(url);
+      const res = await fetch('/api/admin/audit-logs?limit=50');
       const data = await res.json();
       if (data.success && data.logs) {
-        auditLogStream.innerHTML = data.logs.map(log => {
-          const time = new Date(log.timestamp).toLocaleTimeString('en-IN', {
-            hour: '2-digit', minute: '2-digit', second: '2-digit'
-          });
-
-          return `
-            <div class="log-entry">
-              <div class="log-left">
-                <span class="log-badge ${log.status}">${log.status}</span>
-                <div>
-                  <div class="log-type">${log.eventType}</div>
-                  <div class="log-details">${JSON.stringify(log.details)}</div>
-                </div>
+        document.getElementById('auditLogStream').innerHTML = data.logs.map(log => `
+          <div class="log-entry">
+            <div class="log-left">
+              <span class="log-badge ${log.status}">${log.status}</span>
+              <div>
+                <div class="log-type">${log.eventType}</div>
+                <div class="log-details">${JSON.stringify(log.details).substring(0, 120)}...</div>
               </div>
-              <div class="log-time">${time}</div>
             </div>
-          `;
-        }).join('');
+            <div class="log-time">${new Date(log.timestamp).toLocaleTimeString('en-IN')}</div>
+          </div>
+        `).join('');
       }
-    } catch (err) {
-      console.error('Failed to load audit logs:', err);
-    }
+    } catch (err) { console.error(err); }
   };
 
-  logFilterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      logFilterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      loadAuditLogs(btn.dataset.filter);
-    });
-  });
-
-  // Load Price Deltas
-  const loadPriceDeltas = async () => {
+  // Price Deltas
+  const loadDeltas = async () => {
     try {
       const res = await fetch('/api/admin/price-deltas');
       const data = await res.json();
       if (data.success && data.deltas) {
-        deltasTableBody.innerHTML = data.deltas.map(d => {
-          const time = new Date(d.timestamp).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
-          const isDrop = d.diff < 0;
-          return `
-            <tr>
-              <td><code>${time}</code></td>
-              <td><strong>${d.asin}</strong></td>
-              <td>${d.title ? d.title.substr(0, 40) + '...' : 'Product'}</td>
-              <td>₹${new Intl.NumberFormat('en-IN').format(d.oldPrice)}</td>
-              <td><strong>₹${new Intl.NumberFormat('en-IN').format(d.newPrice)}</strong></td>
-              <td style="color: ${isDrop ? 'var(--col-emerald)' : 'var(--col-red)'}; font-weight: 700;">${d.diff > 0 ? '+' : ''}₹${d.diff}</td>
-              <td style="color: ${isDrop ? 'var(--col-emerald)' : 'var(--col-red)'}; font-weight: 700;">${d.percentChange}%</td>
-            </tr>
-          `;
-        }).join('');
-      }
-    } catch (err) {
-      console.error('Failed to load deltas:', err);
-    }
-  };
-
-  // Price Change Simulator
-  simPriceBtn.addEventListener('click', async () => {
-    const asin = simAsinSelect.value;
-    const newPrice = simNewPrice.value;
-    if (!asin || !newPrice) return alert('Select an ASIN and price.');
-
-    try {
-      const res = await fetch('/api/admin/simulate-price-change', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ asin, newPrice })
-      });
-      const data = await res.json();
-      simResult.style.display = 'block';
-      if (data.success) {
-        simResult.style.color = 'var(--col-emerald)';
-        simResult.textContent = `✅ Price updated for ${asin} to ₹${newPrice}. Delta recorded!`;
-        loadMetrics();
-      }
-    } catch (err) {
-      simResult.style.display = 'block';
-      simResult.style.color = 'var(--col-red)';
-      simResult.textContent = `❌ Error: ${err.message}`;
-    }
-  });
-
-  // Populate ASIN selector
-  const populateAsinSelector = async () => {
-    try {
-      const res = await fetch('/api/products?category=all&ratingTier=all_acceptable');
-      const data = await res.json();
-      if (data.success && data.data) {
-        simAsinSelect.innerHTML = data.data.map(p => `
-          <option value="${p.asin}">${p.asin} - ${p.brand}: ${p.title.substr(0, 45)}... (₹${p.current_price})</option>
+        document.getElementById('deltasBody').innerHTML = data.deltas.map(d => `
+          <tr>
+            <td><code>${new Date(d.timestamp).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' })}</code></td>
+            <td>${d.asin}</td>
+            <td>${d.title ? d.title.substring(0, 35) + '...' : '-'}</td>
+            <td>₹${d.oldPrice}</td>
+            <td>₹${d.newPrice}</td>
+            <td style="color:${d.diff < 0 ? '#10b981' : '#ef4444'};font-weight:700">${d.diff > 0 ? '+' : ''}₹${d.diff}</td>
+            <td style="color:${d.diff < 0 ? '#10b981' : '#ef4444'};font-weight:700">${d.percentChange}%</td>
+          </tr>
         `).join('');
       }
-    } catch (err) {}
+    } catch (err) { console.error(err); }
   };
 
-  // Initialize
+  // Init
   loadMetrics();
-  populateAsinSelector();
 });
