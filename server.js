@@ -7,6 +7,7 @@ const ProductValidator = require('./lib/validator');
 const cacheStore = require('./lib/cache-store');
 const auditLogger = require('./lib/audit-logger');
 const productLookup = require('./lib/product-lookup');
+const dealCurator = require('./lib/deal-curator');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -224,6 +225,20 @@ app.post('/api/admin/verify-link', (req, res) => {
   res.json({ success: true, result: result });
 });
 
+// ============================================================
+// CORE: Automated Daily Deal Curation & Publication
+// Looks up, validates with 8-point integrity agent, and publishes
+// ============================================================
+app.post('/api/admin/auto-curate', async (req, res) => {
+  const customList = req.body?.asins || null;
+  const results = await dealCurator.runDailyCuration(customList);
+  res.json({
+    success: true,
+    message: `Automated curation completed: ${results.publishedCount} products verified & published.`,
+    data: results
+  });
+});
+
 // Manual sync — refresh timestamps for existing verified products
 app.post('/api/admin/sync', async (req, res) => {
   auditLogger.log('MANUAL_SYNC_TRIGGERED', { initiator: 'Admin User' }, 'SUCCESS');
@@ -272,4 +287,20 @@ app.listen(PORT, () => {
     verifiedProducts: productCount,
     associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21'
   }, 'SUCCESS');
+
+  // Automatic Daily Curation Timer (runs every 24 hours)
+  const DAILY_INTERVAL_MS = 24 * 60 * 60 * 1000;
+  setInterval(() => {
+    console.log('⏰ Running automated daily deal curation & sync...');
+    dealCurator.runDailyCuration();
+  }, DAILY_INTERVAL_MS);
+
+  // If catalog is empty on boot, automatically curate initial deal batch
+  if (productCount === 0) {
+    setTimeout(() => {
+      console.log('📦 Catalog is empty. Triggering initial automated deal curation...');
+      dealCurator.runDailyCuration();
+    }, 1500);
+  }
 });
+

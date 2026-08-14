@@ -1,5 +1,446 @@
 [
   {
+    "id": "log_1786734436761_w4vx4",
+    "timestamp": "2026-08-14T19:07:16.761Z",
+    "eventType": "SERVER_STARTED",
+    "status": "SUCCESS",
+    "details": {
+      "port": "3000",
+      "verifiedProducts": 6,
+      "associateTag": "nagireddy0e-21"
+    }
+  },
+  {
+    "id": "log_1786734436755_ijn64",
+    "timestamp": "2026-08-14T19:07:16.755Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 6,
+      "loaded": 6,
+      "source": "verified-products.json"
+    }
+  },
+  {
+    "id": "log_1786734436755_6rdyj",
+    "timestamp": "2026-08-14T19:07:16.755Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734436754_n3q9t",
+    "timestamp": "2026-08-14T19:07:16.754Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734436754_apjpj",
+    "timestamp": "2026-08-14T19:07:16.754Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734436754_n60s3",
+    "timestamp": "2026-08-14T19:07:16.754Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734436753_7011n",
+    "timestamp": "2026-08-14T19:07:16.753Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734436752_htxef",
+    "timestamp": "2026-08-14T19:07:16.752Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734417885_rnw4v",
+    "timestamp": "2026-08-14T19:06:57.885Z",
+    "eventType": "AUTO_CURATION_COMPLETED",
+    "status": "SUCCESS",
+    "details": {
+      "total": 10,
+      "published": 5,
+      "rejected": 5
+    }
+  },
+  {
+    "id": "log_1786734417885_qfjpj",
+    "timestamp": "2026-08-14T19:06:57.885Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "price": 2499,
+      "affiliate_url": "https://www.amazon.in/dp/B08N5XSG8Z?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734417884_phyz7",
+    "timestamp": "2026-08-14T19:06:57.884Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734417883_7etsw",
+    "timestamp": "2026-08-14T19:06:57.883Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734416097_ga8ng",
+    "timestamp": "2026-08-14T19:06:56.097Z",
+    "eventType": "AUTO_CURATION_ITEM_FAILED",
+    "status": "FAILURE",
+    "details": {
+      "asin": "B085V86QWW",
+      "error": "Amazon.in returned HTTP 404 for ASIN B085V86QWW. Product may not exist or page is unavailable."
+    }
+  },
+  {
+    "id": "log_1786734415859_2r7f7",
+    "timestamp": "2026-08-14T19:06:55.859Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "price": 349,
+      "affiliate_url": "https://www.amazon.in/dp/B007V9U81E?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734415858_rt4kp",
+    "timestamp": "2026-08-14T19:06:55.858Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734415857_5g3ex",
+    "timestamp": "2026-08-14T19:06:55.857Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734414395_blu8m",
+    "timestamp": "2026-08-14T19:06:54.395Z",
+    "eventType": "AUTO_CURATION_ITEM_FAILED",
+    "status": "FAILURE",
+    "details": {
+      "asin": "B09V7S18HG",
+      "error": "Amazon.in returned HTTP 404 for ASIN B09V7S18HG. Product may not exist or page is unavailable."
+    }
+  },
+  {
+    "id": "log_1786734414169_14vvs",
+    "timestamp": "2026-08-14T19:06:54.169Z",
+    "eventType": "AUTO_CURATION_ITEM_FAILED",
+    "status": "FAILURE",
+    "details": {
+      "asin": "B0863TXGM3",
+      "error": "Amazon.in returned HTTP 404 for ASIN B0863TXGM3. Product may not exist or page is unavailable."
+    }
+  },
+  {
+    "id": "log_1786734413936_2c54m",
+    "timestamp": "2026-08-14T19:06:53.936Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "price": 65999,
+      "affiliate_url": "https://www.amazon.in/dp/B0CHX1W1XY?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734413936_74pte",
+    "timestamp": "2026-08-14T19:06:53.936Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734413935_3qjc8",
+    "timestamp": "2026-08-14T19:06:53.935Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734412250_w2962",
+    "timestamp": "2026-08-14T19:06:52.250Z",
+    "eventType": "AUTO_CURATION_ITEM_FAILED",
+    "status": "FAILURE",
+    "details": {
+      "asin": "B07WHS7NZX",
+      "error": "Amazon.in returned HTTP 404 for ASIN B07WHS7NZX. Product may not exist or page is unavailable."
+    }
+  },
+  {
+    "id": "log_1786734411991_3shp6",
+    "timestamp": "2026-08-14T19:06:51.991Z",
+    "eventType": "AUTO_CURATION_ITEM_FAILED",
+    "status": "FAILURE",
+    "details": {
+      "asin": "B08L5WH19S",
+      "error": "Amazon.in returned HTTP 404 for ASIN B08L5WH19S. Product may not exist or page is unavailable."
+    }
+  },
+  {
+    "id": "log_1786734411758_nvrmm",
+    "timestamp": "2026-08-14T19:06:51.758Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "price": 2999,
+      "affiliate_url": "https://www.amazon.in/dp/B0756K5DYZ?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734411757_u0lbx",
+    "timestamp": "2026-08-14T19:06:51.757Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734411756_4xww5",
+    "timestamp": "2026-08-14T19:06:51.756Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734409831_y05vo",
+    "timestamp": "2026-08-14T19:06:49.831Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "price": 7299,
+      "affiliate_url": "https://www.amazon.in/dp/B097RJ867P?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734409830_n1cxj",
+    "timestamp": "2026-08-14T19:06:49.830Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734409829_4k9rl",
+    "timestamp": "2026-08-14T19:06:49.829Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734407620_qrt7m",
+    "timestamp": "2026-08-14T19:06:47.621Z",
+    "eventType": "AUTO_CURATION_STARTED",
+    "status": "SUCCESS",
+    "details": {
+      "totalCandidates": 10,
+      "mode": "Sequential Automated Ingestion"
+    }
+  },
+  {
+    "id": "log_1786734407620_sfigl",
+    "timestamp": "2026-08-14T19:06:47.620Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 1,
+      "loaded": 1,
+      "source": "verified-products.json"
+    }
+  },
+  {
+    "id": "log_1786734407619_k3xl2",
+    "timestamp": "2026-08-14T19:06:47.619Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734094951_eai8b",
+    "timestamp": "2026-08-14T19:01:34.951Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "price": 1230,
+      "affiliate_url": "https://www.amazon.in/dp/B0F7M3Q8DV?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734094950_4b1c1",
+    "timestamp": "2026-08-14T19:01:34.950Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734033537_7rn2b",
+    "timestamp": "2026-08-14T19:00:33.537Z",
+    "eventType": "PRODUCT_LOOKUP_SUCCESS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "image": "Found",
+      "affiliate_url": "https://www.amazon.in/dp/B0F7M3Q8DV?tag=nagireddy0e-21"
+    }
+  },
+  {
+    "id": "log_1786734031550_752r9",
+    "timestamp": "2026-08-14T19:00:31.550Z",
+    "eventType": "PRODUCT_LOOKUP_INITIATED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV"
+    }
+  },
+  {
+    "id": "log_1786733958402_srja3",
+    "timestamp": "2026-08-14T18:59:18.402Z",
+    "eventType": "SERVER_STARTED",
+    "status": "SUCCESS",
+    "details": {
+      "port": "3000",
+      "verifiedProducts": 0,
+      "associateTag": "nagireddy0e-21"
+    }
+  },
+  {
+    "id": "log_1786733958395_k8zc6",
+    "timestamp": "2026-08-14T18:59:18.395Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 0,
+      "loaded": 0,
+      "source": "verified-products.json"
+    }
+  },
+  {
     "id": "log_1786733947834_6im5e",
     "timestamp": "2026-08-14T18:59:07.834Z",
     "eventType": "PRODUCT_REMOVED",

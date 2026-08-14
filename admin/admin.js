@@ -81,6 +81,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =============================================
+  // AUTOMATED CURATION (1-Click Pipeline)
+  // =============================================
+  const autoCurateTopBtn = document.getElementById('autoCurateTopBtn');
+  if (autoCurateTopBtn) {
+    autoCurateTopBtn.addEventListener('click', async () => {
+      autoCurateTopBtn.disabled = true;
+      autoCurateTopBtn.textContent = '🔄 Running Automated Curation...';
+      try {
+        const res = await adminFetch('/api/admin/auto-curate', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+          alert(`🎉 Automated Curation Complete!\n${data.data.publishedCount} products verified & published to Portfolio 1.`);
+          loadMetrics();
+          loadCatalog();
+        } else {
+          alert(`❌ Curation failed: ${data.error || 'Unknown error'}`);
+        }
+      } catch (err) {
+        alert(`❌ Network error: ${err.message}`);
+      } finally {
+        autoCurateTopBtn.disabled = false;
+        autoCurateTopBtn.textContent = '⚡ 1-Click Auto-Curate Deals';
+      }
+    });
+  }
+
+  // =============================================
   // STEP 1: ASIN Lookup on Amazon.in
   // =============================================
   lookupBtn.addEventListener('click', async () => {
