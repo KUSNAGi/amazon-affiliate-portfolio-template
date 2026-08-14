@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 
 const ProductValidator = require('./lib/validator');
 const cacheStore = require('./lib/cache-store');
@@ -67,6 +68,52 @@ app.get('/api/deals', (req, res) => {
     timestamp: new Date().toISOString(),
     data: deals
   });
+});
+
+// Public Feedback Submission
+const FEEDBACKS_FILE = path.join(__dirname, 'data', 'feedbacks.json');
+const loadFeedbacks = () => {
+  try {
+    if (fs.existsSync(FEEDBACKS_FILE)) {
+      return JSON.parse(fs.readFileSync(FEEDBACKS_FILE, 'utf8'));
+    }
+  } catch (e) {}
+  return [];
+};
+const saveFeedbacks = (feedbacks) => {
+  try {
+    fs.writeFileSync(FEEDBACKS_FILE, JSON.stringify(feedbacks, null, 2));
+  } catch (e) {}
+};
+
+app.post('/api/feedback', (req, res) => {
+  const { category, asin, message, contact } = req.body;
+  if (!message || message.trim().length < 5) {
+    return res.status(400).json({ success: false, error: 'Please provide a detailed message (at least 5 characters).' });
+  }
+
+  const newFeedback = {
+    id: 'FB-' + Date.now().toString(36).toUpperCase(),
+    category: category || 'general_feedback',
+    asin: asin ? asin.trim().toUpperCase() : null,
+    message: message.trim(),
+    contact: contact ? contact.trim() : 'Anonymous',
+    status: 'PENDING_REVIEW',
+    submittedAt: new Date().toISOString(),
+    ip: req.ip || '127.0.0.1'
+  };
+
+  const feedbacks = loadFeedbacks();
+  feedbacks.unshift(newFeedback);
+  saveFeedbacks(feedbacks);
+
+  auditLogger.log('CUSTOMER_FEEDBACK_SUBMITTED', {
+    id: newFeedback.id,
+    category: newFeedback.category,
+    asin: newFeedback.asin
+  }, 'SUCCESS');
+
+  res.json({ success: true, message: 'Feedback submitted successfully.', feedbackId: newFeedback.id });
 });
 
 // System config & public metadata (no internal info exposed)
@@ -271,6 +318,80 @@ app.post('/api/admin/simulate-price-change', (req, res) => {
   res.json({ success: true, updated: updated });
 });
 
+// Get all feedbacks for Portfolio 2 (Private Admin)
+app.get('/api/admin/feedbacks', (req, res) => {
+  const feedbacks = loadFeedbacks();
+  res.json({ success: true, count: feedbacks.length, feedbacks });
+});
+
+// Update feedback status (Owner action)
+app.post('/api/admin/feedbacks/:id/status', (req, res) => {
+  const { id } = req.params;
+  const { status, note } = req.body;
+  const feedbacks = loadFeedbacks();
+  const fb = feedbacks.find(f => f.id === id);
+  if (!fb) {
+    return res.status(404).json({ success: false, error: 'Feedback not found.' });
+  }
+  fb.status = status || 'REVIEWED';
+  fb.reviewedAt = new Date().toISOString();
+  if (note) fb.ownerNote = note;
+  saveFeedbacks(feedbacks);
+
+  auditLogger.log('CUSTOMER_FEEDBACK_STATUS_UPDATED', { id, status: fb.status }, 'SUCCESS');
+  res.json({ success: true, feedback: fb });
+});
+
+// ============================================================
+// 2-HOUR CONTINUOUS COMPLIANCE & MONITORING ENGINE
+// Checks price changes, out-of-stock items, and updates Today's Deals
+// ============================================================
+const runTwoHourComplianceAudit = async () => {
+  console.log('🛡️ [2-Hour Compliance Audit] Starting price verification and deal sync...');
+  auditLogger.log('TWO_HOUR_COMPLIANCE_AUDIT_STARTED', {
+    scheduledInterval: '2 Hours',
+    timestamp: new Date().toISOString()
+  }, 'SUCCESS');
+
+  try {
+    const allProducts = cacheStore.getAllProducts();
+    let priceChangeCount = 0;
+    let removedUnavailableCount = 0;
+
+    for (const product of allProducts) {
+      try {
+        const lookup = await productLookup.lookupByAsin(product.asin);
+        if (!lookup.success || !lookup.current_price || lookup.current_price <= 0) {
+          cacheStore.removeProduct(product.asin);
+          removedUnavailableCount++;
+          auditLogger.log('PRODUCT_AUTO_REMOVED_UNAVAILABLE', {
+            asin: product.asin,
+            title: product.title,
+            reason: lookup.error || 'Out of stock or unavailable'
+          }, 'SUCCESS');
+        } else if (lookup.current_price !== product.current_price) {
+          cacheStore.updatePrice(product.asin, lookup.current_price);
+          priceChangeCount++;
+        }
+      } catch (err) {
+        console.error(`Compliance check error for ASIN ${product.asin}:`, err.message);
+      }
+    }
+
+    const curationResult = await dealCurator.runDailyCuration();
+
+    auditLogger.log('TWO_HOUR_COMPLIANCE_AUDIT_COMPLETED', {
+      pricesUpdated: priceChangeCount,
+      unavailableRemoved: removedUnavailableCount,
+      freshDealsIngested: curationResult.publishedCount
+    }, 'SUCCESS');
+
+    console.log(`🛡️ [2-Hour Compliance Audit] Complete: ${priceChangeCount} prices updated, ${removedUnavailableCount} unavailable removed, ${curationResult.publishedCount} deals verified.`);
+  } catch (err) {
+    auditLogger.log('TWO_HOUR_COMPLIANCE_AUDIT_ERROR', { error: err.message }, 'FAILURE');
+  }
+};
+
 // Start Server
 app.listen(PORT, () => {
   const productCount = cacheStore.getAllProducts().length;
@@ -280,27 +401,27 @@ app.listen(PORT, () => {
   console.log(`🔒 Portfolio 2 (Private Admin): http://localhost:${PORT}/admin`);
   console.log(`🏷️ Associate Tag: ${process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21'}`);
   console.log(`📦 Verified Products in Catalog: ${productCount}`);
+  console.log(`⏱️ Compliance Audit Interval: Every 2 Hours`);
   console.log(`====================================================`);
 
   auditLogger.log('SERVER_STARTED', {
     port: PORT,
     verifiedProducts: productCount,
-    associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21'
+    associateTag: process.env.AMAZON_ASSOCIATE_TAG || 'nagireddy0e-21',
+    auditInterval: '2 Hours'
   }, 'SUCCESS');
 
-  // Automatic Daily Curation Timer (runs every 24 hours)
-  const DAILY_INTERVAL_MS = 24 * 60 * 60 * 1000;
-  setInterval(() => {
-    console.log('⏰ Running automated daily deal curation & sync...');
-    dealCurator.runDailyCuration();
-  }, DAILY_INTERVAL_MS);
+  // Recurring 2-Hour Compliance & Price Sync Timer
+  const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+  setInterval(runTwoHourComplianceAudit, TWO_HOURS_MS);
 
-  // If catalog is empty on boot, automatically curate initial deal batch
+  // Initial check if catalog is empty on boot
   if (productCount === 0) {
     setTimeout(() => {
-      console.log('📦 Catalog is empty. Triggering initial automated deal curation...');
+      console.log('📦 Catalog empty. Running initial curation...');
       dealCurator.runDailyCuration();
     }, 1500);
   }
 });
+
 

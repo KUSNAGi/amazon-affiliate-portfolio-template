@@ -35,6 +35,7 @@
           <span class="logo-accent">NK</span>iaX
         </a>
         <span class="brand-sub">Curated Picks</span>
+        <span class="beta-badge" id="betaBadge">BETA</span>
       </div>
 
       <div class="header-search">
@@ -168,13 +169,59 @@
         </p>
       </div>
       <div class="footer-bottom">
-        <div class="footer-copyright">&copy; 2026 <strong>NKiaX Curated Picks</strong></div>
+        <div class="footer-copyright">&copy; 2026 <strong>NKiaX Curated Picks</strong> &bull; <span class="footer-beta-tag">Beta Phase</span></div>
         <div class="footer-links">
+          <button id="openFeedbackBtn" class="footer-feedback-btn">💬 Send Feedback / Report Issue</button>
           <a href="https://www.amazon.in/shop/influencer-49d2b6c4?ref_=hype_hm_sf_e" target="_blank" rel="noopener noreferrer">Official Storefront</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Feedback Modal Dialog -->
+  <div class="modal-overlay" id="feedbackModal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title-wrap">
+          <span class="modal-icon">💬</span>
+          <h3>Send Feedback or Report an Issue</h3>
+        </div>
+        <button class="modal-close-btn" id="closeFeedbackBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-sub">Help us improve the NKiaX Curated Picks experience. We review all community reports.</p>
+        <form id="feedbackForm">
+          <div class="form-group">
+            <label for="feedbackCategory">Issue / Feedback Type:</label>
+            <select id="feedbackCategory" class="modal-select" required>
+              <option value="broken_link">🔗 Broken Product Link / Redirect Issue</option>
+              <option value="price_mismatch">💰 Price Difference on Amazon</option>
+              <option value="out_of_stock">📦 Product is Out of Stock</option>
+              <option value="product_suggestion">💡 Product / Category Suggestion</option>
+              <option value="general_feedback">✨ General Feedback / UI Experience</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="feedbackAsin">Product ASIN or Name (Optional):</label>
+            <input type="text" id="feedbackAsin" class="modal-input" placeholder="e.g. B097RJ867P or Philips Airfryer">
+          </div>
+          <div class="form-group">
+            <label for="feedbackMessage">Your Message / Report Details:</label>
+            <textarea id="feedbackMessage" class="modal-textarea" rows="4" placeholder="Describe the issue or share your suggestions..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="feedbackContact">Your Email / Name (Optional, for updates):</label>
+            <input type="text" id="feedbackContact" class="modal-input" placeholder="name@example.com">
+          </div>
+          <div id="feedbackStatus" class="feedback-status" style="display: none;"></div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="cancelFeedbackBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submitFeedbackBtn">Submit Feedback ↗</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     catalog: document.getElementById('tabCatalog'),
     overview: document.getElementById('tabOverview'),
     audit: document.getElementById('tabAudit'),
-    deltas: document.getElementById('tabDeltas')
+    deltas: document.getElementById('tabDeltas'),
+    feedback: document.getElementById('tabFeedback')
   };
   const pageTitle = document.getElementById('pageTitle');
   const pageSub = document.getElementById('pageSub');
@@ -77,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (t === 'overview') { pageTitle.textContent = '📊 System Overview'; pageSub.textContent = 'Live metrics and health status'; loadMetrics(); }
       if (t === 'audit') { pageTitle.textContent = '📜 Audit Trail'; pageSub.textContent = 'Complete log of all system actions'; loadAuditLogs(); }
       if (t === 'deltas') { pageTitle.textContent = '📉 Price Deltas'; pageSub.textContent = 'Historical price change records'; loadDeltas(); }
+      if (t === 'feedback') { pageTitle.textContent = '💬 Customer Reports & Feedback'; pageSub.textContent = 'Community submissions from Public Portfolio 1 for owner review'; loadFeedbacks(); }
     });
   });
 
@@ -413,6 +415,58 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) { console.error(err); }
   };
 
+  // Feedbacks
+  const loadFeedbacks = async () => {
+    try {
+      const res = await adminFetch('/api/admin/feedbacks');
+      const data = await res.json();
+      const feedbackEmpty = document.getElementById('feedbackEmpty');
+      const feedbackTable = document.getElementById('feedbackTable');
+      const feedbackBody = document.getElementById('feedbackBody');
+
+      if (data.success && data.feedbacks && data.feedbacks.length > 0) {
+        feedbackEmpty.style.display = 'none';
+        feedbackTable.style.display = 'table';
+        feedbackBody.innerHTML = data.feedbacks.map(f => `
+          <tr>
+            <td><code>${new Date(f.submittedAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</code></td>
+            <td><strong>${f.id}</strong></td>
+            <td><span class="badge-cat">${f.category.replace('_', ' ').toUpperCase()}</span></td>
+            <td>${f.asin ? `<code>${f.asin}</code>` : '-'}</td>
+            <td style="max-width: 250px; word-break: break-word;">${f.message}</td>
+            <td><small>${f.contact || 'Anonymous'}</small></td>
+            <td><span class="audit-badge ${f.status === 'RESOLVED' ? 'PASS' : f.status === 'REVIEWED' ? 'INFO' : 'FAIL'}">${f.status}</span></td>
+            <td>
+              <select onchange="updateFeedbackStatus('${f.id}', this.value)" class="modal-select" style="padding:0.25rem 0.5rem;font-size:0.75rem;">
+                <option value="PENDING_REVIEW" ${f.status === 'PENDING_REVIEW' ? 'selected' : ''}>Pending</option>
+                <option value="REVIEWED" ${f.status === 'REVIEWED' ? 'selected' : ''}>Reviewed</option>
+                <option value="RESOLVED" ${f.status === 'RESOLVED' ? 'selected' : ''}>Resolved</option>
+              </select>
+            </td>
+          </tr>
+        `).join('');
+      } else {
+        feedbackEmpty.style.display = 'block';
+        feedbackTable.style.display = 'none';
+      }
+    } catch (err) { console.error('Failed to load feedbacks:', err); }
+  };
+
+  window.updateFeedbackStatus = async (id, status) => {
+    try {
+      const res = await adminFetch(`/api/admin/feedbacks/${id}/status`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      const data = await res.json();
+      if (data.success) {
+        loadFeedbacks();
+      }
+    } catch (err) { alert(`Failed to update feedback: ${err.message}`); }
+  };
+
   // Init
   loadMetrics();
 });
+

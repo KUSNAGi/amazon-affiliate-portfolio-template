@@ -253,5 +253,70 @@ document.addEventListener('DOMContentLoaded', () => {
     applyFiltersAndRender(); searchInput.focus();
   });
 
+  // Feedback Modal Controls
+  const feedbackModal = document.getElementById('feedbackModal');
+  const openFeedbackBtn = document.getElementById('openFeedbackBtn');
+  const closeFeedbackBtn = document.getElementById('closeFeedbackBtn');
+  const cancelFeedbackBtn = document.getElementById('cancelFeedbackBtn');
+  const feedbackForm = document.getElementById('feedbackForm');
+  const feedbackStatus = document.getElementById('feedbackStatus');
+  const submitFeedbackBtn = document.getElementById('submitFeedbackBtn');
+
+  if (openFeedbackBtn && feedbackModal) {
+    openFeedbackBtn.addEventListener('click', () => {
+      feedbackModal.style.display = 'flex';
+      feedbackStatus.style.display = 'none';
+      feedbackForm.reset();
+    });
+
+    const closeModal = () => { feedbackModal.style.display = 'none'; };
+    if (closeFeedbackBtn) closeFeedbackBtn.addEventListener('click', closeModal);
+    if (cancelFeedbackBtn) cancelFeedbackBtn.addEventListener('click', closeModal);
+    feedbackModal.addEventListener('click', (e) => {
+      if (e.target === feedbackModal) closeModal();
+    });
+
+    feedbackForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitFeedbackBtn.disabled = true;
+      submitFeedbackBtn.textContent = 'Submitting...';
+
+      const payload = {
+        category: document.getElementById('feedbackCategory').value,
+        asin: document.getElementById('feedbackAsin').value.trim(),
+        message: document.getElementById('feedbackMessage').value.trim(),
+        contact: document.getElementById('feedbackContact').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          feedbackStatus.className = 'feedback-status status-success';
+          feedbackStatus.textContent = '✅ Thank you! Your feedback has been received and logged for review.';
+          feedbackStatus.style.display = 'block';
+          feedbackForm.reset();
+          setTimeout(() => { closeModal(); }, 2500);
+        } else {
+          feedbackStatus.className = 'feedback-status status-error';
+          feedbackStatus.textContent = `❌ ${data.error || 'Failed to submit feedback.'}`;
+          feedbackStatus.style.display = 'block';
+        }
+      } catch (err) {
+        feedbackStatus.className = 'feedback-status status-error';
+        feedbackStatus.textContent = `❌ Network error: ${err.message}`;
+        feedbackStatus.style.display = 'block';
+      } finally {
+        submitFeedbackBtn.disabled = false;
+        submitFeedbackBtn.textContent = 'Submit Feedback ↗';
+      }
+    });
+  }
+
   fetchProducts();
 });
+

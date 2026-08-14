@@ -37,6 +37,9 @@
         <button class="nav-item" data-tab="deltas">
           📉 Price Deltas
         </button>
+        <button class="nav-item" data-tab="feedback">
+          💬 Customer Feedback
+        </button>
       </nav>
 
       <div class="sidebar-footer">
@@ -267,6 +270,39 @@
               </thead>
               <tbody id="deltasBody"></tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: CUSTOMER FEEDBACK -->
+      <section class="tab-panel" id="tabFeedback">
+        <div class="card panel-card">
+          <div class="panel-head">
+            <h3>💬 Customer Reports & Feedback</h3>
+            <span class="badge-status-tag">Owner Review Only &bull; No Auto-Responses</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">Incoming feedback, broken link reports, and product suggestions submitted from Public Portfolio 1.</p>
+            <div id="feedbackListContainer">
+              <div id="feedbackEmpty" class="catalog-empty" style="display: none;">
+                <p>✨ No customer feedback submissions yet.</p>
+              </div>
+              <table class="data-table" id="feedbackTable" style="display: none;">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Product / ASIN</th>
+                    <th>Message</th>
+                    <th>Sender</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="feedbackBody"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
