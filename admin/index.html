@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio 2 — Private Admin & Amazon Audit Dashboard</title>
+  <title>Portfolio 2 — Private Admin & Supervisor Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,7 +22,14 @@
       </div>
 
       <nav class="sidebar-nav">
-        <button class="nav-item active" data-tab="overview">
+        <!-- 1-to-1 Validator is the Primary Gate as requested -->
+        <button class="nav-item active" data-tab="validator">
+          🛡️ 1-to-1 Product Validator
+        </button>
+        <button class="nav-item" data-tab="catalogAudit">
+          📦 Catalog Integrity Audit
+        </button>
+        <button class="nav-item" data-tab="overview">
           📊 System Overview
         </button>
         <button class="nav-item" data-tab="audit">
@@ -30,12 +37,6 @@
         </button>
         <button class="nav-item" data-tab="deltas">
           📉 Price Delta History
-        </button>
-        <button class="nav-item" data-tab="validator">
-          🛡️ 1-to-1 Link Validator
-        </button>
-        <button class="nav-item" data-tab="addProduct">
-          ➕ Add & Staging Queue
         </button>
       </nav>
 
@@ -58,23 +59,137 @@
       <!-- Top Bar -->
       <header class="admin-topbar">
         <div class="topbar-title">
-          <h1 id="pageTitle">System Overview & Live Health</h1>
-          <p class="topbar-sub">Real-time supervision of Amazon Creator API, 24h price freshness, and compliance governance.</p>
+          <h1 id="pageTitle">🛡️ 1-to-1 Product & ASIN Validator Gate</h1>
+          <p class="topbar-sub">Primary verification gate: Validate every product, link, and image before it is published to Public Portfolio 1.</p>
         </div>
         <div class="topbar-actions">
-          <button id="syncNowBtn" class="btn-sync">
-            <span class="sync-icon">🔄</span> Run 24h Sync Audit
+          <button id="runFullAuditBtn" class="btn-sync">
+            <span class="sync-icon">🔍</span> Run Full Catalog Audit
           </button>
         </div>
       </header>
 
-      <!-- TAB 1: OVERVIEW -->
-      <section class="tab-panel active" id="tabOverview">
+      <!-- TAB 1 (PRIMARY): 1-TO-1 PRODUCT & ASIN VALIDATOR -->
+      <section class="tab-panel active" id="tabValidator">
+        <div class="card panel-card">
+          <div class="panel-head">
+            <h3>🛡️ Product Integrity Agent — 8-Point Pre-Listing Gate</h3>
+            <span class="badge-status-tag">Required Before Listing</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">
+              Enter the candidate product details below. The <strong>Product Integrity Agent</strong> will sequentially verify the ASIN, 1-to-1 affiliate link destination (<code>tag=nagireddy0e-21</code>), rating standard ($\ge 3.5$), Amazon CDN image, price, and stock status.
+            </p>
+
+            <form id="candidateValidationForm" class="add-product-grid">
+              <div class="input-group">
+                <label for="valCandidateAsin">Product ASIN (10 Characters):</label>
+                <input type="text" id="valCandidateAsin" required placeholder="e.g. B097RJ867P" class="form-control" maxlength="10">
+              </div>
+              <div class="input-group">
+                <label for="valCandidateBrand">Brand Name:</label>
+                <input type="text" id="valCandidateBrand" required placeholder="e.g. Philips" class="form-control">
+              </div>
+              <div class="input-group full-width">
+                <label for="valCandidateTitle">Product Title (Must match ASIN exact product):</label>
+                <input type="text" id="valCandidateTitle" required placeholder="Full authentic product title..." class="form-control">
+              </div>
+              <div class="input-group">
+                <label for="valCandidateCategory">Category:</label>
+                <select id="valCandidateCategory" class="form-control">
+                  <option value="home_kitchen">Home & Kitchen Essentials</option>
+                  <option value="gadgets_electronics">Gadgets & Electronics</option>
+                  <option value="seasonal_essentials">Seasonal Essentials</option>
+                  <option value="most_purchased">Most Purchased</option>
+                  <option value="trending">Trending</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="valCandidateRating">Customer Rating (Strict Min 3.5 ⭐):</label>
+                <input type="number" id="valCandidateRating" required step="0.1" min="3.5" max="5.0" placeholder="4.5" class="form-control">
+              </div>
+              <div class="input-group">
+                <label for="valCandidatePrice">Current Price (₹ INR):</label>
+                <input type="number" id="valCandidatePrice" required placeholder="7999" class="form-control">
+              </div>
+              <div class="input-group">
+                <label for="valCandidateListPrice">M.R.P / List Price (₹ INR):</label>
+                <input type="number" id="valCandidateListPrice" placeholder="11995" class="form-control">
+              </div>
+              <div class="input-group full-width">
+                <label for="valCandidateImage">Amazon CDN Image URL (https://m.media-amazon.com/...):</label>
+                <input type="url" id="valCandidateImage" required placeholder="https://m.media-amazon.com/images/I/..." class="form-control">
+              </div>
+              <div class="input-group full-width">
+                <label for="valCandidateAffUrl">Affiliate URL (Auto-generated with your tag):</label>
+                <input type="url" id="valCandidateAffUrl" required placeholder="https://www.amazon.in/dp/ASIN?tag=nagireddy0e-21" class="form-control">
+              </div>
+              <div class="input-group full-width checkbox-group">
+                <label>
+                  <input type="checkbox" id="valCandidateDailyDeal"> Feature as Daily Deal
+                </label>
+              </div>
+              <div class="input-group full-width action-btn-row">
+                <button type="submit" class="btn btn-primary" id="validateCandidateBtn">
+                  Run Sequential Integrity Audit & Validate
+                </button>
+              </div>
+            </form>
+
+            <!-- Detailed Step-by-Step Validation Report Box -->
+            <div id="integrityAuditBox" class="audit-result-card" style="display: none;">
+              <div class="audit-result-header">
+                <h4 id="auditResultTitle">Integrity Audit Result</h4>
+                <span id="auditOverallBadge" class="audit-badge">PENDING</span>
+              </div>
+              <div class="audit-steps-list" id="auditStepsList"></div>
+              <div class="audit-actions" id="auditActionsWrap" style="display: none;">
+                <button id="publishApprovedBtn" class="btn btn-success">
+                  ✅ Stage & Publish to Public Portfolio 1
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: CATALOG INTEGRITY AUDIT -->
+      <section class="tab-panel" id="tabCatalogAudit">
+        <div class="card panel-card">
+          <div class="panel-head">
+            <h3>📦 Current Catalog — 1-to-1 Verification Status</h3>
+            <span class="tag-pill">nagireddy0e-21</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">Every product currently active in the portfolio is listed below with its verified ASIN, direct Amazon destination, and rating check.</p>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ASIN</th>
+                  <th>Product Title</th>
+                  <th>Category</th>
+                  <th>Rating</th>
+                  <th>Price (₹)</th>
+                  <th>Affiliate Link Check</th>
+                  <th>Integrity Status</th>
+                </tr>
+              </thead>
+              <tbody id="catalogAuditTableBody">
+                <!-- Populated via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: SYSTEM OVERVIEW -->
+      <section class="tab-panel" id="tabOverview">
         <!-- Metric Cards -->
         <div class="metrics-grid">
           <div class="metric-card">
             <div class="metric-head">
-              <span class="metric-label">Total Tracked ASINs</span>
+              <span class="metric-label">Total Verified ASINs</span>
               <span class="metric-icon">📦</span>
             </div>
             <div class="metric-val" id="metricTotalProducts">--</div>
@@ -123,40 +238,34 @@
               <span class="metric-icon">📈</span>
             </div>
             <div class="metric-val" id="metricDeltas">--</div>
-            <div class="metric-sub">Historical price changes</div>
+            <div class="metric-sub">Historical price movements</div>
           </div>
         </div>
 
-        <!-- Quick Status & Compliance Cards -->
+        <!-- Quick Simulator -->
         <div class="status-split-grid">
           <div class="card panel-card">
             <div class="panel-head">
-              <h3>🛡️ Amazon Policy & Governance Engine</h3>
+              <h3>🛡️ Governance & Policy Status</h3>
             </div>
             <div class="panel-body">
               <ul class="policy-checklist">
                 <li class="check-item ok">
                   <span class="status-dot"></span>
                   <div>
-                    <strong>24-Hour Price Cache Boundary:</strong> Active & Enforced. Prices older than 24h automatically refresh or invalidate.
+                    <strong>Product Integrity Gate:</strong> Active. 8 sequential checkpoints enforced.
                   </div>
                 </li>
                 <li class="check-item ok">
                   <span class="status-dot"></span>
                   <div>
-                    <strong>1-to-1 ASIN-to-Link Verification:</strong> Active. Prevents cross-linking or mismatched tracking IDs.
+                    <strong>24-Hour Cache Policy:</strong> Active. Enforced max 24h TTL.
                   </div>
                 </li>
                 <li class="check-item ok">
                   <span class="status-dot"></span>
                   <div>
-                    <strong>Rating Quality Thresholds:</strong> ≥ 4.0 (Primary) & 3.5–3.9 (Value Section). Strictly excludes < 3.5.
-                  </div>
-                </li>
-                <li class="check-item ok">
-                  <span class="status-dot"></span>
-                  <div>
-                    <strong>Image Hosting Compliance:</strong> 100% official Amazon CDN endpoints (`m.media-amazon.com`). Zero local re-hosting.
+                    <strong>Rating Quality Thresholds:</strong> $\ge 4.0$ (Primary) & $3.5–3.9$ (Value). $<3.5$ strictly blocked.
                   </div>
                 </li>
               </ul>
@@ -165,7 +274,7 @@
 
           <div class="card panel-card">
             <div class="panel-head">
-              <h3>🧪 Quick Simulator & Test Tools</h3>
+              <h3>📉 Price Delta Simulator</h3>
             </div>
             <div class="panel-body">
               <p class="panel-sub">Simulate a price change on an ASIN to test real-time delta tracking and audit recording.</p>
@@ -186,27 +295,25 @@
         </div>
       </section>
 
-      <!-- TAB 2: AUDIT LOGS -->
+      <!-- TAB 4: AUDIT LOGS -->
       <section class="tab-panel" id="tabAudit">
         <div class="card panel-card">
           <div class="panel-head">
             <h3>📜 Live Audit Trail & Supervisor Log</h3>
             <div class="log-filters">
               <button class="log-filter-btn active" data-filter="all">All Events</button>
+              <button class="log-filter-btn" data-filter="PRODUCT_INTEGRITY_PASS">Integrity Passes</button>
               <button class="log-filter-btn" data-filter="PRICE_CHANGE_RECORDED">Price Changes</button>
-              <button class="log-filter-btn" data-filter="SYNC_COMPLETED">Sync Runs</button>
-              <button class="log-filter-btn" data-filter="PRODUCT_ADDED">Products Added</button>
+              <button class="log-filter-btn" data-filter="CATALOG_ITEM_BLOCKED">Blocked Items</button>
             </div>
           </div>
           <div class="panel-body">
-            <div class="audit-log-stream" id="auditLogStream">
-              <!-- Rendered via admin.js -->
-            </div>
+            <div class="audit-log-stream" id="auditLogStream"></div>
           </div>
         </div>
       </section>
 
-      <!-- TAB 3: PRICE DELTAS -->
+      <!-- TAB 5: PRICE DELTAS -->
       <section class="tab-panel" id="tabDeltas">
         <div class="card panel-card">
           <div class="panel-head">
@@ -225,98 +332,8 @@
                   <th>% Diff</th>
                 </tr>
               </thead>
-              <tbody id="deltasTableBody">
-                <!-- Rendered via admin.js -->
-              </tbody>
+              <tbody id="deltasTableBody"></tbody>
             </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 4: VALIDATOR -->
-      <section class="tab-panel" id="tabValidator">
-        <div class="card panel-card">
-          <div class="panel-head">
-            <h3>🛡️ 1-to-1 Link & ASIN Validator Tool</h3>
-          </div>
-          <div class="panel-body">
-            <p class="panel-sub">Validate any Amazon product URL against target ASIN and your Associate Tag (<code>nagireddy0e-21</code>).</p>
-            <div class="validator-form">
-              <div class="input-group">
-                <label for="valAsinInput">Product ASIN (10 Characters):</label>
-                <input type="text" id="valAsinInput" placeholder="e.g. B0BDK7266C" class="form-control" maxlength="10">
-              </div>
-              <div class="input-group">
-                <label for="valUrlInput">Affiliate URL to Test:</label>
-                <input type="text" id="valUrlInput" placeholder="https://www.amazon.in/dp/B0BDK7266C?tag=nagireddy0e-21" class="form-control">
-              </div>
-              <button id="validateBtn" class="btn btn-primary">Run 1-to-1 Audit Check</button>
-            </div>
-            <div id="validationResult" class="test-result-box" style="display: none;"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 5: ADD PRODUCT -->
-      <section class="tab-panel" id="tabAddProduct">
-        <div class="card panel-card">
-          <div class="panel-head">
-            <h3>➕ Add Curated Product to Portfolio 1</h3>
-          </div>
-          <div class="panel-body">
-            <form id="addProductForm" class="add-product-grid">
-              <div class="input-group">
-                <label for="pAsin">ASIN (Required):</label>
-                <input type="text" id="pAsin" required placeholder="B08N5WRWNW" class="form-control" maxlength="10">
-              </div>
-              <div class="input-group">
-                <label for="pBrand">Brand Name:</label>
-                <input type="text" id="pBrand" required placeholder="Apple" class="form-control">
-              </div>
-              <div class="input-group full-width">
-                <label for="pTitle">Product Title:</label>
-                <input type="text" id="pTitle" required placeholder="Full product description..." class="form-control">
-              </div>
-              <div class="input-group">
-                <label for="pCategory">Category:</label>
-                <select id="pCategory" class="form-control">
-                  <option value="home_kitchen">Home & Kitchen Essentials</option>
-                  <option value="gadgets_electronics">Gadgets & Electronics</option>
-                  <option value="seasonal_essentials">Seasonal Essentials</option>
-                  <option value="most_purchased">Most Purchased</option>
-                  <option value="trending">Trending</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <label for="pRating">Rating (Strict Min 3.5 ⭐):</label>
-                <input type="number" id="pRating" required step="0.1" min="3.5" max="5.0" placeholder="4.5" class="form-control">
-              </div>
-              <div class="input-group">
-                <label for="pCurrentPrice">Current Price (₹):</label>
-                <input type="number" id="pCurrentPrice" required placeholder="65990" class="form-control">
-              </div>
-              <div class="input-group">
-                <label for="pListPrice">M.R.P / List Price (₹):</label>
-                <input type="number" id="pListPrice" placeholder="92900" class="form-control">
-              </div>
-              <div class="input-group full-width">
-                <label for="pImage">Amazon CDN Image URL (https://m.media-amazon.com/...):</label>
-                <input type="url" id="pImage" required placeholder="https://m.media-amazon.com/images/I/..." class="form-control">
-              </div>
-              <div class="input-group full-width">
-                <label for="pAffUrl">Affiliate URL (Must contain ASIN & tag=nagireddy0e-21):</label>
-                <input type="url" id="pAffUrl" required placeholder="https://www.amazon.in/dp/ASIN?tag=nagireddy0e-21" class="form-control">
-              </div>
-              <div class="input-group full-width checkbox-group">
-                <label>
-                  <input type="checkbox" id="pIsDailyDeal"> Feature as Daily Deal
-                </label>
-              </div>
-              <div class="input-group full-width">
-                <button type="submit" class="btn btn-primary">Validate & Add to Public Portfolio</button>
-              </div>
-            </form>
-            <div id="addProductResult" class="test-result-box" style="display: none;"></div>
           </div>
         </div>
       </section>

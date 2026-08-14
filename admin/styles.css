@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Portfolio 2 — Private Admin & Audit Dashboard Styles
+   Portfolio 2 — Private Admin & Supervisor Dashboard Styles
    ========================================================================== */
 
 :root {
@@ -303,6 +303,16 @@ body {
   font-weight: 700;
 }
 
+.badge-status-tag {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: var(--col-amber);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
 .panel-body {
   padding: 1.25rem;
 }
@@ -310,7 +320,8 @@ body {
 .panel-sub {
   font-size: 0.85rem;
   color: var(--text-dim);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
 }
 
 .status-split-grid {
@@ -347,8 +358,18 @@ body {
 }
 
 /* Forms */
+.add-product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
 .input-group {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .input-group label {
@@ -381,6 +402,7 @@ body {
   cursor: pointer;
   border: none;
   font-size: 0.875rem;
+  transition: all 0.15s;
 }
 
 .btn-primary {
@@ -392,18 +414,104 @@ body {
   background-color: #d97706;
 }
 
+.btn-success {
+  background-color: var(--col-emerald);
+  color: #0b0f19;
+}
+
+.btn-success:hover {
+  filter: brightness(1.1);
+}
+
 .btn-block {
   width: 100%;
 }
 
-.test-result-box {
-  margin-top: 1rem;
-  padding: 0.85rem;
-  border-radius: 6px;
-  font-size: 0.825rem;
-  font-family: var(--font-mono);
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------
+   Integrity Audit Result Box
+   ---------------------------------------------------- */
+.audit-result-card {
+  margin-top: 1.5rem;
   background-color: #0f172a;
   border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.audit-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--admin-border);
+  margin-bottom: 1rem;
+}
+
+.audit-badge {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.audit-badge.PASS {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: var(--col-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.audit-badge.FAIL {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: var(--col-red);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.audit-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.audit-step-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #172235;
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.825rem;
+}
+
+.step-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.step-status-icon {
+  font-size: 1rem;
+}
+
+.step-detail {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.audit-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* ----------------------------------------------------
@@ -412,6 +520,7 @@ body {
 .log-filters {
   display: flex;
   gap: 0.4rem;
+  flex-wrap: wrap;
 }
 
 .log-filter-btn {
@@ -510,26 +619,21 @@ body {
   border-bottom: 1px solid #27354a;
 }
 
-.add-product-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.full-width {
-  grid-column: 1 / -1;
-}
-
-.checkbox-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  cursor: pointer;
+.tag-pill {
+  background-color: var(--admin-bg);
+  color: var(--col-amber);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 @media (max-width: 900px) {
   .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  .add-product-grid {
     grid-template-columns: 1fr;
   }
   .status-split-grid {

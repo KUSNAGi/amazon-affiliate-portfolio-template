@@ -1,5 +1,857 @@
 [
   {
+    "id": "log_1786731654079_2mgzk",
+    "timestamp": "2026-08-14T18:20:54.079Z",
+    "eventType": "SERVER_RELOADED_WITH_CREATOR_API",
+    "status": "SUCCESS",
+    "details": {
+      "port": "3000",
+      "associateTag": "nagireddy0e-21",
+      "hasOAuthCredentials": true
+    }
+  },
+  {
+    "id": "log_1786731654074_hy414",
+    "timestamp": "2026-08-14T18:20:54.074Z",
+    "eventType": "SEQUENTIAL_CATALOG_AUDIT_COMPLETE",
+    "status": "SUCCESS",
+    "details": {
+      "total": 10,
+      "passed": 10,
+      "blocked": 0
+    }
+  },
+  {
+    "id": "log_1786731654074_1y9u8",
+    "timestamp": "2026-08-14T18:20:54.074Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B085V86QWW",
+      "title": "Crompton Ozone 75 Desert Air Cooler with Everlast Pump, High Air Delivery & Honeycomb Pads (75 Litres)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654074_22szm",
+    "timestamp": "2026-08-14T18:20:54.074Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B09V7S18HG",
+      "title": "Portronics Konnect L 1.2M Fast Charging 3A Type-C Cable with High Speed Data Transmission",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654073_jxes4",
+    "timestamp": "2026-08-14T18:20:54.073Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "SanDisk Cruzer Blade 64GB USB 2.0 Flash Drive, Compact Plug & Play Design",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654073_w2bsq",
+    "timestamp": "2026-08-14T18:20:54.073Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0863TXGM3",
+      "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654072_14pwd",
+    "timestamp": "2026-08-14T18:20:54.072Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jars and 1 Juicer Jar",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654072_sfpvo",
+    "timestamp": "2026-08-14T18:20:54.072Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07WMS7TWB",
+      "title": "Pigeon by Stovekraft Amaze Plus Electric Kettle (1.5 Litre) with Auto Shut-off (1500 Watt, Stainless Steel)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654072_jodpx",
+    "timestamp": "2026-08-14T18:20:54.072Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop with M1 Chip: 13.3-inch Retina Display, 8GB RAM, 256GB SSD Storage - Space Grey",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654071_6pfnk",
+    "timestamp": "2026-08-14T18:20:54.071Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BRXQ65S9",
+      "title": "Fire-Boltt Ninja Call Pro Plus 1.83\" Smart Watch with Bluetooth Calling & AI Voice Assistant",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654070_rlgoq",
+    "timestamp": "2026-08-14T18:20:54.070Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15 (128 GB) - Black with Dynamic Island, 48MP Camera and USB-C",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731654069_mnbs0",
+    "timestamp": "2026-08-14T18:20:54.069Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1 Litre, 7 Preset Menus, Touch Panel",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341502_5ol2f",
+    "timestamp": "2026-08-14T18:15:41.502Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B085V86QWW",
+      "title": "Crompton Ozone 75 Desert Air Cooler with Everlast Pump, High Air Delivery & Honeycomb Pads (75 Litres)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341501_ox9vy",
+    "timestamp": "2026-08-14T18:15:41.501Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B09V7S18HG",
+      "title": "Portronics Konnect L 1.2M Fast Charging 3A Type-C Cable with High Speed Data Transmission",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341500_g6vzy",
+    "timestamp": "2026-08-14T18:15:41.500Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "SanDisk Cruzer Blade 64GB USB 2.0 Flash Drive, Compact Plug & Play Design",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341499_19e2s",
+    "timestamp": "2026-08-14T18:15:41.499Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0863TXGM3",
+      "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341499_jz3ni",
+    "timestamp": "2026-08-14T18:15:41.499Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jars and 1 Juicer Jar",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341498_s0uck",
+    "timestamp": "2026-08-14T18:15:41.498Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07WMS7TWB",
+      "title": "Pigeon by Stovekraft Amaze Plus Electric Kettle (1.5 Litre) with Auto Shut-off (1500 Watt, Stainless Steel)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341496_nqent",
+    "timestamp": "2026-08-14T18:15:41.496Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop with M1 Chip: 13.3-inch Retina Display, 8GB RAM, 256GB SSD Storage - Space Grey",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341496_yeloy",
+    "timestamp": "2026-08-14T18:15:41.496Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BRXQ65S9",
+      "title": "Fire-Boltt Ninja Call Pro Plus 1.83\" Smart Watch with Bluetooth Calling & AI Voice Assistant",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341495_4u1jc",
+    "timestamp": "2026-08-14T18:15:41.495Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15 (128 GB) - Black with Dynamic Island, 48MP Camera and USB-C",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731341495_lf0l8",
+    "timestamp": "2026-08-14T18:15:41.495Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1 Litre, 7 Preset Menus, Touch Panel",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339535_2wekw",
+    "timestamp": "2026-08-14T18:15:39.535Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B085V86QWW",
+      "title": "Crompton Ozone 75 Desert Air Cooler with Everlast Pump, High Air Delivery & Honeycomb Pads (75 Litres)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339534_m085t",
+    "timestamp": "2026-08-14T18:15:39.534Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B09V7S18HG",
+      "title": "Portronics Konnect L 1.2M Fast Charging 3A Type-C Cable with High Speed Data Transmission",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339534_x9yu2",
+    "timestamp": "2026-08-14T18:15:39.534Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "SanDisk Cruzer Blade 64GB USB 2.0 Flash Drive, Compact Plug & Play Design",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339533_hm4rd",
+    "timestamp": "2026-08-14T18:15:39.533Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0863TXGM3",
+      "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339533_b5glh",
+    "timestamp": "2026-08-14T18:15:39.533Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jars and 1 Juicer Jar",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339533_0oldd",
+    "timestamp": "2026-08-14T18:15:39.533Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07WMS7TWB",
+      "title": "Pigeon by Stovekraft Amaze Plus Electric Kettle (1.5 Litre) with Auto Shut-off (1500 Watt, Stainless Steel)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339532_1cs2d",
+    "timestamp": "2026-08-14T18:15:39.532Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop with M1 Chip: 13.3-inch Retina Display, 8GB RAM, 256GB SSD Storage - Space Grey",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339532_3970m",
+    "timestamp": "2026-08-14T18:15:39.532Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BRXQ65S9",
+      "title": "Fire-Boltt Ninja Call Pro Plus 1.83\" Smart Watch with Bluetooth Calling & AI Voice Assistant",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339532_bnwfc",
+    "timestamp": "2026-08-14T18:15:39.532Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15 (128 GB) - Black with Dynamic Island, 48MP Camera and USB-C",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731339531_uw2z1",
+    "timestamp": "2026-08-14T18:15:39.531Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1 Litre, 7 Preset Menus, Touch Panel",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731301671_betr8",
+    "timestamp": "2026-08-14T18:15:01.671Z",
+    "eventType": "AFFILIATE_LINK_VERIFICATION_CHECK",
+    "status": "FAILURE",
+    "details": {
+      "asin": "B0DGTSRX3R",
+      "url": "https://www.amazon.in/boAt-Rockerz-Bluetooth-Headphones-Headphone/dp/B0F7M3Q8DV?pd_rd_w=4JcJL&content-id=amzn1.sym.6b3aa144-fd3f-4cac-9ae1-ac2407bcccc2&pf_rd_p=6b3aa144-fd3f-4cac-9ae1-ac2407bcccc2&pf_rd_r=3BQ9CZEAXHS2DZW8QVY6&pd_rd_wg=3h6an&pd_rd_r=a851426c-75ff-4874-9de2-031fa2d4d528&pd_rd_i=B0F7M3Q8DV&th=1&linkCode=ll2&tag=battlzen-21&linkId=7a5bb22e14eaecec28ff492db75f3b86&ref_=as_li_ss_tl",
+      "valid": false,
+      "reason": "URL does not contain matching ASIN 'B0DGTSRX3R'"
+    }
+  },
+  {
+    "id": "log_1786731281522_xe5cn",
+    "timestamp": "2026-08-14T18:14:41.522Z",
+    "eventType": "AFFILIATE_LINK_VERIFICATION_CHECK",
+    "status": "FAILURE",
+    "details": {
+      "asin": "B0DGTSRX3R",
+      "url": "https://link.amazon/B0b42xbg5",
+      "valid": false,
+      "reason": "URL does not point to amazon.in or amzn.to"
+    }
+  },
+  {
+    "id": "log_1786731127757_4k0eo",
+    "timestamp": "2026-08-14T18:12:07.757Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B085V86QWW",
+      "title": "Crompton Ozone 75 Desert Air Cooler with Everlast Pump, High Air Delivery & Honeycomb Pads (75 Litres)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127756_wy9h6",
+    "timestamp": "2026-08-14T18:12:07.756Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B09V7S18HG",
+      "title": "Portronics Konnect L 1.2M Fast Charging 3A Type-C Cable with High Speed Data Transmission",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127755_el4c8",
+    "timestamp": "2026-08-14T18:12:07.755Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "SanDisk Cruzer Blade 64GB USB 2.0 Flash Drive, Compact Plug & Play Design",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127754_eu6lm",
+    "timestamp": "2026-08-14T18:12:07.754Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0863TXGM3",
+      "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127754_akpv6",
+    "timestamp": "2026-08-14T18:12:07.754Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jars and 1 Juicer Jar",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127753_tn9j2",
+    "timestamp": "2026-08-14T18:12:07.753Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07WMS7TWB",
+      "title": "Pigeon by Stovekraft Amaze Plus Electric Kettle (1.5 Litre) with Auto Shut-off (1500 Watt, Stainless Steel)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127752_sa4z2",
+    "timestamp": "2026-08-14T18:12:07.752Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop with M1 Chip: 13.3-inch Retina Display, 8GB RAM, 256GB SSD Storage - Space Grey",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127751_85g7x",
+    "timestamp": "2026-08-14T18:12:07.751Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BRXQ65S9",
+      "title": "Fire-Boltt Ninja Call Pro Plus 1.83\" Smart Watch with Bluetooth Calling & AI Voice Assistant",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127750_rcijy",
+    "timestamp": "2026-08-14T18:12:07.750Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15 (128 GB) - Black with Dynamic Island, 48MP Camera and USB-C",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731127748_0jreo",
+    "timestamp": "2026-08-14T18:12:07.748Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1 Litre, 7 Preset Menus, Touch Panel",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731124469_ke51f",
+    "timestamp": "2026-08-14T18:12:04.469Z",
+    "eventType": "SYNC_COMPLETED",
+    "status": "SUCCESS",
+    "details": {
+      "totalProcessed": 10,
+      "results": [
+        {
+          "asin": "B097RJ867P",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 7999
+        },
+        {
+          "asin": "B0CHX1W1XY",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 70990
+        },
+        {
+          "asin": "B0BRXQ65S9",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 1199
+        },
+        {
+          "asin": "B08N5XSG8Z",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 65990
+        },
+        {
+          "asin": "B07WMS7TWB",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 599
+        },
+        {
+          "asin": "B0756K5DYZ",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 2899
+        },
+        {
+          "asin": "B0863TXGM3",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 1
+        },
+        {
+          "asin": "B007V9U81E",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 389
+        },
+        {
+          "asin": "B09V7S18HG",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 149
+        },
+        {
+          "asin": "B085V86QWW",
+          "status": "TIMESTAMP_REFRESHED",
+          "price": 9999
+        }
+      ]
+    }
+  },
+  {
+    "id": "log_1786731121401_e6m6c",
+    "timestamp": "2026-08-14T18:12:01.401Z",
+    "eventType": "MANUAL_SYNC_TRIGGERED",
+    "status": "SUCCESS",
+    "details": {
+      "initiator": "Admin User"
+    }
+  },
+  {
+    "id": "log_1786731080649_dzomg",
+    "timestamp": "2026-08-14T18:11:20.649Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B085V86QWW",
+      "title": "Crompton Ozone 75 Desert Air Cooler with Everlast Pump, High Air Delivery & Honeycomb Pads (75 Litres)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080648_wfz90",
+    "timestamp": "2026-08-14T18:11:20.648Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B09V7S18HG",
+      "title": "Portronics Konnect L 1.2M Fast Charging 3A Type-C Cable with High Speed Data Transmission",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080648_kl5gx",
+    "timestamp": "2026-08-14T18:11:20.648Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "SanDisk Cruzer Blade 64GB USB 2.0 Flash Drive, Compact Plug & Play Design",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080648_qt11o",
+    "timestamp": "2026-08-14T18:11:20.648Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0863TXGM3",
+      "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080648_rns5p",
+    "timestamp": "2026-08-14T18:11:20.648Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jars and 1 Juicer Jar",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080647_5sw21",
+    "timestamp": "2026-08-14T18:11:20.647Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07WMS7TWB",
+      "title": "Pigeon by Stovekraft Amaze Plus Electric Kettle (1.5 Litre) with Auto Shut-off (1500 Watt, Stainless Steel)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080647_5m265",
+    "timestamp": "2026-08-14T18:11:20.647Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop with M1 Chip: 13.3-inch Retina Display, 8GB RAM, 256GB SSD Storage - Space Grey",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080647_gkf4r",
+    "timestamp": "2026-08-14T18:11:20.647Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BRXQ65S9",
+      "title": "Fire-Boltt Ninja Call Pro Plus 1.83\" Smart Watch with Bluetooth Calling & AI Voice Assistant",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080647_q2hyr",
+    "timestamp": "2026-08-14T18:11:20.647Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15 (128 GB) - Black with Dynamic Island, 48MP Camera and USB-C",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080646_47oh2",
+    "timestamp": "2026-08-14T18:11:20.646Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1 Litre, 7 Preset Menus, Touch Panel",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731080641_09yau",
+    "timestamp": "2026-08-14T18:11:20.641Z",
+    "eventType": "PRICE_CHANGE_RECORDED",
+    "status": "SUCCESS",
+    "details": {
+      "id": "delta_1786731080641",
+      "asin": "B0863TXGM3",
+      "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",
+      "oldPrice": 22990,
+      "newPrice": 1,
+      "diff": -22989,
+      "percentChange": "-100.0",
+      "timestamp": "2026-08-14T18:11:20.641Z"
+    }
+  },
+  {
+    "id": "log_1786731057558_sqb8d",
+    "timestamp": "2026-08-14T18:10:57.558Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B085V86QWW",
+      "title": "Crompton Ozone 75 Desert Air Cooler with Everlast Pump, High Air Delivery & Honeycomb Pads (75 Litres)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057557_b307m",
+    "timestamp": "2026-08-14T18:10:57.557Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B09V7S18HG",
+      "title": "Portronics Konnect L 1.2M Fast Charging 3A Type-C Cable with High Speed Data Transmission",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057556_xyhgu",
+    "timestamp": "2026-08-14T18:10:57.556Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "SanDisk Cruzer Blade 64GB USB 2.0 Flash Drive, Compact Plug & Play Design",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057554_djsw9",
+    "timestamp": "2026-08-14T18:10:57.554Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0863TXGM3",
+      "title": "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones with 30 Hours Battery Life",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057554_015p4",
+    "timestamp": "2026-08-14T18:10:57.554Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jars and 1 Juicer Jar",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057554_hd5ca",
+    "timestamp": "2026-08-14T18:10:57.554Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07WMS7TWB",
+      "title": "Pigeon by Stovekraft Amaze Plus Electric Kettle (1.5 Litre) with Auto Shut-off (1500 Watt, Stainless Steel)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057554_fb3yz",
+    "timestamp": "2026-08-14T18:10:57.554Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop with M1 Chip: 13.3-inch Retina Display, 8GB RAM, 256GB SSD Storage - Space Grey",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057553_efvs5",
+    "timestamp": "2026-08-14T18:10:57.553Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BRXQ65S9",
+      "title": "Fire-Boltt Ninja Call Pro Plus 1.83\" Smart Watch with Bluetooth Calling & AI Voice Assistant",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057553_36fpu",
+    "timestamp": "2026-08-14T18:10:57.553Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15 (128 GB) - Black with Dynamic Island, 48MP Camera and USB-C",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786731057552_c3koh",
+    "timestamp": "2026-08-14T18:10:57.552Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1 Litre, 7 Preset Menus, Touch Panel",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
     "id": "log_1786730945275_kajcq",
     "timestamp": "2026-08-14T18:09:05.275Z",
     "eventType": "SERVER_RELOADED_WITH_CREATOR_API",
