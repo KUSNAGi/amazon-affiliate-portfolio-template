@@ -1,5 +1,1133 @@
 [
   {
+    "id": "log_1786734971318_z5i0b",
+    "timestamp": "2026-08-14T19:16:11.318Z",
+    "eventType": "SERVER_STARTED",
+    "status": "SUCCESS",
+    "details": {
+      "port": "3000",
+      "verifiedProducts": 20,
+      "associateTag": "nagireddy0e-21"
+    }
+  },
+  {
+    "id": "log_1786734971312_0wwed",
+    "timestamp": "2026-08-14T19:16:11.312Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 20,
+      "loaded": 20,
+      "source": "verified-products.json"
+    }
+  },
+  {
+    "id": "log_1786734971311_fm1pu",
+    "timestamp": "2026-08-14T19:16:11.311Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DVC6VC7P",
+      "title": "Samsung Galaxy S25 Ultra 5G",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971311_1iro5",
+    "timestamp": "2026-08-14T19:16:11.311Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DSKL9MQ8",
+      "title": "Samsung Galaxy S25 Ultra 5G Mobile with Galaxy AI",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971310_11k9e",
+    "timestamp": "2026-08-14T19:16:11.310Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07D4T4YT2",
+      "title": "Spotzero by Milton Prime Stainless Steel Wringer Spin Mop with Big Wheel, Puller Handle, Bucket Floor Cleaning and Mopping System 360° Flexible,2 Microfiber Refills, Big Size, Aqua Green",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971310_k7mzt",
+    "timestamp": "2026-08-14T19:16:11.310Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07S5FBY3J",
+      "title": "HIT Anti Mosquito Racquet Rechargeable Insect Killer Bat with LED Light",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971310_1ck1w",
+    "timestamp": "2026-08-14T19:16:11.310Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07RPLT5T6",
+      "title": "Buy AO Smith Geyser 15 Ltr With 5 Star BEE Rating, Vertical Water Heater | Geyser 15+ Litre For High Rise Building | 7 Year Tank Warranty, 2 Year Comprehensive Warranty | SDS-GREEN-015 Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971309_hlv7w",
+    "timestamp": "2026-08-14T19:16:11.309Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GNGZ6FBB",
+      "title": "LiMETRO STEEL Foldable Clothes Drying Stand for Balcony & Indoor Use | Heavy Duty Mild Steel Laundry Rack | Space Saving Folding Cloth Dryer Stand | Black",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971309_xkk30",
+    "timestamp": "2026-08-14T19:16:11.309Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CCPPTB93",
+      "title": "MAXOSHINE Microfiber Bath Towel Large Size with Hook",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971308_bbxqe",
+    "timestamp": "2026-08-14T19:16:11.308Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BTD4S4XF",
+      "title": "Buy American Tourister Valex | 28L Backpack | 17\" Laptop Bag | 2 Compartments | College & Office Backpack for Men and Women | Black | 1 Year Global Warranty at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971308_lhfpj",
+    "timestamp": "2026-08-14T19:16:11.308Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0G596SGTJ",
+      "title": "Buy Crocs Women&#x27;s Baya Platform Clog Barely Pink 3 Women at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971308_d1r8n",
+    "timestamp": "2026-08-14T19:16:11.308Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H4DBCKWB",
+      "title": "Buy Campus Men&#x27;s GC-4035 Clogs - NAVY/P.GREEN 9UK/India 1 Pair at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971307_4ykj9",
+    "timestamp": "2026-08-14T19:16:11.307Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H7S93Q4Q",
+      "title": "FLYNGO Umbrella for Rain Big Size with Carabiner Handle, UV Coated 3-Fold Travel Umbrella for Sun Protection, Windproof Reinforced 10 Dual Ribs, Automatic Open/Close (Beige)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971307_g9ngw",
+    "timestamp": "2026-08-14T19:16:11.307Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CPSLYDRD",
+      "title": "Buy Citizen Reversible Raincoat for Women with Inbuilt Hood, Waist Belt & Matching Carry Pouch | Stylish Polka Dot Design | Durable & Lightweight Rainsuit with High Tearing Strength | Teal, 2XL at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971306_f2vaq",
+    "timestamp": "2026-08-14T19:16:11.306Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08947GQCM",
+      "title": "Buy ZEEL Rain Coat for Men Waterproof for Bike Riders with Adjustable Hood Along with Inner Pockets,Waterproof Raincoat with Polyester Jacket,Pants and Waterproof Drawstring Bag,AZ05 Black-Green XL Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971305_cjk29",
+    "timestamp": "2026-08-14T19:16:11.305Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B089GM5Q7Z",
+      "title": "Destinio Umbrella for Man - Large Size 23 inch, Fully Automatic, Windproof Fibreglass Ribs, UPF 50+ Sun Protection, Premium 210T Pongee, Foldable Travel Umbrella for Rain for Men and Women - 3 fold Compact, Black (Auto open auto close)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971305_8g2gn",
+    "timestamp": "2026-08-14T19:16:11.305Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971304_hpfb4",
+    "timestamp": "2026-08-14T19:16:11.304Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971304_ngboc",
+    "timestamp": "2026-08-14T19:16:11.304Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971303_0dgew",
+    "timestamp": "2026-08-14T19:16:11.303Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971303_9cosr",
+    "timestamp": "2026-08-14T19:16:11.303Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734971302_gncoy",
+    "timestamp": "2026-08-14T19:16:11.302Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734964382_qvlar",
+    "timestamp": "2026-08-14T19:16:04.382Z",
+    "eventType": "AUTO_CURATION_COMPLETED",
+    "status": "SUCCESS",
+    "details": {
+      "totalCandidates": 25,
+      "published": 20,
+      "rejected": 5
+    }
+  },
+  {
+    "id": "log_1786734964382_y4io9",
+    "timestamp": "2026-08-14T19:16:04.382Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DVC6VC7P",
+      "title": "Samsung Galaxy S25 Ultra 5G",
+      "price": 93000,
+      "affiliate_url": "https://www.amazon.in/dp/B0DVC6VC7P?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734964381_a9zya",
+    "timestamp": "2026-08-14T19:16:04.381Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DVC6VC7P",
+      "title": "Samsung Galaxy S25 Ultra 5G",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734964380_8186y",
+    "timestamp": "2026-08-14T19:16:04.380Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DVC6VC7P",
+      "title": "Samsung Galaxy S25 Ultra 5G",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734962516_5e5z6",
+    "timestamp": "2026-08-14T19:16:02.516Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DSKL9MQ8",
+      "title": "Samsung Galaxy S25 Ultra 5G Mobile with Galaxy AI",
+      "price": 94999,
+      "affiliate_url": "https://www.amazon.in/dp/B0DSKL9MQ8?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734962515_mckn2",
+    "timestamp": "2026-08-14T19:16:02.515Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DSKL9MQ8",
+      "title": "Samsung Galaxy S25 Ultra 5G Mobile with Galaxy AI",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734962514_skr4n",
+    "timestamp": "2026-08-14T19:16:02.514Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0DSKL9MQ8",
+      "title": "Samsung Galaxy S25 Ultra 5G Mobile with Galaxy AI",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734960679_cock8",
+    "timestamp": "2026-08-14T19:16:00.679Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07D4T4YT2",
+      "title": "Spotzero by Milton Prime Stainless Steel Wringer Spin Mop with Big Wheel, Puller Handle, Bucket Floor Cleaning and Mopping System 360° Flexible,2 Microfiber Refills, Big Size, Aqua Green",
+      "price": 1345,
+      "affiliate_url": "https://www.amazon.in/dp/B07D4T4YT2?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734960678_wpsdt",
+    "timestamp": "2026-08-14T19:16:00.678Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07D4T4YT2",
+      "title": "Spotzero by Milton Prime Stainless Steel Wringer Spin Mop with Big Wheel, Puller Handle, Bucket Floor Cleaning and Mopping System 360° Flexible,2 Microfiber Refills, Big Size, Aqua Green",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734960677_e477g",
+    "timestamp": "2026-08-14T19:16:00.678Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07D4T4YT2",
+      "title": "Spotzero by Milton Prime Stainless Steel Wringer Spin Mop with Big Wheel, Puller Handle, Bucket Floor Cleaning and Mopping System 360° Flexible,2 Microfiber Refills, Big Size, Aqua Green",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734958720_k7g7r",
+    "timestamp": "2026-08-14T19:15:58.720Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07S5FBY3J",
+      "title": "HIT Anti Mosquito Racquet Rechargeable Insect Killer Bat with LED Light",
+      "price": 370,
+      "affiliate_url": "https://www.amazon.in/dp/B07S5FBY3J?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734958719_yzjns",
+    "timestamp": "2026-08-14T19:15:58.719Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07S5FBY3J",
+      "title": "HIT Anti Mosquito Racquet Rechargeable Insect Killer Bat with LED Light",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734958718_btalu",
+    "timestamp": "2026-08-14T19:15:58.718Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07S5FBY3J",
+      "title": "HIT Anti Mosquito Racquet Rechargeable Insect Killer Bat with LED Light",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734956647_rqd82",
+    "timestamp": "2026-08-14T19:15:56.647Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07RPLT5T6",
+      "title": "Buy AO Smith Geyser 15 Ltr With 5 Star BEE Rating, Vertical Water Heater | Geyser 15+ Litre For High Rise Building | 7 Year Tank Warranty, 2 Year Comprehensive Warranty | SDS-GREEN-015 Online at Low Prices in India",
+      "price": 9499,
+      "affiliate_url": "https://www.amazon.in/dp/B07RPLT5T6?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734956647_9yg2g",
+    "timestamp": "2026-08-14T19:15:56.647Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07RPLT5T6",
+      "title": "Buy AO Smith Geyser 15 Ltr With 5 Star BEE Rating, Vertical Water Heater | Geyser 15+ Litre For High Rise Building | 7 Year Tank Warranty, 2 Year Comprehensive Warranty | SDS-GREEN-015 Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734956646_2xctu",
+    "timestamp": "2026-08-14T19:15:56.646Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B07RPLT5T6",
+      "title": "Buy AO Smith Geyser 15 Ltr With 5 Star BEE Rating, Vertical Water Heater | Geyser 15+ Litre For High Rise Building | 7 Year Tank Warranty, 2 Year Comprehensive Warranty | SDS-GREEN-015 Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734952500_5n8bj",
+    "timestamp": "2026-08-14T19:15:52.500Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GNGZ6FBB",
+      "title": "LiMETRO STEEL Foldable Clothes Drying Stand for Balcony & Indoor Use | Heavy Duty Mild Steel Laundry Rack | Space Saving Folding Cloth Dryer Stand | Black",
+      "price": 1599,
+      "affiliate_url": "https://www.amazon.in/dp/B0GNGZ6FBB?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734952500_3cdmh",
+    "timestamp": "2026-08-14T19:15:52.500Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GNGZ6FBB",
+      "title": "LiMETRO STEEL Foldable Clothes Drying Stand for Balcony & Indoor Use | Heavy Duty Mild Steel Laundry Rack | Space Saving Folding Cloth Dryer Stand | Black",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734952499_bxrg9",
+    "timestamp": "2026-08-14T19:15:52.499Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0GNGZ6FBB",
+      "title": "LiMETRO STEEL Foldable Clothes Drying Stand for Balcony & Indoor Use | Heavy Duty Mild Steel Laundry Rack | Space Saving Folding Cloth Dryer Stand | Black",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734950494_xp85a",
+    "timestamp": "2026-08-14T19:15:50.494Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CCPPTB93",
+      "title": "MAXOSHINE Microfiber Bath Towel Large Size with Hook",
+      "price": 283,
+      "affiliate_url": "https://www.amazon.in/dp/B0CCPPTB93?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734950494_udy7g",
+    "timestamp": "2026-08-14T19:15:50.494Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CCPPTB93",
+      "title": "MAXOSHINE Microfiber Bath Towel Large Size with Hook",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734950493_ao3gb",
+    "timestamp": "2026-08-14T19:15:50.493Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CCPPTB93",
+      "title": "MAXOSHINE Microfiber Bath Towel Large Size with Hook",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734948470_k9tql",
+    "timestamp": "2026-08-14T19:15:48.470Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BTD4S4XF",
+      "title": "Buy American Tourister Valex | 28L Backpack | 17\" Laptop Bag | 2 Compartments | College & Office Backpack for Men and Women | Black | 1 Year Global Warranty at Amazon.in",
+      "price": 1299,
+      "affiliate_url": "https://www.amazon.in/dp/B0BTD4S4XF?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734948469_jz8cr",
+    "timestamp": "2026-08-14T19:15:48.469Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BTD4S4XF",
+      "title": "Buy American Tourister Valex | 28L Backpack | 17\" Laptop Bag | 2 Compartments | College & Office Backpack for Men and Women | Black | 1 Year Global Warranty at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734948468_x00p6",
+    "timestamp": "2026-08-14T19:15:48.468Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0BTD4S4XF",
+      "title": "Buy American Tourister Valex | 28L Backpack | 17\" Laptop Bag | 2 Compartments | College & Office Backpack for Men and Women | Black | 1 Year Global Warranty at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734946437_am8tj",
+    "timestamp": "2026-08-14T19:15:46.437Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0G596SGTJ",
+      "title": "Buy Crocs Women&#x27;s Baya Platform Clog Barely Pink 3 Women at Amazon.in",
+      "price": 4196,
+      "affiliate_url": "https://www.amazon.in/dp/B0G596SGTJ?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734946434_qkrti",
+    "timestamp": "2026-08-14T19:15:46.434Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0G596SGTJ",
+      "title": "Buy Crocs Women&#x27;s Baya Platform Clog Barely Pink 3 Women at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734946433_xu8ro",
+    "timestamp": "2026-08-14T19:15:46.433Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0G596SGTJ",
+      "title": "Buy Crocs Women&#x27;s Baya Platform Clog Barely Pink 3 Women at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734944481_o7gcg",
+    "timestamp": "2026-08-14T19:15:44.481Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H4DBCKWB",
+      "title": "Buy Campus Men&#x27;s GC-4035 Clogs - NAVY/P.GREEN 9UK/India 1 Pair at Amazon.in",
+      "price": 1219,
+      "affiliate_url": "https://www.amazon.in/dp/B0H4DBCKWB?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734944481_x1tv0",
+    "timestamp": "2026-08-14T19:15:44.481Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H4DBCKWB",
+      "title": "Buy Campus Men&#x27;s GC-4035 Clogs - NAVY/P.GREEN 9UK/India 1 Pair at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734944480_f5ee4",
+    "timestamp": "2026-08-14T19:15:44.480Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H4DBCKWB",
+      "title": "Buy Campus Men&#x27;s GC-4035 Clogs - NAVY/P.GREEN 9UK/India 1 Pair at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734942620_jj7zr",
+    "timestamp": "2026-08-14T19:15:42.620Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H7S93Q4Q",
+      "title": "FLYNGO Umbrella for Rain Big Size with Carabiner Handle, UV Coated 3-Fold Travel Umbrella for Sun Protection, Windproof Reinforced 10 Dual Ribs, Automatic Open/Close (Beige)",
+      "price": 545,
+      "affiliate_url": "https://www.amazon.in/dp/B0H7S93Q4Q?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734942619_kqwwf",
+    "timestamp": "2026-08-14T19:15:42.619Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H7S93Q4Q",
+      "title": "FLYNGO Umbrella for Rain Big Size with Carabiner Handle, UV Coated 3-Fold Travel Umbrella for Sun Protection, Windproof Reinforced 10 Dual Ribs, Automatic Open/Close (Beige)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734942618_6b5es",
+    "timestamp": "2026-08-14T19:15:42.618Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0H7S93Q4Q",
+      "title": "FLYNGO Umbrella for Rain Big Size with Carabiner Handle, UV Coated 3-Fold Travel Umbrella for Sun Protection, Windproof Reinforced 10 Dual Ribs, Automatic Open/Close (Beige)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734940505_kuvl9",
+    "timestamp": "2026-08-14T19:15:40.505Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CPSLYDRD",
+      "title": "Buy Citizen Reversible Raincoat for Women with Inbuilt Hood, Waist Belt & Matching Carry Pouch | Stylish Polka Dot Design | Durable & Lightweight Rainsuit with High Tearing Strength | Teal, 2XL at Amazon.in",
+      "price": 999,
+      "affiliate_url": "https://www.amazon.in/dp/B0CPSLYDRD?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734940504_dofod",
+    "timestamp": "2026-08-14T19:15:40.504Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CPSLYDRD",
+      "title": "Buy Citizen Reversible Raincoat for Women with Inbuilt Hood, Waist Belt & Matching Carry Pouch | Stylish Polka Dot Design | Durable & Lightweight Rainsuit with High Tearing Strength | Teal, 2XL at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734940503_i8wl6",
+    "timestamp": "2026-08-14T19:15:40.503Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CPSLYDRD",
+      "title": "Buy Citizen Reversible Raincoat for Women with Inbuilt Hood, Waist Belt & Matching Carry Pouch | Stylish Polka Dot Design | Durable & Lightweight Rainsuit with High Tearing Strength | Teal, 2XL at Amazon.in",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734938604_02tay",
+    "timestamp": "2026-08-14T19:15:38.604Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08947GQCM",
+      "title": "Buy ZEEL Rain Coat for Men Waterproof for Bike Riders with Adjustable Hood Along with Inner Pockets,Waterproof Raincoat with Polyester Jacket,Pants and Waterproof Drawstring Bag,AZ05 Black-Green XL Online at Low Prices in India",
+      "price": 1885,
+      "affiliate_url": "https://www.amazon.in/dp/B08947GQCM?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734938604_bflvv",
+    "timestamp": "2026-08-14T19:15:38.604Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08947GQCM",
+      "title": "Buy ZEEL Rain Coat for Men Waterproof for Bike Riders with Adjustable Hood Along with Inner Pockets,Waterproof Raincoat with Polyester Jacket,Pants and Waterproof Drawstring Bag,AZ05 Black-Green XL Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734938603_hvysp",
+    "timestamp": "2026-08-14T19:15:38.603Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08947GQCM",
+      "title": "Buy ZEEL Rain Coat for Men Waterproof for Bike Riders with Adjustable Hood Along with Inner Pockets,Waterproof Raincoat with Polyester Jacket,Pants and Waterproof Drawstring Bag,AZ05 Black-Green XL Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734936602_7d0ws",
+    "timestamp": "2026-08-14T19:15:36.602Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B089GM5Q7Z",
+      "title": "Destinio Umbrella for Man - Large Size 23 inch, Fully Automatic, Windproof Fibreglass Ribs, UPF 50+ Sun Protection, Premium 210T Pongee, Foldable Travel Umbrella for Rain for Men and Women - 3 fold Compact, Black (Auto open auto close)",
+      "price": 999,
+      "affiliate_url": "https://www.amazon.in/dp/B089GM5Q7Z?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734936602_b0903",
+    "timestamp": "2026-08-14T19:15:36.602Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B089GM5Q7Z",
+      "title": "Destinio Umbrella for Man - Large Size 23 inch, Fully Automatic, Windproof Fibreglass Ribs, UPF 50+ Sun Protection, Premium 210T Pongee, Foldable Travel Umbrella for Rain for Men and Women - 3 fold Compact, Black (Auto open auto close)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734936601_ft5t2",
+    "timestamp": "2026-08-14T19:15:36.601Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B089GM5Q7Z",
+      "title": "Destinio Umbrella for Man - Large Size 23 inch, Fully Automatic, Windproof Fibreglass Ribs, UPF 50+ Sun Protection, Premium 210T Pongee, Foldable Travel Umbrella for Rain for Men and Women - 3 fold Compact, Black (Auto open auto close)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734934354_cyq83",
+    "timestamp": "2026-08-14T19:15:34.354Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "price": 82990,
+      "affiliate_url": "https://www.amazon.in/dp/B08N5XSG8Z?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734934354_qbw65",
+    "timestamp": "2026-08-14T19:15:34.354Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734934353_it404",
+    "timestamp": "2026-08-14T19:15:34.353Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734932635_uxwv7",
+    "timestamp": "2026-08-14T19:15:32.635Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "price": 999,
+      "affiliate_url": "https://www.amazon.in/dp/B007V9U81E?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734932635_pvs92",
+    "timestamp": "2026-08-14T19:15:32.635Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734932634_k5fzy",
+    "timestamp": "2026-08-14T19:15:32.634Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734931030_dx4fa",
+    "timestamp": "2026-08-14T19:15:31.030Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "price": 1230,
+      "affiliate_url": "https://www.amazon.in/dp/B0F7M3Q8DV?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734931029_5yozk",
+    "timestamp": "2026-08-14T19:15:31.029Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734931029_q6oij",
+    "timestamp": "2026-08-14T19:15:31.029Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734928999_7x3cu",
+    "timestamp": "2026-08-14T19:15:28.999Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "price": 150900,
+      "affiliate_url": "https://www.amazon.in/dp/B0CHX1W1XY?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734928996_fvqc0",
+    "timestamp": "2026-08-14T19:15:28.996Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734928995_tq8v7",
+    "timestamp": "2026-08-14T19:15:28.995Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734926490_5ni1i",
+    "timestamp": "2026-08-14T19:15:26.490Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "price": 2599,
+      "affiliate_url": "https://www.amazon.in/dp/B0756K5DYZ?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734926490_0c68q",
+    "timestamp": "2026-08-14T19:15:26.490Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734926489_fjezz",
+    "timestamp": "2026-08-14T19:15:26.489Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734924535_unb5t",
+    "timestamp": "2026-08-14T19:15:24.535Z",
+    "eventType": "PRODUCT_VERIFIED_AND_PUBLISHED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "price": 7299,
+      "affiliate_url": "https://www.amazon.in/dp/B097RJ867P?tag=nagireddy0e-21",
+      "method": "1-to-1 Validator Tool"
+    }
+  },
+  {
+    "id": "log_1786734924534_xml9l",
+    "timestamp": "2026-08-14T19:15:24.534Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734924533_etlxk",
+    "timestamp": "2026-08-14T19:15:24.533Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734922330_qe1ht",
+    "timestamp": "2026-08-14T19:15:22.330Z",
+    "eventType": "AUTO_CURATION_STARTED",
+    "status": "SUCCESS",
+    "details": {
+      "totalCandidates": 25,
+      "anchorCount": 13,
+      "liveDiscoveredCount": 72
+    }
+  },
+  {
+    "id": "log_1786734921422_4koo6",
+    "timestamp": "2026-08-14T19:15:21.422Z",
+    "eventType": "VERIFIED_CATALOG_LOADED",
+    "status": "SUCCESS",
+    "details": {
+      "total_in_file": 6,
+      "loaded": 6,
+      "source": "verified-products.json"
+    }
+  },
+  {
+    "id": "log_1786734921422_05ddt",
+    "timestamp": "2026-08-14T19:15:21.422Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B08N5XSG8Z",
+      "title": "Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734921421_345wt",
+    "timestamp": "2026-08-14T19:15:21.421Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B007V9U81E",
+      "title": "Kingston Digital 16GB DataTraveler Micro USB 2.0 (DTMCK/16 GB)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734921421_y6rjb",
+    "timestamp": "2026-08-14T19:15:21.421Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0CHX1W1XY",
+      "title": "Apple iPhone 15",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734921420_qhabe",
+    "timestamp": "2026-08-14T19:15:21.420Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0756K5DYZ",
+      "title": "Buy Prestige Iris 750 Watt Mixer Grinder with 3 Stainless Steel Jar + 1 Juicer Jar (White and Blue) Online at Low Prices in India",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734921420_2nq85",
+    "timestamp": "2026-08-14T19:15:21.420Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B097RJ867P",
+      "title": "PHILIPS Digital Airfryer HD9252/90 with Touch Panel, 4.1 Litre, Large",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734921419_f6zys",
+    "timestamp": "2026-08-14T19:15:21.419Z",
+    "eventType": "PRODUCT_INTEGRITY_PASS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "status": "PASS",
+      "failedSteps": []
+    }
+  },
+  {
+    "id": "log_1786734500258_7qiva",
+    "timestamp": "2026-08-14T19:08:20.258Z",
+    "eventType": "PRODUCT_LOOKUP_SUCCESS",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV",
+      "title": "boAt Rockerz 421, 60H Battery, Low Latency(40Ms), 40Mm Drivers, ENx Tech, Stream Ad Free Music via App Support, Bluetooth Headphones, Wireless Over Ear Headphone with Mic (Black Sabre)",
+      "image": "Found",
+      "affiliate_url": "https://www.amazon.in/dp/B0F7M3Q8DV?tag=nagireddy0e-21"
+    }
+  },
+  {
+    "id": "log_1786734498044_3trra",
+    "timestamp": "2026-08-14T19:08:18.044Z",
+    "eventType": "PRODUCT_LOOKUP_INITIATED",
+    "status": "SUCCESS",
+    "details": {
+      "asin": "B0F7M3Q8DV"
+    }
+  },
+  {
     "id": "log_1786734436761_w4vx4",
     "timestamp": "2026-08-14T19:07:16.761Z",
     "eventType": "SERVER_STARTED",
