@@ -1,5 +1,135 @@
 [
   {
+    "id": "delta_1786774276196",
+    "asin": "B0FMDL81GS",
+    "title": "OnePlus Nord Buds 3r TWS Earbuds up to 54 Hours Playback, 2-mic Clear Calls, 3D Spatial Audio, AI Translation, 12.4mm Drivers, Dual-Device Connectivity, 47ms Low Latency - Ash Black",
+    "oldPrice": 1799,
+    "newPrice": 1767,
+    "diff": -32,
+    "percentChange": "-1.8",
+    "timestamp": "2026-08-15T06:11:16.196Z"
+  },
+  {
+    "id": "delta_1786774268274",
+    "asin": "B0H8PRXFLY",
+    "title": "Nothing Phone (4b), White (8GB, 128GB)",
+    "oldPrice": 31799,
+    "newPrice": 31790,
+    "diff": -9,
+    "percentChange": "-0.0",
+    "timestamp": "2026-08-15T06:11:08.274Z"
+  },
+  {
+    "id": "delta_1786774266073",
+    "asin": "B0H8Y2FFDN",
+    "title": "Nothing Phone (4b), Blue (8GB, 128GB)",
+    "oldPrice": 31899,
+    "newPrice": 31898,
+    "diff": -1,
+    "percentChange": "-0.0",
+    "timestamp": "2026-08-15T06:11:06.073Z"
+  },
+  {
+    "id": "delta_1786774252059",
+    "asin": "B0GL873FSD",
+    "title": "Samsung Galaxy S26 5G (Cobalt Violet, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 73999,
+    "newPrice": 72990,
+    "diff": -1009,
+    "percentChange": "-1.4",
+    "timestamp": "2026-08-15T06:10:52.059Z"
+  },
+  {
+    "id": "delta_1786774248009",
+    "asin": "B0HDQ8N2PF",
+    "title": "Samsung Galaxy Z Fold8 5G Smartphone with Galaxy AI (Graphite, 12GB RAM, 256GB Storage) + Samsung Care Services Damage Protection Plan for 1 Year",
+    "oldPrice": 187998,
+    "newPrice": 182998,
+    "diff": -5000,
+    "percentChange": "-2.7",
+    "timestamp": "2026-08-15T06:10:48.009Z"
+  },
+  {
+    "id": "delta_1786774246254",
+    "asin": "B0HDQPMVP6",
+    "title": "Samsung Galaxy Z Fold8 5G Smartphone with Galaxy AI (Cream, 12GB RAM, 256GB Storage) + Samsung Care Services Damage Protection Plan for 1 Year",
+    "oldPrice": 187998,
+    "newPrice": 182998,
+    "diff": -5000,
+    "percentChange": "-2.7",
+    "timestamp": "2026-08-15T06:10:46.254Z"
+  },
+  {
+    "id": "delta_1786774244541",
+    "asin": "B0H6WLQJNS",
+    "title": "Samsung Galaxy Z Fold8 5G Smartphone with Galaxy AI (Lavender, 16GB RAM, 1TB Storage), All New Shape, Content Native Ratio, 4800mAh Battery, Dual 50MP Camera, Now Nudge, Photo Assist",
+    "oldPrice": 239999,
+    "newPrice": 234999,
+    "diff": -5000,
+    "percentChange": "-2.1",
+    "timestamp": "2026-08-15T06:10:44.541Z"
+  },
+  {
+    "id": "delta_1786774242687",
+    "asin": "B0HDQ66T6P",
+    "title": "Samsung Galaxy Z Fold8 Ultra 5G Smartphone with Galaxy AI (Violet Shadow, 12GB RAM, 256GB Storage) + Samsung Care Services Damage Protection Plan for 1 Year",
+    "oldPrice": 207998,
+    "newPrice": 202998,
+    "diff": -5000,
+    "percentChange": "-2.4",
+    "timestamp": "2026-08-15T06:10:42.687Z"
+  },
+  {
+    "id": "delta_1786774240896",
+    "asin": "B0H6WFYFCW",
+    "title": "Samsung Galaxy Z Fold8 Ultra 5G Smartphone with Galaxy AI (Cream, 12GB RAM, 256GB Storage), Customised Processor, 5000mAh Battery, 200MP Camera, Now Nudge, Photo Assist",
+    "oldPrice": 199999,
+    "newPrice": 194999,
+    "diff": -5000,
+    "percentChange": "-2.5",
+    "timestamp": "2026-08-15T06:10:40.896Z"
+  },
+  {
+    "id": "delta_1786774227797",
+    "asin": "B0GLGYF3RD",
+    "title": "Samsung Galaxy S26 Ultra 5G (White, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 118999,
+    "newPrice": 117999,
+    "diff": -1000,
+    "percentChange": "-0.8",
+    "timestamp": "2026-08-15T06:10:27.797Z"
+  },
+  {
+    "id": "delta_1786774188657",
+    "asin": "B0DVC72DF8",
+    "title": "Samsung Galaxy S25 Ultra 5G",
+    "oldPrice": 92000,
+    "newPrice": 92500,
+    "diff": 500,
+    "percentChange": "0.5",
+    "timestamp": "2026-08-15T06:09:48.657Z"
+  },
+  {
+    "id": "delta_1786774186667",
+    "asin": "B0DVC8FPVJ",
+    "title": "Samsung Galaxy S25 Ultra 5G",
+    "oldPrice": 91180,
+    "newPrice": 91990,
+    "diff": 810,
+    "percentChange": "0.9",
+    "timestamp": "2026-08-15T06:09:46.667Z"
+  },
+  {
+    "id": "delta_1786774184560",
+    "asin": "B0DVC6VC7P",
+    "title": "Samsung Galaxy S25 Ultra 5G",
+    "oldPrice": 93000,
+    "newPrice": 92500,
+    "diff": -500,
+    "percentChange": "-0.5",
+    "timestamp": "2026-08-15T06:09:44.560Z"
+  },
+  {
     "id": "delta_1786743168683",
     "asin": "B097RJ867P",
     "title": "Philips Digital Air Fryer HD9252/90 with Rapid Air Technology, 4.1L",
