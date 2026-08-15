@@ -90,6 +90,20 @@ ${itemsXml}
   }
 });
 
+// Pinterest Bulk Upload CSV Generator & Download Endpoint
+const { generatePinterestCsv } = require('./lib/pinterest-csv-generator');
+app.get(['/api/download/pinterest-pins.csv', '/pinterest-pins.csv', '/api/pinterest-csv'], (req, res) => {
+  try {
+    const { csvContent } = generatePinterestCsv('Best Deals on Amazon');
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', 'attachment; filename="pinterest-bulk-pins.csv"');
+    res.send(csvContent);
+  } catch (err) {
+    console.error('Error serving Pinterest CSV:', err);
+    res.status(500).send('Error generating Pinterest CSV');
+  }
+});
+
 // ----------------------------------------------------
 // PUBLIC API (Portfolio 1)
 // ----------------------------------------------------
