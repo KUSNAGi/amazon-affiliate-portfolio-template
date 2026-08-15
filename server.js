@@ -23,6 +23,73 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Static Files: Private Admin Portfolio 2
 app.use('/admin', express.static(path.join(__dirname, 'admin')));
 
+// Public Legal Pages
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacy.html'));
+});
+
+app.get('/terms', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacy.html'));
+});
+
+// Pinterest Auto-Publish RSS 2.0 XML Feed
+app.get(['/api/pinterest-feed.xml', '/api/pinterest-feed', '/feed.xml'], (req, res) => {
+  try {
+    const products = cacheStore.getAllProducts().filter(p => p.in_stock && p.current_price > 0);
+    const host = 'https://nkiax.vercel.app';
+
+    const itemsXml = products.slice(0, 60).map(p => {
+      const cleanTitle = (p.title || 'Curated Amazon Deal')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+      const affLink = p.affiliate_url || `https://www.amazon.in/dp/${p.asin}?tag=nagireddy0e-21`;
+      const imgUrl = p.image_url || 'https://m.media-amazon.com/images/I/31at6m6WP0L.jpg';
+      const formattedPrice = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(p.current_price);
+      const discount = p.list_price && p.list_price > p.current_price ? ` (${Math.round((p.list_price - p.current_price) / p.list_price * 100)}% OFF)` : '';
+
+      const desc = `${cleanTitle} - Now only ${formattedPrice}${discount} on Amazon.in! Rated ${p.rating}★ (${p.reviews_count || 100}+ reviews). Curated by NKiaX. #ad #AmazonDeals #DailyDeals #${p.brand ? p.brand.replace(/[^a-zA-Z0-9]/g, '') : 'BestDeals'}`
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      const pubDate = new Date(p.verified_at || Date.now()).toUTCString();
+
+      return `
+    <item>
+      <title>${cleanTitle}</title>
+      <link>${affLink}</link>
+      <guid isPermaLink="true">${affLink}</guid>
+      <description>${desc}</description>
+      <enclosure url="${imgUrl}" type="image/jpeg" length="1024" />
+      <media:content url="${imgUrl}" medium="image" />
+      <pubDate>${pubDate}</pubDate>
+    </item>`;
+    }).join('\n');
+
+    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NKiaX Curated Picks — Top Amazon Today's Deals</title>
+    <link>${host}</link>
+    <description>Daily verified 4+ star deals and handpicked electronics and home essentials from Amazon.in with live prices.</description>
+    <language>en-in</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${host}/api/pinterest-feed.xml" rel="self" type="application/rss+xml" />
+${itemsXml}
+  </channel>
+</rss>`;
+
+    res.set('Content-Type', 'application/xml; charset=utf-8');
+    res.set('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+    return res.send(rssXml);
+  } catch (err) {
+    console.error('Error generating Pinterest RSS feed:', err);
+    res.status(500).set('Content-Type', 'text/plain').send('Error generating RSS feed');
+  }
+});
+
 // ----------------------------------------------------
 // PUBLIC API (Portfolio 1)
 // ----------------------------------------------------

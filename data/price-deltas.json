@@ -1,5 +1,175 @@
 [
   {
+    "id": "delta_1786788832132",
+    "asin": "B0DSFTRX77",
+    "title": "Samsung Galaxy 45W Travel Adaptor (Without Cable), Black",
+    "oldPrice": 994,
+    "newPrice": 990,
+    "diff": -4,
+    "percentChange": "-0.4",
+    "timestamp": "2026-08-15T10:13:52.132Z"
+  },
+  {
+    "id": "delta_1786788762040",
+    "asin": "B0GLGVG814",
+    "title": "Samsung Galaxy S26 Ultra 5G (Cobalt Violet, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 119299,
+    "newPrice": 119230,
+    "diff": -69,
+    "percentChange": "-0.1",
+    "timestamp": "2026-08-15T10:12:42.040Z"
+  },
+  {
+    "id": "delta_1786788667074",
+    "asin": "B0H8Y2FFDN",
+    "title": "Nothing Phone (4b), Blue (8GB, 128GB)",
+    "oldPrice": 31898,
+    "newPrice": 32622,
+    "diff": 724,
+    "percentChange": "2.3",
+    "timestamp": "2026-08-15T10:11:07.074Z"
+  },
+  {
+    "id": "delta_1786788655809",
+    "asin": "B0GL8LDFF4",
+    "title": "Samsung Galaxy S26 5G (Sky Blue, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 79999,
+    "newPrice": 73000,
+    "diff": -6999,
+    "percentChange": "-8.7",
+    "timestamp": "2026-08-15T10:10:55.809Z"
+  },
+  {
+    "id": "delta_1786788653986",
+    "asin": "B0GL873FSD",
+    "title": "Samsung Galaxy S26 5G (Cobalt Violet, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 72990,
+    "newPrice": 79999,
+    "diff": 7009,
+    "percentChange": "9.6",
+    "timestamp": "2026-08-15T10:10:53.986Z"
+  },
+  {
+    "id": "delta_1786788629517",
+    "asin": "B0GLGYF3RD",
+    "title": "Samsung Galaxy S26 Ultra 5G (White, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 117999,
+    "newPrice": 118900,
+    "diff": 901,
+    "percentChange": "0.8",
+    "timestamp": "2026-08-15T10:10:29.517Z"
+  },
+  {
+    "id": "delta_1786788627630",
+    "asin": "B0GLH9DPLD",
+    "title": "Samsung Galaxy S26 Ultra 5G (Sky Blue, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 117970,
+    "newPrice": 124999,
+    "diff": 7029,
+    "percentChange": "6.0",
+    "timestamp": "2026-08-15T10:10:27.630Z"
+  },
+  {
+    "id": "delta_1786788625792",
+    "asin": "B0GLH1M7SK",
+    "title": "Samsung Galaxy S26 Ultra 5G (Black, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 118970,
+    "newPrice": 118969,
+    "diff": -1,
+    "percentChange": "-0.0",
+    "timestamp": "2026-08-15T10:10:25.792Z"
+  },
+  {
+    "id": "delta_1786788589793",
+    "asin": "B0DVC72DF8",
+    "title": "Samsung Galaxy S25 Ultra 5G",
+    "oldPrice": 92500,
+    "newPrice": 92450,
+    "diff": -50,
+    "percentChange": "-0.1",
+    "timestamp": "2026-08-15T10:09:49.793Z"
+  },
+  {
+    "id": "delta_1786788587854",
+    "asin": "B0DVC8FPVJ",
+    "title": "Samsung Galaxy S25 Ultra 5G",
+    "oldPrice": 91980,
+    "newPrice": 91180,
+    "diff": -800,
+    "percentChange": "-0.9",
+    "timestamp": "2026-08-15T10:09:47.855Z"
+  },
+  {
+    "id": "delta_1786781469673",
+    "asin": "B0H8PRXFLY",
+    "title": "Nothing Phone (4b), White (8GB, 128GB)",
+    "oldPrice": 31790,
+    "newPrice": 31789,
+    "diff": -1,
+    "percentChange": "-0.0",
+    "timestamp": "2026-08-15T08:11:09.673Z"
+  },
+  {
+    "id": "delta_1786781457837",
+    "asin": "B0GL8BYCVM",
+    "title": "Samsung Galaxy S26 5G (White, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 73950,
+    "newPrice": 79000,
+    "diff": 5050,
+    "percentChange": "6.8",
+    "timestamp": "2026-08-15T08:10:57.837Z"
+  },
+  {
+    "id": "delta_1786781455970",
+    "asin": "B0GL8LDFF4",
+    "title": "Samsung Galaxy S26 5G (Sky Blue, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 73000,
+    "newPrice": 79999,
+    "diff": 6999,
+    "percentChange": "9.6",
+    "timestamp": "2026-08-15T08:10:55.970Z"
+  },
+  {
+    "id": "delta_1786781427599",
+    "asin": "B0GLH9DPLD",
+    "title": "Samsung Galaxy S26 Ultra 5G (Sky Blue, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 117990,
+    "newPrice": 117970,
+    "diff": -20,
+    "percentChange": "-0.0",
+    "timestamp": "2026-08-15T08:10:27.599Z"
+  },
+  {
+    "id": "delta_1786781425443",
+    "asin": "B0GLH1M7SK",
+    "title": "Samsung Galaxy S26 Ultra 5G (Black, 12GB RAM, 256GB Storage)_with Other Offers",
+    "oldPrice": 119000,
+    "newPrice": 118970,
+    "diff": -30,
+    "percentChange": "-0.0",
+    "timestamp": "2026-08-15T08:10:25.443Z"
+  },
+  {
+    "id": "delta_1786781387194",
+    "asin": "B0DVC8FPVJ",
+    "title": "Samsung Galaxy S25 Ultra 5G",
+    "oldPrice": 91990,
+    "newPrice": 91980,
+    "diff": -10,
+    "percentChange": "-0.0",
+    "timestamp": "2026-08-15T08:09:47.194Z"
+  },
+  {
+    "id": "delta_1786781369264",
+    "asin": "B0CPSLYDRD",
+    "title": "Buy Citizen Reversible Raincoat for Women with Inbuilt Hood, Waist Belt & Matching Carry Pouch | Stylish Polka Dot Design | Durable & Lightweight Rainsuit with High Tearing Strength | Teal, 2XL at Amazon.in",
+    "oldPrice": 999,
+    "newPrice": 899,
+    "diff": -100,
+    "percentChange": "-10.0",
+    "timestamp": "2026-08-15T08:09:29.264Z"
+  },
+  {
     "id": "delta_1786774276196",
     "asin": "B0FMDL81GS",
     "title": "OnePlus Nord Buds 3r TWS Earbuds up to 54 Hours Playback, 2-mic Clear Calls, 3D Spatial Audio, AI Translation, 12.4mm Drivers, Dual-Device Connectivity, 47ms Low Latency - Ash Black",
