@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio 2 — Private Supervisor Dashboard</title>
+  <meta name="referrer" content="no-referrer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Full-Screen Private Owner Security Lock Screen -->
+  <div id="adminAuthOverlay" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-shield">🔒</div>
+        <h2>Portfolio 2 — Private Supervisor</h2>
+        <p class="auth-subtitle">Restricted Access &bull; Authorized Owner Only</p>
+      </div>
+
+      <form id="adminAuthForm" class="auth-form">
+        <div class="form-group">
+          <label for="adminSecretInput">Owner Master Security Key:</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="password" id="adminSecretInput" class="form-control form-control-lg" placeholder="••••••••••••••••••••" autocomplete="current-password" required style="padding-right: 48px; width: 100%;">
+            <button type="button" id="togglePasswordVisibilityBtn" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--text-dim); padding: 0.25rem; z-index: 10;" title="Show/Hide Password">👁️</button>
+          </div>
+        </div>
+
+        <div id="authStatusMsg" class="auth-error-msg" style="display: none;"></div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="adminAuthSubmitBtn">
+          🔓 Unlock Private Portfolio 2
+        </button>
+      </form>
+
+      <div class="auth-footer-notice">
+        🛡️ <strong>Security Watchdog Active:</strong> All unauthorized login attempts are logged with IP address and timestamp in the immutable audit trail.
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-layout" id="adminLayout" style="display: none;">
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <span class="shield-badge">🔒</span>
+        <div class="brand-text">
+          <h2>Portfolio 2</h2>
+          <span class="brand-tag">Private Supervisor</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="validator">
+          🛡️ 1-to-1 Product Validator
+        </button>
+        <button class="nav-item" data-tab="catalog">
+          📦 Verified Catalog
+        </button>
+        <button class="nav-item" data-tab="overview">
+          📊 System Overview
+        </button>
+        <button class="nav-item" data-tab="audit">
+          📜 Audit Trail
+        </button>
+        <button class="nav-item" data-tab="deltas">
+          📉 Price Deltas
+        </button>
+        <button class="nav-item" data-tab="pinterest">
+          📌 Pinterest Publisher
+        </button>
+        <button class="nav-item" data-tab="feedback">
+          💬 Customer Feedback
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="account-pill">
+          <span class="dot-online"></span>
+          <div>
+            <div class="acc-name">Administrator</div>
+            <div class="acc-tag">Tag: Configured in .env</div>
+          </div>
+        </div>
+        <button id="changePasswordModalBtn" class="lock-dash-btn" style="background: rgba(255,255,255,0.05); margin-bottom: 0.5rem; color: var(--gold-accent);">🔑 Change Password</button>
+        <button id="lockDashboardBtn" class="lock-dash-btn">🔒 Lock Dashboard (Logout)</button>
+        <a href="/" target="_blank" class="view-public-btn">Open Public Portfolio 1 ↗</a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <!-- Safe-Fail Guardian & 5-Hour Health Status Banner -->
+      <div id="safeFailBanner" class="safe-fail-banner" style="display: none;">
+        <div class="safe-fail-content">
+          <span class="safe-fail-icon">🚨</span>
+          <div>
+            <strong id="safeFailTitle">EMERGENCY SAFE-FAIL HALT ACTIVE</strong>
+            <p id="safeFailDesc">System operations are locked. Security alert dispatched to Owner.</p>
+          </div>
+        </div>
+        <button id="resetSafeFailBtn" class="btn btn-danger btn-sm">Clear Safe-Fail Lock (Owner Override)</button>
+      </div>
+
+      <div class="health-status-strip" id="healthStatusStrip">
+        <div class="health-pill">
+          <span class="dot-online"></span>
+          <span>Guardian: <strong id="systemHealthText">HEALTHY (100% COMPLIANT)</strong></span>
+        </div>
+        <div class="health-meta">
+          <span>5-Hour Audit: <strong id="lastHealthAuditTime">Checking...</strong></span>
+          &bull; <span>Compliance Loop: <strong>Every 2 Hours</strong></span>
+          &bull; <span>Safe-Fail Defense: <strong>ACTIVE</strong></span>
+        </div>
+      </div>
+
+      <header class="admin-topbar">
+        <div class="topbar-title">
+          <h1 id="pageTitle">🛡️ 1-to-1 Product & ASIN Validator</h1>
+          <p class="topbar-sub" id="pageSub">Automated daily deal curation & 1-to-1 verification pipeline</p>
+        </div>
+        <div class="topbar-actions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button id="runPriceSyncBtn" class="btn btn-secondary btn-sm">
+            🔄 2-Hour Price Sync
+          </button>
+          <button id="runHealthAuditBtn" class="btn btn-secondary btn-sm">
+            🛡️ 5-Hour Health Audit
+          </button>
+          <button id="autoCurateTopBtn" class="btn btn-warning btn-sm">
+            ⚡ 1-Click Auto-Curate Deals
+          </button>
+        </div>
+      </header>
+
+      <!-- ======================================== -->
+      <!-- TAB: 1-TO-1 VALIDATOR (PRIMARY GATE)     -->
+      <!-- ======================================== -->
+      <section class="tab-panel active" id="tabValidator">
+        <div class="card panel-card">
+          <div class="panel-head">
+            <h3>Step 1: Enter Product ASIN</h3>
+            <span class="badge-status-tag">Gateway — One Product at a Time</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">Enter the 10-character ASIN of the product you want to add. The system will look it up on the real Amazon.in product page and extract its verified details.</p>
+
+            <div class="lookup-form">
+              <div class="input-group">
+                <label for="lookupAsin">Product ASIN (10 Characters):</label>
+                <input type="text" id="lookupAsin" placeholder="e.g. B00SAMPLE1" class="form-control form-control-lg" maxlength="10">
+              </div>
+              <button id="lookupBtn" class="btn btn-primary">🔍 Look Up on Amazon.in</button>
+            </div>
+
+            <div id="lookupStatus" class="lookup-status" style="display: none;"></div>
+          </div>
+        </div>
+
+        <!-- Step 2: Review Lookup Results (hidden until lookup completes) -->
+        <div class="card panel-card" id="reviewPanel" style="display: none;">
+          <div class="panel-head">
+            <h3>Step 2: Review & Complete Product Details</h3>
+            <span class="badge-status-tag review-tag">Awaiting Your Confirmation</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">The system found this product on Amazon.in. Review the details below. Fill in the remaining fields (rating, price, category). Then run the integrity check.</p>
+
+            <!-- Verified Product Preview -->
+            <div class="product-preview" id="productPreview">
+              <div class="preview-image-wrap">
+                <img id="previewImage" src="" alt="Product" referrerpolicy="no-referrer" class="preview-img">
+              </div>
+              <div class="preview-info">
+                <div class="preview-asin" id="previewAsin"></div>
+                <h3 class="preview-title" id="previewTitle"></h3>
+                <div class="preview-meta-grid">
+                  <div class="meta-item"><span class="meta-label">Brand:</span> <span id="previewBrand" class="meta-val">-</span></div>
+                  <div class="meta-item"><span class="meta-label">Category:</span> <span id="previewCategory" class="meta-val">-</span></div>
+                  <div class="meta-item"><span class="meta-label">Rating:</span> <span id="previewRating" class="meta-val">-</span></div>
+                  <div class="meta-item"><span class="meta-label">Price:</span> <span id="previewPrice" class="meta-val highlight">-</span></div>
+                </div>
+                <div class="preview-link-wrap">
+                  <span class="meta-label">1-to-1 Canonical Affiliate Link:</span>
+                  <a id="previewAffLink" href="" target="_blank" class="aff-link-text"></a>
+                </div>
+                <div class="preview-source" id="previewSource"></div>
+              </div>
+            </div>
+
+            <!-- Manual Field Confirmation Form -->
+            <div class="edit-fields-grid">
+              <div class="form-group">
+                <label for="addBrand">Brand Name:</label>
+                <input type="text" id="addBrand" class="form-control" placeholder="e.g. Philips">
+              </div>
+              <div class="form-group">
+                <label for="addCategory">Category:</label>
+                <select id="addCategory" class="form-control">
+                  <option value="home_kitchen">Home & Kitchen Essentials</option>
+                  <option value="gadgets_electronics">Gadgets & Electronics</option>
+                  <option value="seasonal_essentials">Seasonal Essentials & Lifestyle</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="addRating">Rating (Out of 5.0):</label>
+                <input type="number" id="addRating" class="form-control" step="0.1" min="1.0" max="5.0" placeholder="4.2">
+                <small class="form-hint">Must be &ge; 3.5 (&ge; 4.0 preferred)</small>
+              </div>
+              <div class="form-group">
+                <label for="addReviews">Reviews Count:</label>
+                <input type="number" id="addReviews" class="form-control" placeholder="1000">
+              </div>
+              <div class="form-group">
+                <label for="addPrice">Current Live Price (₹):</label>
+                <input type="number" id="addPrice" class="form-control" placeholder="1499">
+              </div>
+              <div class="form-group">
+                <label for="addListPrice">List Price / MRP (₹, Optional):</label>
+                <input type="number" id="addListPrice" class="form-control" placeholder="2999">
+              </div>
+            </div>
+
+            <div class="form-check-wrap">
+              <label class="checkbox-label">
+                <input type="checkbox" id="addDailyDeal" checked>
+                <span>Mark as <strong>Daily Deal</strong> (Will show ⚡ Daily Deal badge)</span>
+              </label>
+            </div>
+
+            <div class="action-btn-row">
+              <button id="runIntegrityBtn" class="btn btn-success btn-lg">
+                🛡️ Run 8-Point Integrity Check &bull; Step 3 &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: 8-Point Integrity Gate Results -->
+        <div class="card panel-card" id="integrityPanel" style="display: none;">
+          <div class="panel-head">
+            <h3>Step 3: 8-Point Product Integrity Gate</h3>
+            <span class="badge-status-tag" id="integrityBadge">Checking...</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">Every product must pass all 8 validation points before entering the verified catalog.</p>
+
+            <div class="integrity-steps-list" id="integritySteps"></div>
+
+            <div class="publish-actions" id="publishActions" style="display: none;">
+              <div class="publish-notice">
+                ✅ <strong>All 8 integrity points verified.</strong> Ready to add to Public Portfolio 1 with configured tag.
+              </div>
+              <button id="publishBtn" class="btn btn-primary btn-lg">
+                🚀 Publish to Public Portfolio 1
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TAB: VERIFIED CATALOG                    -->
+      <!-- ======================================== -->
+      <section class="tab-panel" id="tabCatalog">
+        <div class="card panel-card">
+          <div class="panel-head">
+            <h3>📦 Verified Products Catalog</h3>
+            <span class="badge-status-tag" id="catalogCount">0 Products</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">Products currently live on Public Portfolio 1. Every product has passed the 1-to-1 Validator.</p>
+
+            <div class="catalog-table-wrap">
+              <div id="catalogEmpty" class="catalog-empty" style="display: none;">
+                <p>No verified products in catalog yet.</p>
+                <p>Use the <strong>1-to-1 Validator</strong> or click <strong>1-Click Auto-Curate</strong> above.</p>
+              </div>
+
+              <table class="data-table" id="catalogTable">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>ASIN</th>
+                    <th>Category</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                    <th>Deal?</th>
+                    <th>Last Audited</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="catalogBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================== -->
+      <!-- TAB: SYSTEM OVERVIEW                     -->
+      <!-- ======================================== -->
+      <section class="tab-panel" id="tabOverview">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-head">
+              <span class="metric-label">Verified Products</span>
+              <span class="metric-icon">📦</span>
+            </div>
+            <div class="metric-val" id="metricProducts">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-head">
+              <span class="metric-label">Avg Quality Rating</span>
+              <span class="metric-icon">⭐</span>
+            </div>
+            <div class="metric-val" id="metricRating">0.0</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-head">
+              <span class="metric-label">Integrity Status</span>
+              <span class="metric-icon">🛡️</span>
+            </div>
+            <div class="metric-val text-green" id="metricIntegrity">100%</div>
+          </div>
+          <div class="metric-card highlight-amber">
+            <div class="metric-head">
+              <span class="metric-label">Daily Deals</span>
+              <span class="metric-icon">⚡</span>
+            </div>
+            <div class="metric-val" id="metricDeals">0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: AUDIT TRAIL & GOOGLE SHEETS HUB -->
+      <section class="tab-panel" id="tabAudit">
+        <div class="card panel-card">
+          <div class="panel-head" style="flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;">
+            <div>
+              <h3>📜 Master Ecosystem Audit & Google Sheets Hub</h3>
+              <p class="panel-sub" style="margin-top: 0.25rem;">Complete, unbroken record of every action from project launch & automated daily 10:00 PM performance reports.</p>
+            </div>
+            <div class="export-actions-group" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <a href="/api/admin/export/master-audit.csv" class="btn btn-secondary btn-sm" id="downloadMasterCsvBtn" target="_blank" download="master-ecosystem-audit.csv">
+                📥 Download Master Audit (.CSV / Sheets)
+              </a>
+              <a href="/api/admin/export/daily-reports.csv" class="btn btn-secondary btn-sm" id="downloadDailyCsvBtn" target="_blank" download="daily-ecosystem-reports.csv">
+                📊 Download Daily Reports (.CSV / Sheets)
+              </a>
+              <button class="btn btn-warning btn-sm" id="generateDailyReportBtn">
+                ⚡ Compile Today's 10:00 PM Report
+              </button>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <!-- Sub-tab Navigation for Audit Hub -->
+            <div class="audit-subtabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--admin-border); padding-bottom: 0.75rem;">
+              <button class="subtab-btn active" id="subtabLiveLogsBtn">📋 Complete Master Action Log</button>
+              <button class="subtab-btn" id="subtabDailyReportsBtn">📊 Daily 10:00 PM Performance Reports</button>
+              <button class="subtab-btn" id="subtabSheetsGuideBtn">💡 Google Sheets Import Guide</button>
+            </div>
+
+            <!-- View 1: Complete Action Log -->
+            <div id="viewLiveLogs">
+              <div class="audit-filters-bar" style="display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <input type="text" id="auditSearchInput" class="form-control" placeholder="Search by action, tool, ASIN, or status..." style="max-width: 300px;">
+                <select id="auditToolFilter" class="form-control" style="max-width: 200px;">
+                  <option value="ALL">All Tools & Modules</option>
+                  <option value="Curator">⚡ Deal Curator Engine</option>
+                  <option value="Health">🔍 5-Hour Health Monitor</option>
+                  <option value="Price">📉 Price & Policy Monitor</option>
+                  <option value="Security">🔒 Owner Security Gate</option>
+                  <option value="Report">📊 Daily Report Engine</option>
+                  <option value="Server">🚀 Server Bootstrap</option>
+                  <option value="System">System Modules</option>
+                </select>
+                <select id="auditComplianceFilter" class="form-control" style="max-width: 180px;">
+                  <option value="ALL">All Statuses</option>
+                  <option value="100%_COMPLIANT">100% Compliant</option>
+                  <option value="VIOLATION_BLOCKED">Violations Blocked</option>
+                  <option value="EMERGENCY_HALT">Emergency Halt</option>
+                </select>
+                <span class="audit-log-counter" id="auditLogCounter" style="align-self: center; font-size: 0.85rem; color: var(--text-dim);">Loading records...</span>
+              </div>
+
+              <div class="audit-table-wrap">
+                <table class="data-table" id="auditTable">
+                  <thead>
+                    <tr>
+                      <th>Time (IST)</th>
+                      <th>Tool / Module</th>
+                      <th>Action Performed</th>
+                      <th>Permission Used</th>
+                      <th>Compliance</th>
+                      <th>Status</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <tbody id="auditTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- View 2: Daily Reports View -->
+            <div id="viewDailyReports" style="display: none;">
+              <div class="daily-reports-wrap">
+                <table class="data-table" id="dailyReportsTable">
+                  <thead>
+                    <tr>
+                      <th>Date (IST)</th>
+                      <th>Health & Status</th>
+                      <th>Total Operations</th>
+                      <th>Deals Curated</th>
+                      <th>Health Audits</th>
+                      <th>Violations Blocked</th>
+                      <th>Active Catalog</th>
+                      <th>Report Generated At</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dailyReportsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- View 3: Google Sheets Sync Guide -->
+            <div id="viewSheetsGuide" style="display: none;">
+              <div class="guide-card" style="background: rgba(255,255,255,0.03); border: 1px solid var(--admin-border); border-radius: 8px; padding: 1.5rem; line-height: 1.7;">
+                <h4 style="color: var(--col-amber); margin-bottom: 0.75rem;">📊 How to open Master Audit and Daily Reports in Google Sheets:</h4>
+                <ol style="padding-left: 1.25rem; color: var(--text-main);">
+                  <li>Click <strong>📥 Download Master Audit (.CSV)</strong> or <strong>📊 Download Daily Reports (.CSV)</strong> above.</li>
+                  <li>Open <strong><a href="https://sheets.new" target="_blank" style="color: #60a5fa; text-decoration: underline;">Google Sheets (sheets.new)</a></strong> in your browser.</li>
+                  <li>Go to <strong>File &rarr; Import &rarr; Upload</strong> and select the downloaded <code>.csv</code> file.</li>
+                  <li>Choose <strong>"Replace current sheet"</strong> with separator <strong>"Detect automatically"</strong> and click <strong>Import data</strong>.</li>
+                  <li>Google Sheets will format all columns (IST Timestamps, Tools, Compliance Status, and Full Details) with complete transparency.</li>
+                </ol>
+                <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(59, 130, 246, 0.1); border-left: 3px solid #3b82f6; border-radius: 4px; font-size: 0.85rem; color: #93c5fd;">
+                  💡 <strong>Automated Nightly Generation:</strong> The system automatically writes today's summary to the Daily Report Sheet at <strong>10:00 PM IST</strong> every single day!
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: PRICE DELTAS -->
+      <section class="tab-panel" id="tabDeltas">
+        <div class="card panel-card">
+          <div class="panel-head"><h3>📉 Price Delta History</h3></div>
+          <div class="panel-body">
+            <table class="data-table">
+              <thead>
+                <tr><th>Time</th><th>ASIN</th><th>Title</th><th>Old</th><th>New</th><th>Δ</th><th>%</th></tr>
+              </thead>
+              <tbody id="deltasBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: CUSTOMER FEEDBACK -->
+      <section class="tab-panel" id="tabFeedback">
+        <div class="card panel-card">
+          <div class="panel-head">
+            <h3>💬 Customer Reports & Feedback</h3>
+            <span class="badge-status-tag">Owner Review Only &bull; No Auto-Responses</span>
+          </div>
+          <div class="panel-body">
+            <p class="panel-sub">Incoming feedback, broken link reports, and product suggestions submitted from Public Portfolio 1.</p>
+            <div id="feedbackListContainer">
+              <div id="feedbackEmpty" class="catalog-empty" style="display: none;">
+                <p>✨ No customer feedback submissions yet.</p>
+              </div>
+              <table class="data-table" id="feedbackTable" style="display: none;">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Product / ASIN</th>
+                    <th>Message</th>
+                    <th>Sender</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="feedbackBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- TAB: PINTEREST AUTO-PUBLISHER -->
+      <!-- ============================================ -->
+      <section class="tab-panel" id="tabPinterest">
+        <div class="panel-header">
+          <div>
+            <h2>📌 Pinterest Auto-Publisher Engine</h2>
+            <p class="panel-subtitle">Manage automated daily Pin publishing directly to your Pinterest Board.</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" id="publishDailyPinsBtn">⚡ Publish Top 5 Deals Now</button>
+          </div>
+        </div>
+
+        <div class="validator-grid" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+          <!-- Credentials & Board Settings -->
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <h3>🔑 Pinterest API v5 & OAuth Configuration</h3>
+              <span class="badge" id="pinterestConnBadge">Checking...</span>
+            </div>
+            <div class="panel-body">
+              <div style="background: rgba(255, 215, 0, 0.06); border: 1px solid rgba(255, 215, 0, 0.25); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
+                <div style="font-weight: 600; color: var(--gold-accent); margin-bottom: 0.5rem;">⚡ Quick 1-Click Pinterest OAuth Setup:</div>
+                <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: var(--text-main); line-height: 1.5;">
+                  <li>In Pinterest App Settings, add this into <strong>Redirect URIs</strong>:
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.35rem; margin-bottom: 0.5rem;">
+                      <input type="text" id="pinterestRedirectUriDisplay" class="form-control" readonly style="font-family: monospace; font-size: 0.75rem; background: var(--admin-card-bg);" value="http://localhost:3000/api/admin/pinterest/oauth/callback">
+                      <button class="btn btn-secondary" id="copyRedirectUriBtn" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">📋 Copy</button>
+                    </div>
+                  </li>
+                  <li>Paste your <strong>App Secret Key</strong> below & click <strong>Connect with Pinterest</strong>.</li>
+                </ol>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label><strong>Pinterest App ID:</strong></label>
+                <input type="text" id="pinterestAppIdInput" class="form-control" placeholder="e.g. 1234567" value="" style="font-family: monospace; font-size: 0.85rem;">
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label><strong>Pinterest App Secret Key:</strong></label>
+                <input type="password" id="pinterestAppSecretInput" class="form-control" placeholder="Paste App Secret key from Pinterest Developer Portal" style="font-family: monospace; font-size: 0.85rem;">
+                <small style="color: var(--text-dim);">Required to exchange authorization code for write-enabled access token.</small>
+              </div>
+
+              <div style="margin-bottom: 1.25rem;">
+                <button class="btn btn-primary" id="pinterestOAuthConnectBtn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: #e60023; border-color: #e60023; color: white; font-weight: 600; padding: 0.75rem;">
+                  <span>📌 Authorize & Connect via Pinterest (1-Click OAuth)</span>
+                </button>
+              </div>
+
+              <div style="position: relative; text-align: center; margin: 1.25rem 0; border-top: 1px dashed var(--admin-border);">
+                <span style="position: relative; top: -10px; background: var(--admin-card-bg); padding: 0 10px; font-size: 0.75rem; color: var(--text-dim);">OR DIRECT TOKEN / BOARD OVERRIDE</span>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label><strong>Direct Access Token (Optional Manual Override):</strong></label>
+                <input type="password" id="pinterestTokenInput" class="form-control" placeholder="YOUR_PINTEREST_ACCESS_TOKEN" style="font-family: monospace; font-size: 0.85rem;">
+                <small style="color: var(--text-dim);">Bearer token generated with <code>pins:write</code> and <code>boards:read</code>.</small>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label><strong>Target Board:</strong></label>
+                <input type="text" id="pinterestBoardNameInput" class="form-control" placeholder="Best Deals on Amazon" value="Best Deals on Amazon">
+                <small style="color: var(--text-dim);">Target Board Link: <a href="https://www.pinterest.com/your-brand/best-deals-on-amazon/" target="_blank" style="color: var(--gold-accent);">https://www.pinterest.com/your-brand/best-deals-on-amazon/ ↗</a></small>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 1.25rem;">
+                <label><strong>Target Board ID (auto-detected or manual):</strong></label>
+                <input type="text" id="pinterestBoardIdInput" class="form-control" placeholder="YOUR_PINTEREST_BOARD_ID (auto-detected on connect)" style="font-family: monospace;">
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-secondary" id="savePinterestConfigBtn">💾 Save Configuration</button>
+                <button class="btn btn-secondary" id="fetchPinterestBoardsBtn">🔄 Detect Board ID</button>
+                <a href="/top-5-pinterest-pins.csv?refresh=true" download="pinterest-top-5-deals.csv" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; background: #e60023; border-color: #e60023; color: white;">
+                  📥 Download Fresh Pinterest CSV (Updated Prices)
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Status & Stats -->
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <h3>📊 Daily Automation Status</h3>
+            </div>
+            <div class="panel-body">
+              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--admin-border); padding-bottom: 0.5rem;">
+                  <span>Auto-Publish Daily:</span>
+                  <strong class="text-green">ACTIVE (ON)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--admin-border); padding-bottom: 0.5rem;">
+                  <span>Target Pinterest Account:</span>
+                  <strong>Configured in .env</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--admin-border); padding-bottom: 0.5rem;">
+                  <span>Target Board:</span>
+                  <strong>Best Deals on Amazon</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--admin-border); padding-bottom: 0.5rem;">
+                  <span>Associate Link Binding:</span>
+                  <code>tag=configured</code>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Last Published Batch:</span>
+                  <span id="pinterestLastRunText" style="color: var(--text-dim);">Ready for trigger</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History Table of Published Pins -->
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>📜 Published Pins History</h3>
+          </div>
+          <div class="panel-body">
+            <table class="data-table" id="pinterestHistoryTable">
+              <thead>
+                <tr>
+                  <th>Published Time</th>
+                  <th>ASIN</th>
+                  <th>Product Title</th>
+                  <th>Deal Price</th>
+                  <th>Affiliate Tag</th>
+                  <th>Pinterest Status</th>
+                </tr>
+              </thead>
+              <tbody id="pinterestHistoryBody">
+                <tr><td colspan="6" style="text-align:center; color:var(--text-dim); padding:2rem;">No pins published via API yet. Click "Publish Top 5 Deals Now" to publish.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  <!-- Change Password Modal -->
+  <div id="changePasswordModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="max-width: 420px; padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="margin: 0; font-size: 1.25rem;">🔑 Change Master Password</h3>
+        <button type="button" id="closeChangePasswordModalBtn" style="background: none; border: none; font-size: 1.5rem; color: var(--text-dim); cursor: pointer;">&times;</button>
+      </div>
+
+      <form id="changePasswordForm">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Current Password:</label>
+          <input type="password" id="currentPasswordInput" class="form-control" placeholder="••••••••••••" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>New Password (min 4 characters):</label>
+          <input type="password" id="newPasswordInput" class="form-control" placeholder="Enter new custom password" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label>Confirm New Password:</label>
+          <input type="password" id="confirmNewPasswordInput" class="form-control" placeholder="Re-type new password" required>
+        </div>
+
+        <div id="changePasswordStatus" style="display: none; padding: 0.5rem; margin-bottom: 1rem; border-radius: 6px; font-size: 0.85rem;"></div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary" id="cancelChangePasswordBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="submitChangePasswordBtn">Save New Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js?v=20260819_03"></script>
+</body>
+</html>

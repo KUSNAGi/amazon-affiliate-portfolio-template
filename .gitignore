@@ -1,0 +1,34 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+
+# Sensitive Runtime Configurations
+data/pinterest-config.json
+data/admin-config.json
+data/emergency-incident.json
+data/feedbacks.json
+data/audit-logs.json
+data/master-audit-archive.json
+data/diagnostic-report-*.json
+data/latest-ecosystem-audit.json
+data/price-deltas.json
+data/daily-reports.json
+
+# Scratch & Temporary Logs
+scratch/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node Dependencies
+node_modules/
+
+# Database & Local Cache
+data/cache.sqlite
+data/cache.sqlite-journal
+
+# OS Metadata
+.DS_Store
+Thumbs.db

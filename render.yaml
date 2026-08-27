@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: affiliate-portfolio-template
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AMAZON_ASSOCIATE_TAG
+        value: YOUR_ASSOCIATE_TAG_21
+      - key: ADMIN_SECRET_TOKEN
+        generateValue: true
+      - key: AMAZON_STOREFRONT_URL
+        value: https://www.amazon.in/shop/YOUR_STOREFRONT_NAME
+      - key: SYNC_INTERVAL_HOURS
+        value: "2"

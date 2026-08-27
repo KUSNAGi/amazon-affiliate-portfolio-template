@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affiliate Deals Hub — Handpicked Deals, Mobiles, Books, Home & Electronics</title>
+  <meta name="description" content="Discover handpicked Amazon Deals, Mobiles, Electronics, Home & Kitchen, Bestselling Kindle Books, and Gift Cards curated with verified live pricing and 4+ star ratings.">
+  <meta name="referrer" content="no-referrer">
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="Affiliate Deals Hub — Handpicked Deals & Curated Categories">
+  <meta property="og:description" content="Authentic daily deals, smartphones, electronics, books, and home essentials curated with verified 4+ star ratings on Amazon.in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/">
+  <meta property="og:site_name" content="Curated Deals Hub">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260820_01">
+</head>
+<body>
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement" id="topAnnouncement">
+    <div class="container announcement-inner">
+      <div class="announcement-left">
+        <span class="pulse-indicator"></span>
+        <span class="announcement-text">
+          ✨ Verified Amazon Categories & Deals &bull; Authentic recommendations on <strong>Amazon.in</strong>
+        </span>
+      </div>
+      <div class="announcement-right">
+        <a href="https://www.amazon.in/amazonprime" target="_blank" rel="noopener noreferrer" class="prime-top-link">
+          👑 Try Amazon Prime ↗
+        </a>
+        <a href="#todaysDealsSection" class="storefront-link">
+          Featured Deals ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <div class="brand-area">
+        <a href="/" class="brand-logo" id="brandLogo">
+          <span class="logo-accent">Deal</span>Hub
+        </a>
+        <span class="brand-sub">Curated Picks</span>
+        <span class="beta-badge" id="betaBadge">BETA</span>
+      </div>
+
+      <!-- Advanced Amazon-Style Search -->
+      <div class="header-search">
+        <select id="searchCategorySelect" class="search-cat-dropdown" aria-label="Search department">
+          <option value="all">All Departments</option>
+          <option value="daily_deals">⚡ Big Deals</option>
+          <option value="mobiles">📱 Mobiles</option>
+          <option value="electronics_gadgets">💻 Electronics</option>
+          <option value="kindle_books">📚 Books & Kindle</option>
+          <option value="kitchen_needs">🍳 Kitchen Needs</option>
+          <option value="home_needs">🏠 Home Needs</option>
+          <option value="womens_fashion">👗 Women's Style</option>
+          <option value="amazon_brands">🏷️ Amazon Brands</option>
+          <option value="gift_cards">🎁 Gift Cards</option>
+        </select>
+        <div class="search-input-wrap">
+          <input type="text" id="searchInput" placeholder="Search Mobiles, Books, Headphones, Airfryers, Brands..." aria-label="Search products" autocomplete="off">
+          <button id="clearSearchBtn" class="clear-search-btn" style="display: none;" aria-label="Clear search">&times;</button>
+          <!-- Live Autocomplete Suggestions Box -->
+          <div class="search-suggestions-box" id="searchSuggestionsBox" style="display: none;"></div>
+        </div>
+        <button id="searchSubmitBtn" class="search-submit-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Header Action Buttons -->
+      <div class="header-nav-links">
+        <!-- Save for Later (Wishlist) Counter Button -->
+        <button id="openWishlistBtn" class="wishlist-header-btn" title="View Saved Products">
+          <span class="wishlist-icon">❤️</span>
+          <span class="wishlist-text">Saved</span>
+          <span class="wishlist-badge" id="wishlistCountBadge">0</span>
+        </button>
+
+        <a href="#todaysDealsSection" class="store-shortcut-btn">
+          Explore Deals ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-Header Amazon Categories Bar -->
+  <nav class="sub-nav-bar" id="subNavBar">
+    <div class="container sub-nav-inner">
+      <div class="sub-nav-links" id="subNavLinks">
+        <a href="#todaysDealsSection" class="sub-nav-item active" data-category="all">
+          ⚡ Today's Big Deals
+        </a>
+        <a href="#todaysDealsSection" class="sub-nav-item" data-category="mobiles">
+          📱 Mobiles & 5G
+        </a>
+        <a href="#booksSection" class="sub-nav-item" data-category="kindle_books">
+          📚 Books & Kindle
+        </a>
+        <a href="#todaysDealsSection" class="sub-nav-item" data-category="electronics_gadgets">
+          💻 Electronics & Audio
+        </a>
+        <a href="#todaysDealsSection" class="sub-nav-item" data-category="home_needs">
+          🏠 Home Needs
+        </a>
+        <a href="#todaysDealsSection" class="sub-nav-item" data-category="kitchen_needs">
+          🍳 Kitchen Needs
+        </a>
+        <a href="#todaysDealsSection" class="sub-nav-item" data-category="womens_fashion">
+          👗 Women's Fashion
+        </a>
+        <a href="#todaysDealsSection" class="sub-nav-item" data-category="gift_cards">
+          🎁 Gift Cards Store
+        </a>
+        <a href="#booksSection" class="sub-nav-item" data-category="kindle_books_all">
+          📖 Amazon Books Store
+        </a>
+        <a href="https://www.amazon.in/amazonprime" target="_blank" rel="noopener noreferrer" class="sub-nav-item prime-badge-nav">
+          👑 Prime Hub ↗
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Amazon Feature Quick Gateways Action Strip -->
+  <section class="feature-gateways-section">
+    <div class="container">
+      <div class="gateways-grid">
+        <a href="https://www.amazon.in/amazonprime" target="_blank" rel="noopener noreferrer" class="gateway-card prime-card">
+          <div class="gateway-icon">👑</div>
+          <div class="gateway-content">
+            <strong>Try Amazon Prime</strong>
+            <span>Fast Free Delivery, Prime Video & Music</span>
+          </div>
+          <span class="gateway-action">Join Prime ↗</span>
+        </a>
+
+        <a href="#todaysDealsSection" class="gateway-card sf-card">
+          <div class="gateway-icon">🌟</div>
+          <div class="gateway-content">
+            <strong>Featured Deals Collection</strong>
+            <span>Explore Handpicked Daily Product Deals</span>
+          </div>
+          <span class="gateway-action">Explore Deals ↗</span>
+        </a>
+
+        <a href="#booksSection" class="gateway-card books-card">
+          <div class="gateway-icon">📚</div>
+          <div class="gateway-content">
+            <strong>Kindle & Print Books Store</strong>
+            <span>Bestsellers, Self-Help, Novels & Kindle Deals</span>
+          </div>
+          <span class="gateway-action">Browse Books ↗</span>
+        </a>
+
+        <a href="https://www.amazon.in/gift-card-store" target="_blank" rel="noopener noreferrer" class="gateway-card gift-card">
+          <div class="gateway-icon">🎁</div>
+          <div class="gateway-content">
+            <strong>Amazon Pay Gift Cards</strong>
+            <span>Instant Email Delivery & Zero Fees</span>
+          </div>
+          <span class="gateway-action">Send Gift Card ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- Featured Recommendation Grid Blocks (Amazon Home Style) -->
+    <section class="featured-blocks-section" id="curatedSection">
+      <div class="container">
+        <div class="featured-blocks-grid">
+          
+          <!-- Block 1: 5G Mobiles & Gadgets -->
+          <div class="category-card-widget">
+            <div class="widget-head">
+              <h3>📱 5G Mobiles & Smartphones</h3>
+              <p>Top models from Samsung, OnePlus, Redmi & Realme</p>
+            </div>
+            <div class="widget-grid" id="widgetGridMobiles">
+              <div class="widget-cell-loading">Loading top mobiles...</div>
+            </div>
+            <a href="#todaysDealsSection" class="widget-footer-link" onclick="filterByCategory('mobiles')">
+              See all Mobiles ↗
+            </a>
+          </div>
+
+          <!-- Block 2: Electronics & Audio -->
+          <div class="category-card-widget">
+            <div class="widget-head">
+              <h3>🎧 Electronics & Audio Gear</h3>
+              <p>Headphones, earbuds, speakers & accessories</p>
+            </div>
+            <div class="widget-grid" id="widgetGridElectronics">
+              <div class="widget-cell-loading">Loading audio deals...</div>
+            </div>
+            <a href="#todaysDealsSection" class="widget-footer-link" onclick="filterByCategory('electronics_gadgets')">
+              Explore all Electronics ↗
+            </a>
+          </div>
+
+          <!-- Block 3: Kitchen & Home Needs -->
+          <div class="category-card-widget">
+            <div class="widget-head">
+              <h3>🍳 Kitchen & Home Essentials</h3>
+              <p>Air fryers, cookware, organizers & cleaners</p>
+            </div>
+            <div class="widget-grid" id="widgetGridHomeKitchen">
+              <div class="widget-cell-loading">Loading essentials...</div>
+            </div>
+            <a href="#todaysDealsSection" class="widget-footer-link" onclick="filterByCategory('kitchen_needs')">
+              Explore Kitchen & Home ↗
+            </a>
+          </div>
+
+          <!-- Block 4: Gift Cards & Books Hub -->
+          <div class="category-card-widget">
+            <div class="widget-head">
+              <h3>🎁 Gift Cards & Kindle Books</h3>
+              <p>Amazon Pay vouchers & bestselling reads</p>
+            </div>
+            <div class="widget-grid-promo">
+              <a href="https://www.amazon.in/gift-card-store" target="_blank" rel="noopener noreferrer" class="promo-cell">
+                <span class="promo-icon">🎁</span>
+                <strong>Amazon Pay Gift Cards</strong>
+                <span class="promo-sub">Instant delivery via email & UPI cashback</span>
+              </a>
+              <a href="#booksSection" class="promo-cell">
+                <span class="promo-icon">📚</span>
+                <strong>Kindle & Print Books</strong>
+                <span class="promo-sub">Top rated bestsellers, self-help & novels</span>
+              </a>
+            </div>
+            <a href="#todaysDealsSection" class="widget-footer-link">
+              Explore Today's Deals ↗
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedicated Books & Kindle Section -->
+    <section class="books-section" id="booksSection">
+      <div class="container">
+        <div class="section-title-strip">
+          <div class="title-left">
+            <h2 class="main-section-title">📚 Bestselling Books & Kindle Deals</h2>
+            <p class="main-section-sub">Top-rated self-help, business, fiction, paperbacks & Kindle eBooks on Amazon</p>
+          </div>
+          <a href="#booksSection" class="view-all-deals-btn">
+            View All Books ↗
+          </a>
+        </div>
+
+        <div class="books-grid" id="booksGrid">
+          <div class="widget-cell-loading">Loading bestselling books...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Today's Big Deals Interactive Hub Section -->
+    <section class="catalog-section" id="todaysDealsSection">
+      <div class="container">
+
+        <!-- Section Header with Direct Amazon Gateway -->
+        <div class="section-title-strip">
+          <div class="title-left">
+            <h2 class="main-section-title" id="dealsHeading">⚡ Today's Big Deals</h2>
+            <p class="main-section-sub">Verified live pricing &bull; Up to 70% OFF on 4★+ rated Amazon products</p>
+          </div>
+          <a href="#todaysDealsSection" class="view-all-deals-btn">
+            View All Deals ↗
+          </a>
+        </div>
+
+        <!-- Real-Time Compliance & Price Verification Strip -->
+        <div class="amazon-compliance-banner" id="complianceBanner">
+          <span class="compliance-shield">🛡️</span>
+          <div class="compliance-text">
+            <strong>Amazon Price & Availability Notice:</strong> As an Amazon Associate, we earn from qualifying purchases. Prices and availability are accurate as of <span id="liveTimestampBadge">Today, Live IST</span> and are subject to change. Any price and availability displayed on Amazon.in at the time of purchase will apply.
+          </div>
+        </div>
+
+        <!-- Deal Refresh & Lightning Urgency Countdown Strip -->
+        <div class="deal-countdown-strip" id="dealCountdownStrip">
+          <div class="countdown-left">
+            <span>⚡ Next Today's Deals Sync in:</span>
+            <span class="countdown-clock" id="countdownClock">01:45:20</span>
+          </div>
+          <div class="countdown-right">
+            <span>🔥 Grab authentic Amazon discounts before live prices fluctuate!</span>
+          </div>
+        </div>
+
+        <!-- Department Quick Filter Pills (Amazon Deals Style) -->
+        <div class="department-pills-wrap">
+          <div class="department-pills" id="departmentPills" role="tablist">
+            <button class="dept-pill active" data-dept="all" role="tab">✨ All Deals</button>
+            <button class="dept-pill" data-dept="trending" role="tab">🔥 Trending</button>
+            <button class="dept-pill" data-dept="most_loved" role="tab">⭐ Customer's Most Loved</button>
+            <button class="dept-pill" data-dept="lightning_deals" role="tab">⚡ Lightning Deals (35%+ OFF)</button>
+            <button class="dept-pill" data-cat="mobiles" role="tab">📱 Mobiles</button>
+            <button class="dept-pill" data-cat="kindle_books" role="tab">📚 Books & Kindle</button>
+            <button class="dept-pill" data-cat="electronics_gadgets" role="tab">🎧 Electronics & Audio</button>
+            <button class="dept-pill" data-cat="kitchen_needs" role="tab">🍳 Kitchen Needs</button>
+            <button class="dept-pill" data-cat="home_needs" role="tab">🏠 Home Needs</button>
+            <button class="dept-pill" data-cat="womens_fashion" role="tab">👗 Women's Style</button>
+            <button class="dept-pill" data-cat="amazon_brands" role="tab">🏷️ Amazon Brands</button>
+            <button class="dept-pill" data-cat="gift_cards" role="tab">🎁 Gift Cards</button>
+          </div>
+        </div>
+
+        <!-- Rating & Sort Toolbar -->
+        <div class="filter-toolbar">
+          <div class="rating-filter-group" id="ratingFilterGroup">
+            <span class="filter-label">Customer Rating:</span>
+            <button class="rating-pill active" data-rating="all_acceptable">All (≥ 3.5★)</button>
+            <button class="rating-pill" data-rating="top_rated">⭐ 4.0+ (Top Rated)</button>
+            <button class="rating-pill" data-rating="value_picks">🌟 3.5–3.9 (Value)</button>
+          </div>
+          <div class="sort-group">
+            <label for="sortSelect" class="filter-label">Sort By:</label>
+            <select id="sortSelect" class="sort-select" aria-label="Sort products">
+              <option value="discount">🔥 Biggest Discount</option>
+              <option value="rating">⭐ Highest Rated</option>
+              <option value="price_asc">₹ Price: Low to High</option>
+              <option value="price_desc">₹ Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Results Header -->
+        <div class="results-header">
+          <div class="results-count" id="resultsCount">Loading verified Amazon deals...</div>
+          <div class="policy-note"><span class="shield-icon">🛡️</span> Direct 1-to-1 Verified Amazon Buybox Links</div>
+        </div>
+
+        <!-- Products Grid (Paginated for Medium Page Length & Fast Performance) -->
+        <div class="products-grid" id="productsGrid"></div>
+
+        <!-- Pagination / Load More Controller -->
+        <div class="load-more-wrap" id="loadMoreWrap" style="display: none;">
+          <div class="load-more-info" id="loadMoreInfo">Showing 24 of 315 products</div>
+          <button id="loadMoreBtn" class="btn-load-more">
+            ⚡ Load More Deals (+24)
+          </button>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-icon">🛍️</div>
+          <h3>No products found in this category</h3>
+          <p>Try switching categories or clearing search filters to see all available deals.</p>
+          <button class="btn btn-primary" onclick="resetAllFilters()">
+            Reset All Filters
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Trust & Amazon Quality Guarantee Strip -->
+    <section class="trust-section">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="trust-icon">⭐</div>
+            <h4>4+ Star Quality Standard</h4>
+            <p>Every product is handpicked with strict rating thresholds and positive customer reviews.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">🛡️</div>
+            <h4>100% Direct Amazon Links</h4>
+            <p>Every buy button routes securely to Amazon.in with safe 24-hour associate cookie protection.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">⚡</div>
+            <h4>2-Hour Continuous Price Sync</h4>
+            <p>Prices and discounts are continuously monitored against live Amazon buyboxes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Save for Later (Wishlist) Slide-Over Drawer -->
+  <div class="wishlist-drawer-overlay" id="wishlistOverlay" style="display: none;">
+    <div class="wishlist-drawer" id="wishlistDrawer">
+      <div class="wishlist-drawer-head">
+        <div class="wishlist-drawer-title">
+          <span class="wishlist-drawer-icon">❤️</span>
+          <h3>Saved for Later</h3>
+          <span class="wishlist-count-tag" id="drawerWishlistCount">0 items</span>
+        </div>
+        <button id="closeWishlistBtn" class="wishlist-close-btn" aria-label="Close saved items">&times;</button>
+      </div>
+
+      <div class="wishlist-drawer-body" id="wishlistDrawerBody">
+        <div class="wishlist-empty" id="wishlistEmptyState">
+          <span class="empty-heart-icon">🤍</span>
+          <h4>Your Saved List is Empty</h4>
+          <p>Click the heart icon ❤️ on any deal card to save it here for later purchase.</p>
+        </div>
+        <div class="wishlist-items-list" id="wishlistItemsList"></div>
+      </div>
+
+      <div class="wishlist-drawer-footer" id="wishlistDrawerFooter" style="display: none;">
+        <button id="clearAllWishlistBtn" class="btn btn-secondary btn-sm">Clear All</button>
+        <a href="#todaysDealsSection" class="btn btn-primary btn-sm">
+          Shop More Deals ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Column Side-by-Side Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      
+      <!-- 4-Column Navigation Layout -->
+      <div class="footer-columns-grid">
+        
+        <!-- Col 1: Brand & About -->
+        <div class="footer-col">
+          <div class="footer-brand">
+            <span class="logo-accent">Deal</span>Hub Curated Picks
+          </div>
+          <p class="footer-about-text">
+            Authentic product curation for smart shoppers on Amazon India. We highlight verified 4★+ deals, smartphones, books, electronics, and home essentials.
+          </p>
+          <div class="footer-storefront-callout">
+            <a href="#todaysDealsSection" class="footer-sf-badge">
+              Explore Today's Deals ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Amazon Stores & Gateways -->
+        <div class="footer-col">
+          <h4>Amazon Stores & Gateways</h4>
+          <ul class="footer-links-list">
+            <li><a href="#todaysDealsSection">⚡ Today's Big Deals</a></li>
+            <li><a href="#todaysDealsSection">📱 Mobiles & 5G Store</a></li>
+            <li><a href="#booksSection">📚 Kindle & Print Books</a></li>
+            <li><a href="https://www.amazon.in/gift-card-store" target="_blank" rel="noopener noreferrer">🎁 Gift Cards & Pay Vouchers</a></li>
+            <li><a href="https://www.amazon.in/amazonprime" target="_blank" rel="noopener noreferrer">👑 Amazon Prime Membership</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal, Policy & Compliance -->
+        <div class="footer-col">
+          <h4>Legal & Trust</h4>
+          <ul class="footer-links-list">
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/privacy#terms">Terms & Conditions</a></li>
+            <li><a href="/privacy#disclosure">Amazon Associate Disclosure</a></li>
+            <li><a href="https://www.amazon.in" target="_blank" rel="noopener noreferrer">Amazon.in Customer Support ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact Us & Community Feedback -->
+        <div class="footer-col">
+          <h4>Contact & Feedback</h4>
+          <p class="footer-contact-desc">Have a question or found a price mismatch? Reports are routed directly to our supervisor dashboard.</p>
+          <button id="openFeedbackBtn" class="btn btn-secondary btn-sm footer-feedback-trigger">
+            💬 Give Feedback / Report Issue
+          </button>
+          <div class="footer-email-note">
+            🛡️ Verified Inquiries & Issue Resolution Portal
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mandatory Amazon Associate Disclosure Banner -->
+      <div class="footer-associate-disclosure">
+        <p>
+          <strong>Amazon Associate Disclosure:</strong> This website is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.in. Product prices and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon.in at the time of purchase will apply to the purchase of this product.
+        </p>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 <strong>Affiliate Deals Hub</strong> &bull; All Rights Reserved.</div>
+        <div>Designed for Seamless Amazon Shopping Experience</div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Customer Feedback Modal -->
+  <div class="modal-overlay" id="feedbackModal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title-wrap">
+          <span class="modal-icon">💬</span>
+          <h3>Send Feedback or Report an Issue</h3>
+        </div>
+        <button class="modal-close-btn" id="closeFeedbackBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-sub">Help us improve the portal experience. All reports are verified directly in our private dashboard.</p>
+        <form id="feedbackForm">
+          <div class="form-group">
+            <label for="feedbackCategory">Issue / Feedback Type:</label>
+            <select id="feedbackCategory" class="modal-select" required>
+              <option value="broken_link">🔗 Broken Product Link / Redirect Issue</option>
+              <option value="price_mismatch">💰 Price Difference on Amazon</option>
+              <option value="out_of_stock">📦 Product is Out of Stock</option>
+              <option value="product_suggestion">💡 Product / Category Suggestion</option>
+              <option value="general_feedback">✨ General Feedback / UI Experience</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="feedbackAsin">Product ASIN or Name (Optional):</label>
+            <input type="text" id="feedbackAsin" class="modal-input" placeholder="e.g. B00SAMPLE1 or Smartphone">
+          </div>
+          <div class="form-group">
+            <label for="feedbackMessage">Your Message / Report Details:</label>
+            <textarea id="feedbackMessage" class="modal-textarea" rows="4" placeholder="Describe the issue or share your suggestions..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="feedbackContact">Your Name or Contact Handle (Optional):</label>
+            <input type="text" id="feedbackContact" class="modal-input" placeholder="Optional contact identifier">
+          </div>
+          <div id="feedbackStatus" class="feedback-status" style="display: none;"></div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="cancelFeedbackBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submitFeedbackBtn">Submit Feedback ↗</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=20260820_01"></script>
+</body>
+</html>

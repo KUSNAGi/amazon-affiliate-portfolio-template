@@ -1,0 +1,24 @@
+{
+  "name": "amazon-affiliate-ecosystem",
+  "version": "1.0.0",
+  "description": "Policy-compliant Amazon Influencer & Affiliate Portfolio with Creator API Bridge and Admin Audit System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --max-old-space-size=384 server.js",
+    "dev": "node --watch server.js",
+    "test": "node tests/test-bridge.js"
+  },
+  "keywords": [
+    "amazon-associate",
+    "amazon-influencer",
+    "creator-api",
+    "affiliate-portfolio"
+  ],
+  "author": "Affiliate Engine Contributor",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}

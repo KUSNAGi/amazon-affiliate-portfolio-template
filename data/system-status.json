@@ -1,0 +1,8 @@
+{
+  "isEmergencyHalt": false,
+  "lastCheckTime": "2026-08-27T00:00:00.000Z",
+  "health": "HEALTHY",
+  "activeViolations": [],
+  "notificationEmail": "admin@example.com",
+  "guardianVersion": "1.0.0"
+}
